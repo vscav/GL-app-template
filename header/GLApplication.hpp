@@ -1,6 +1,8 @@
 #ifndef _GLApplication_HPP_
 #define _GLApplication_HPP_
 
+#include "../header/TimeManager.hpp"
+
 #include <string>
 
 struct GLFWwindow;

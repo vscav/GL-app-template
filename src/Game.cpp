@@ -109,8 +109,9 @@ void Game::loop()
   if (glfwWindowShouldClose(getWindow()))
     exit();
 
+  TimeManager::Instance().calculateFrameRate(true);
+
   float t = getTime();
-  // set matrix : projection + view
 
   // clear
   glClear(GL_COLOR_BUFFER_BIT);
