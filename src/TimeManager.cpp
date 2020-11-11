@@ -25,7 +25,7 @@ double TimeManager::calculateFrameRate(bool writeToConsole = false)
         startTime = currentTime;
 
         if (writeToConsole)
-            std::cout << "Current Frames Per Second: " << int(framesPerSecond) << std::endl;
+            std::cout << "fps: " << int(framesPerSecond) << std::endl;
 
         currentFPS = framesPerSecond;
 

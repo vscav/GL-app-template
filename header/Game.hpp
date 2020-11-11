@@ -5,6 +5,7 @@
 #include "Shader.hpp"
 #include "FreeflyCamera.hpp"
 #include "Sphere.hpp"
+#include "Program.hpp"
 
 #include <glm/glm.hpp>
 #include <glm/gtx/matrix_operation.hpp>
@@ -20,13 +21,22 @@ private:
 
   std::vector<Sphere> m_spheres;
 
-  GLint m_MVPMatrixLocation;
-  GLint m_MVMatrixLocation;
-  GLint m_NormalMatrixLocation;
+  // GLint m_MVPMatrixLocation;
+  // GLint m_MVMatrixLocation;
+  // GLint m_NormalMatrixLocation;
 
   glm::mat4 m_ProjMatrix = glm::mat4(1.0);
   glm::mat4 m_MVMatrix = glm::translate(glm::mat4(1), glm::vec3(1.0));
   glm::mat4 m_NormalMatrix = glm::transpose(glm::inverse(m_MVMatrix));
+
+  GLint m_uMVPMatrix;
+  GLint m_uMVMatrix;
+  GLint m_uNormalMatrix;
+  GLint m_uLightIntensity;
+  GLint m_uLightPos_vs;
+  GLint m_uKd;
+  GLint m_uKs;
+  GLint m_uShininess;
 
   // FreeflyCamera camera;
 
