@@ -9,9 +9,9 @@ TrackballCamera::~TrackballCamera()
 {
 }
 
-void TrackballCamera::moveFront(const float delta)
+void TrackballCamera::moveFront(const float t)
 {
-	m_fDistance += delta;
+	m_fDistance += t;
 }
 
 void TrackballCamera::rotateLeft(const float degrees)

@@ -49,7 +49,7 @@ double TimeManager::getTime()
 }
 
 // This pauses the current thread for an amount of time in milliseconds
-void TimeManager::Sleep(int ms)
+void TimeManager::sleep(int ms)
 {
     // Use the C++ 11 sleep_for() function to pause the current thread
     std::this_thread::sleep_for(std::chrono::milliseconds(ms));

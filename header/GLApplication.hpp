@@ -2,6 +2,8 @@
 #define _GLApplication_HPP_
 
 #include "../header/TimeManager.hpp"
+#include "../header/FreeflyCamera.hpp"
+#include "../header/InputManager.hpp"
 
 #include <string>
 
@@ -23,6 +25,10 @@ private:
 
   GLFWwindow *m_window;
 
+  InputManager *m_inputManager;
+
+  FreeflyCamera *m_camera;
+
   // Time:
   float m_time;
   float m_deltaTime;
@@ -30,8 +36,6 @@ private:
   // Dimensions:
   int m_width;
   int m_height;
-  bool m_dimensionChanged;
-  void detectWindowDimensionChange();
 
 protected:
   GLApplication(const GLApplication &){};
@@ -62,7 +66,14 @@ public:
   int getWidth();
   int getHeight();
   float getWindowRatio();
-  bool windowDimensionChanged();
+
+  void setCamera(FreeflyCamera *camera) { m_camera = camera; };
+  FreeflyCamera *getCamera() { return m_camera; };
+
+  void setInputManager(InputManager *inputManager) { m_inputManager = inputManager; };
+  InputManager *getInputManager() { return m_inputManager; };
+
+  void ProcessInput();
 };
 
 #endif /* _GLApplication_HPP_ */

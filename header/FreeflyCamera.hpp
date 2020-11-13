@@ -18,6 +18,8 @@ private:
     glm::vec3 m_LeftVector;  // Left vector
     glm::vec3 m_UpVector;    // Up vector
 
+    float m_speed = 5.0;
+
     // Calcul of Front, Left and Up vectors
     void computeDirectionVectors();
 
@@ -30,6 +32,9 @@ public:
 
     void rotateLeft(float degrees);
     void rotateUp(float degrees);
+
+    inline void setSpeed(const double speed) { m_speed = speed; }
+	inline double const getSpeed() const { return m_speed; }
 
     glm::mat4 getViewMatrix() const;
 };

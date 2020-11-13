@@ -1,11 +1,13 @@
 #ifndef _TrackballCamera_HPP_
 #define _TrackballCamera_HPP_
 
+#include "Camera.hpp"
+
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtx/matrix_operation.hpp>
 
-class TrackballCamera
+class TrackballCamera : public Camera
 {
 private:
     float m_fDistance; // Distance from the center of the scene
@@ -16,7 +18,7 @@ public:
     TrackballCamera();
     ~TrackballCamera();
 
-    void moveFront(float delta);
+    void moveFront(float t);
     void rotateLeft(float degrees);
     void rotateUp(float degrees);
 

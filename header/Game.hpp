@@ -21,10 +21,6 @@ private:
 
   std::vector<Sphere> m_spheres;
 
-  // GLint m_MVPMatrixLocation;
-  // GLint m_MVMatrixLocation;
-  // GLint m_NormalMatrixLocation;
-
   glm::mat4 m_ProjMatrix = glm::mat4(1.0);
   glm::mat4 m_MVMatrix = glm::translate(glm::mat4(1), glm::vec3(1.0));
   glm::mat4 m_NormalMatrix = glm::transpose(glm::inverse(m_MVMatrix));
@@ -37,8 +33,6 @@ private:
   GLint m_uKd;
   GLint m_uKs;
   GLint m_uShininess;
-
-  // FreeflyCamera camera;
 
   GLuint m_vao, m_vbo, m_ibo;
 

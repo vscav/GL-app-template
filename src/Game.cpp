@@ -127,8 +127,11 @@ void Game::loop()
   glClearColor(0.0, 0.0, 0.0, 0.0);
   glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
+  // Get the ViewMatrix
+  glm::mat4 MVMatrix = getCamera()->getViewMatrix();
+
   // Planet Earth animation
-  glm::mat4 earthMVMatrix = glm::rotate(m_MVMatrix, t, glm::vec3(0, 1, 0)); // Translation * Rotation
+  glm::mat4 earthMVMatrix = glm::rotate(MVMatrix, t, glm::vec3(0, 1, 0)); // Translation * Rotation
 
   // Send matrices to the GPU
   glUniformMatrix4fv(m_uMVMatrix, 1, GL_FALSE, glm::value_ptr(earthMVMatrix));
@@ -136,10 +139,11 @@ void Game::loop()
   glUniformMatrix4fv(m_uMVPMatrix, 1, GL_FALSE, glm::value_ptr(m_ProjMatrix * earthMVMatrix));
 
   // Light settings
-  glm::mat4 lightMVMatrix = glm::rotate(m_MVMatrix, t, glm::vec3(0, 1, 0));
-  lightMVMatrix = glm::scale(lightMVMatrix, glm::vec3(1.25));
-  glm::vec3 lightPos(2, 2 * (glm::cos(t) * glm::sin(t)), 0);
-  glm::vec3 lightPos_vs(lightMVMatrix * glm::vec4(lightPos, 1));
+  // glm::mat4 lightMVMatrix = glm::rotate(MVMatrix, t, glm::vec3(0, 1, 0));
+  // lightMVMatrix = glm::scale(lightMVMatrix, glm::vec3(1.25));
+  // glm::vec3 lightPos(2, 2 * (glm::cos(t) * glm::sin(t)), 0);
+  // glm::vec3 lightPos_vs(lightMVMatrix * glm::vec4(lightPos, 1));
+  glm::vec3 lightPos_vs(MVMatrix * glm::vec4(1));
 
   glUniform3f(m_uLightIntensity, 1, 1, 1);
   glUniform3fv(m_uLightPos_vs, 1, glm::value_ptr(lightPos_vs));

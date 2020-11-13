@@ -27,7 +27,7 @@ public:
     double getTime();
 
     // This pauses the current thread for an amount of time in milliseconds
-    void Sleep(int milliseconds);
+    void sleep(int milliseconds);
 
     // This is the time slice that stores the total time in seconds that has elapsed since the last frame
     double deltaTime = 0;
