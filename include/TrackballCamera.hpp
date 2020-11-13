@@ -1,3 +1,4 @@
+#pragma once
 #ifndef _TrackballCamera_HPP_
 #define _TrackballCamera_HPP_
 
@@ -18,11 +19,11 @@ public:
     TrackballCamera();
     ~TrackballCamera();
 
-    void moveFront(float t);
-    void rotateLeft(float degrees);
-    void rotateUp(float degrees);
+    virtual void moveFront(float t) override;
+    virtual void rotateLeft(float degrees) override;
+    virtual void rotateUp(float degrees) override;
 
-    glm::mat4 getViewMatrix() const;
+    virtual glm::mat4 getViewMatrix() const override;
 };
 
 #endif /* _TrackballCamera_HPP_ */

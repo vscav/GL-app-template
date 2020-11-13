@@ -1,3 +1,4 @@
+#pragma once
 #ifndef _TimeManager_HPP
 #define _TimeManager_HPP
 

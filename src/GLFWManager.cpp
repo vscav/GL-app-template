@@ -1,6 +1,8 @@
 #include "../include/GLFWManager.hpp"
 #include "../include/GLApplication.hpp"
 
+#include <iostream>
+
 GLFWManager::GLFWManager()
 {
     initialize();
@@ -105,13 +107,37 @@ void GLFWManager::processInput()
     }
 
     if (glfwGetKey(m_window, GLFW_KEY_UP) || glfwGetKey(m_window, GLFW_KEY_W))
-        m_inputManager->KeyPressed(InputCodes::Up);
+        m_inputManager->keyPressed(InputCodes::Up);
     if (glfwGetKey(m_window, GLFW_KEY_DOWN) || glfwGetKey(m_window, GLFW_KEY_S))
-        m_inputManager->KeyPressed(InputCodes::Down);
+        m_inputManager->keyPressed(InputCodes::Down);
     if (glfwGetKey(m_window, GLFW_KEY_LEFT) || glfwGetKey(m_window, GLFW_KEY_A))
-        m_inputManager->KeyPressed(InputCodes::Left);
+        m_inputManager->keyPressed(InputCodes::Left);
     if (glfwGetKey(m_window, GLFW_KEY_RIGHT) || glfwGetKey(m_window, GLFW_KEY_D))
-        m_inputManager->KeyPressed(InputCodes::Right);
+        m_inputManager->keyPressed(InputCodes::Right);
+
+    int state = glfwGetMouseButton(m_window, GLFW_MOUSE_BUTTON_LEFT);
+    if (state == GLFW_PRESS)
+    {
+        double xpos, ypos;
+        glfwGetCursorPos(m_window, &xpos, &ypos);
+
+        std::cout << m_firstMouse << std::endl;
+
+        if (m_firstMouse)
+        {
+            m_lastX = xpos;
+            m_lastY = ypos;
+            m_firstMouse = false;
+        }
+
+        GLfloat xoffset = m_lastX - xpos;
+        GLfloat yoffset = m_lastY - ypos;
+
+        m_lastX = xpos;
+        m_lastY = ypos;
+
+        m_inputManager->mouseMoved(xoffset, yoffset);
+    }
 
     glfwPollEvents();
 }

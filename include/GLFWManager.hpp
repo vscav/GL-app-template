@@ -1,3 +1,4 @@
+#pragma once
 #ifndef _GLFWManager_HPP_
 #define _GLFWManager_HPP_
 
@@ -40,10 +41,14 @@ protected:
     // This is the GLFW window object that manages the window and input
     GLFWwindow *m_window;
 
+    bool m_firstMouse = true;
+
     std::string m_strTitle = "GL-app-template";
     int m_width = 800;
     int m_height = 600;
-    bool m_bFullScreen = false;
+    bool m_bFullScreen = true;
+    GLfloat m_lastX = m_width / 2.0;
+    GLfloat m_lastY = m_height / 2.0;
 };
 
 #endif /* _GLFWManager_HPP_ */

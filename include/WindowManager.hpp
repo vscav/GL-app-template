@@ -1,3 +1,4 @@
+#pragma once
 #ifndef _WindowManager_HPP_
 #define _WindowManager_HPP_
 
@@ -34,8 +35,6 @@ public:
     // Add a way to access and get the application's InputManager for camera movements
     virtual inline void *setInputManager(InputManager *inputManager) { m_inputManager = inputManager; }
     virtual inline InputManager *getInputManager() const { return m_inputManager; }
-
-    //inline virtual GLFWwindow *getWindow() const = 0;
 };
 
 #endif /* _WindowManager_HPP_ */

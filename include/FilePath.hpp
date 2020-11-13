@@ -1,3 +1,4 @@
+#pragma once
 #ifndef _FilePath_HPP_
 #define _FilePath_HPP_
 

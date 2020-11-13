@@ -1,5 +1,8 @@
+#pragma once
 #ifndef _FreeflyCamera_HPP_
 #define _FreeflyCamera_HPP_
+
+#include "Camera.hpp"
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -7,7 +10,7 @@
 
 #include <cmath>
 
-class FreeflyCamera
+class FreeflyCamera : public Camera
 {
 private:
     glm::vec3 m_Position; // Camera position
@@ -30,15 +33,15 @@ public:
     ~FreeflyCamera();
 
     void moveLeft(float t);
-    void moveFront(float t);
+    virtual void moveFront(float t) override;
 
-    void rotateLeft(float degrees);
-    void rotateUp(float degrees);
+    virtual void rotateLeft(float degrees) override;
+    virtual void rotateUp(float degrees) override;
 
     inline void setSpeed(const double speed) { m_speed = speed; }
 	inline double const getSpeed() const { return m_speed; }
 
-    glm::mat4 getViewMatrix() const;
+    virtual glm::mat4 getViewMatrix() const override;
 };
 
 #endif /* _FreeflyCamera_HPP_ */

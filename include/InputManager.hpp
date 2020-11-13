@@ -1,3 +1,4 @@
+#pragma once
 #ifndef _InputManager_HPP_
 #define _InputManager_HPP_
 
@@ -77,7 +78,8 @@ protected:
 	FreeflyCamera *m_camera;
 
 public:
-	void KeyPressed(InputCodes code);
+	void keyPressed(InputCodes code);
+	void mouseMoved(float mouseX, float mouseY);
 
 	inline void setCamera(FreeflyCamera *pCamera) { m_camera = pCamera; }
 	inline const FreeflyCamera *getCamera() const { return m_camera; }

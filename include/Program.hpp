@@ -1,3 +1,4 @@
+#pragma once
 #ifndef _Program_HPP_
 #define _Program_HPP_
 

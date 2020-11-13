@@ -1,3 +1,4 @@
+#pragma once
 #ifndef _Game_HPP_
 #define _Game_HPP_
 
@@ -35,8 +36,6 @@ private:
   GLint m_uKd;
   GLint m_uKs;
   GLint m_uShininess;
-
-  GLuint m_vao, m_vbo, m_ibo;
 
 protected:
   virtual void loop();

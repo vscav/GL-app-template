@@ -1,3 +1,4 @@
+#pragma once
 #ifndef _Sphere_HPP_
 #define _Sphere_HPP_
 

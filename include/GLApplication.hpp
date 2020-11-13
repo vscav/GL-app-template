@@ -1,3 +1,4 @@
+#pragma once
 #ifndef _GLApplication_HPP_
 #define _GLApplication_HPP_
 
@@ -35,7 +36,7 @@ private:
 
   InputManager *m_inputManager;
 
-  FreeflyCamera *m_camera;
+  Camera *m_camera;
 
   // Time:
   float m_time;
@@ -50,15 +51,14 @@ protected:
 
   std::string m_title;
 
+  GLuint m_vao, m_vbo, m_ibo;
+
   virtual void loop();
 
 public:
   GLApplication();
 
   static GLApplication &getInstance();
-
-  // get the window id
-  // GLFWwindow *getWindow() const;
 
   // window control
   void exit();
@@ -78,13 +78,11 @@ public:
   inline void setWindowManager(WindowManager *windowManager) { m_windowManager = windowManager; }
   inline WindowManager *getWindowManager() const { return m_windowManager; }
 
-  inline void setCamera(FreeflyCamera *camera) { m_camera = camera; };
-  inline FreeflyCamera *getCamera() const { return m_camera; };
+  inline void setCamera(Camera *camera) { m_camera = camera; };
+  inline Camera *getCamera() const { return m_camera; };
 
   inline void setInputManager(InputManager *inputManager) { m_inputManager = inputManager; };
   inline InputManager *getInputManager() const { return m_inputManager; };
-
-  // void ProcessInput();
 };
 
 #endif /* _GLApplication_HPP_ */

@@ -1,5 +1,6 @@
-#ifndef _FreeflyCamera_HPP_
-#define _FreeflyCamera_HPP_
+#pragma once
+#ifndef _Camera_HPP_
+#define _Camera_HPP_
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -16,4 +17,4 @@ public:
     virtual glm::mat4 getViewMatrix() const = 0;
 };
 
-#endif /* _FreeflyCamera_HPP_ */
+#endif /* _Camera_HPP_ */
