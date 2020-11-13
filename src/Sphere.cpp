@@ -1,11 +1,5 @@
-#include "../header/Common.hpp"
-#include "../header/Sphere.hpp"
-
-#include <glm/gtc/constants.hpp>
-
-#include <cmath>
-#include <vector>
-#include <iostream>
+#include "../include/Common.hpp"
+#include "../include/Sphere.hpp"
 
 void Sphere::build(GLfloat r, GLsizei discLat, GLsizei discLong)
 {

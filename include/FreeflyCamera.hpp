@@ -5,6 +5,8 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtx/matrix_operation.hpp>
 
+#include <cmath>
+
 class FreeflyCamera
 {
 private:

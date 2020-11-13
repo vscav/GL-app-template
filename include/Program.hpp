@@ -6,6 +6,8 @@
 
 #include <GL/glew.h>
 
+#include <stdexcept>
+
 class Program
 {
 private:

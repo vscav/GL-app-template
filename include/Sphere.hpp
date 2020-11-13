@@ -3,7 +3,11 @@
 
 #include "Common.hpp"
 
+#include <glm/gtc/constants.hpp>
+
+#include <cmath>
 #include <vector>
+#include <iostream>
 
 class Sphere
 {

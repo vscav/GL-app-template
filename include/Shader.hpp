@@ -5,7 +5,10 @@
 
 #include <GL/glew.h>
 
+#include <fstream>
+#include <stdexcept>
 #include <string>
+#include <sstream>
 
 #define GLIMAC_SHADER_SRC(str) #str
 

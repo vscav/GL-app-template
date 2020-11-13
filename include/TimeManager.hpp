@@ -1,6 +1,10 @@
 #ifndef _TimeManager_HPP
 #define _TimeManager_HPP
 
+#include <iostream>
+#include <chrono>
+#include <thread>
+
 // Singleton class
 class TimeManager
 {

@@ -1,4 +1,4 @@
-#include "../header/Game.hpp"
+#include "../include/Game.hpp"
 
 int main(int argc, const char *argv[])
 {

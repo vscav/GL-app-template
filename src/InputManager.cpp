@@ -1,5 +1,5 @@
-#include "../header/InputManager.hpp"
-#include "../header/TimeManager.hpp"
+#include "../include/InputManager.hpp"
+#include "../include/TimeManager.hpp"
 
 void InputManager::KeyPressed(InputCodes code)
 {

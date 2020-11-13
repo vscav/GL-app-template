@@ -1,17 +1,10 @@
-#include "../header/Game.hpp"
-#include "../header/GLError.hpp"
-#include "../header/FilePath.hpp"
-#include "../header/Program.hpp"
-#include "../header/Sphere.hpp"
-
-#include <GLFW/glfw3.h>
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtx/matrix_operation.hpp>
-#include <glm/gtc/type_ptr.hpp>
+#include "../include/Game.hpp"
+#include "../include/GLError.hpp"
+#include "../include/FilePath.hpp"
+#include "../include/Program.hpp"
+#include "../include/Sphere.hpp"
 
 #include <iostream>
-#include <vector>
 
 Game::Game()
     : GLApplication(),
@@ -115,8 +108,10 @@ Game::Game()
 void Game::loop()
 {
   // exit on window close button pressed
-  if (glfwWindowShouldClose(getWindow()))
-    exit();
+  // if (glfwWindowShouldClose(getWindowManager()->getWindow()))
+  // {
+  //   exit();
+  // }
 
   TimeManager::Instance().calculateFrameRate(true);
 
@@ -139,11 +134,12 @@ void Game::loop()
   glUniformMatrix4fv(m_uMVPMatrix, 1, GL_FALSE, glm::value_ptr(m_ProjMatrix * earthMVMatrix));
 
   // Light settings
-  // glm::mat4 lightMVMatrix = glm::rotate(MVMatrix, t, glm::vec3(0, 1, 0));
-  // lightMVMatrix = glm::scale(lightMVMatrix, glm::vec3(1.25));
-  // glm::vec3 lightPos(2, 2 * (glm::cos(t) * glm::sin(t)), 0);
-  // glm::vec3 lightPos_vs(lightMVMatrix * glm::vec4(lightPos, 1));
-  glm::vec3 lightPos_vs(MVMatrix * glm::vec4(1));
+  glm::mat4 lightMVMatrix = glm::rotate(MVMatrix, t, glm::vec3(0, 1, 0));
+  lightMVMatrix = glm::scale(lightMVMatrix, glm::vec3(1.25));
+  glm::vec3 lightPos(2, 2 * (glm::cos(t) * glm::sin(t)), 0);
+  glm::vec3 lightPos_vs(lightMVMatrix * glm::vec4(lightPos, 1));
+
+  // glm::vec3 lightPos_vs(MVMatrix * glm::vec4(1));
 
   glUniform3f(m_uLightIntensity, 1, 1, 1);
   glUniform3fv(m_uLightPos_vs, 1, glm::value_ptr(lightPos_vs));

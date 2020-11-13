@@ -1,10 +1,11 @@
 #ifndef _InputManager_HPP_
 #define _InputManager_HPP_
 
+#include "FreeflyCamera.hpp"
+
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtx/transform2.hpp>
-#include "FreeflyCamera.hpp"
 
 // This is a standardized enum to code for keyboard input, since Win32 and GLFW use some different codes
 enum InputCodes

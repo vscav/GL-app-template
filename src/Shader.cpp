@@ -1,9 +1,4 @@
-#include "../header/Shader.hpp"
-
-#include <fstream>
-#include <stdexcept>
-#include <string>
-#include <sstream>
+#include "../include/Shader.hpp"
 
 bool Shader::compile()
 {

@@ -1,6 +1,4 @@
-#include "../header/Program.hpp"
-
-#include <stdexcept>
+#include "../include/Program.hpp"
 
 bool Program::link()
 {

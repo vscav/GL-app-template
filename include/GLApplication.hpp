@@ -1,10 +1,16 @@
 #ifndef _GLApplication_HPP_
 #define _GLApplication_HPP_
 
-#include "../header/TimeManager.hpp"
-#include "../header/FreeflyCamera.hpp"
-#include "../header/InputManager.hpp"
+#include "TimeManager.hpp"
+#include "FreeflyCamera.hpp"
+#include "InputManager.hpp"
+#include "WindowManager.hpp"
 
+#include <GL/glew.h>
+#include <GLFW/glfw3.h>
+
+#include <iostream>
+#include <stdexcept>
 #include <string>
 
 struct GLFWwindow;
@@ -23,7 +29,9 @@ private:
 
   GLApplication &operator=(const GLApplication &) { return *this; }
 
-  GLFWwindow *m_window;
+  // GLFWwindow *m_window;
+
+  WindowManager *m_windowManager;
 
   InputManager *m_inputManager;
 
@@ -50,7 +58,7 @@ public:
   static GLApplication &getInstance();
 
   // get the window id
-  GLFWwindow *getWindow() const;
+  // GLFWwindow *getWindow() const;
 
   // window control
   void exit();
@@ -67,13 +75,16 @@ public:
   int getHeight();
   float getWindowRatio();
 
-  void setCamera(FreeflyCamera *camera) { m_camera = camera; };
-  FreeflyCamera *getCamera() { return m_camera; };
+  inline void setWindowManager(WindowManager *windowManager) { m_windowManager = windowManager; }
+  inline WindowManager *getWindowManager() const { return m_windowManager; }
 
-  void setInputManager(InputManager *inputManager) { m_inputManager = inputManager; };
-  InputManager *getInputManager() { return m_inputManager; };
+  inline void setCamera(FreeflyCamera *camera) { m_camera = camera; };
+  inline FreeflyCamera *getCamera() const { return m_camera; };
 
-  void ProcessInput();
+  inline void setInputManager(InputManager *inputManager) { m_inputManager = inputManager; };
+  inline InputManager *getInputManager() const { return m_inputManager; };
+
+  // void ProcessInput();
 };
 
 #endif /* _GLApplication_HPP_ */

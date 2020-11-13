@@ -1,4 +1,4 @@
-#include "../header/TrackballCamera.hpp"
+#include "../include/TrackballCamera.hpp"
 
 TrackballCamera::TrackballCamera()
 	: m_fDistance(-5.0f), m_fAngleX(0.0f), m_fAngleY(0.0f)

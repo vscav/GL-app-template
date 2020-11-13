@@ -1,8 +1,4 @@
-#include "../header/TimeManager.hpp"
-
-#include <iostream>
-#include <chrono>
-#include <thread>
+#include "../include/TimeManager.hpp"
 
 double TimeManager::calculateFrameRate(bool writeToConsole = false)
 {

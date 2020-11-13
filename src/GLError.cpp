@@ -1,11 +1,4 @@
-#include "../header/GLError.hpp"
-
-#include <GL/glew.h>
-
-#include <iostream>
-#include <string>
-
-using namespace std;
+#include "../include/GLError.hpp"
 
 void glCheckError(const char *file, unsigned int line)
 {
@@ -13,8 +6,8 @@ void glCheckError(const char *file, unsigned int line)
 
   while (errorCode != GL_NO_ERROR)
   {
-    string fileString(file);
-    string error = "unknown error";
+    std::string fileString(file);
+    std::string error = "unknown error";
 
     switch (errorCode)
     {
@@ -38,8 +31,8 @@ void glCheckError(const char *file, unsigned int line)
       break;
     }
 
-    cerr << "OpenglError : file=" << file << " line=" << line
-         << " error:" << error << endl;
+    std::cerr << "OpenglError : file=" << file << " line=" << line
+              << " error:" << error << std::endl;
     errorCode = glGetError();
   }
 }

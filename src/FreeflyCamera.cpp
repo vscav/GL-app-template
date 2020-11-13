@@ -1,6 +1,4 @@
-#include "../header/FreeflyCamera.hpp"
-
-#include <cmath>
+#include "../include/FreeflyCamera.hpp"
 
 FreeflyCamera::FreeflyCamera()
     : m_Position(glm::vec3(.0f, .0f, 5.f)), m_fPhi(M_PI), m_fTheta(.0f)
