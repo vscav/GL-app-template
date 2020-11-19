@@ -42,6 +42,8 @@ public:
 	inline double const getSpeed() const { return m_speed; }
 
     virtual glm::mat4 getViewMatrix() const override;
+    virtual glm::mat4 getProjectionMatrix() const override;
+    virtual glm::mat4 getVPMatrix() const override;
 };
 
 #endif /* _FreeflyCamera_HPP_ */

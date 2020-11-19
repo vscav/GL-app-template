@@ -1,4 +1,6 @@
 #pragma once
+#ifndef _VertexBufferObject_HPP_
+#define _VertexBufferObject_HPP_
 
 #include <GL/glew.h>
 #include <glm/glm.hpp>
@@ -30,3 +32,5 @@ public:
 
     inline GLuint getId() const { return m_index; }
 };
+
+#endif /* _VertexBufferObject_HPP_ */

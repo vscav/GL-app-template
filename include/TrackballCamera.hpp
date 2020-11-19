@@ -24,6 +24,8 @@ public:
     virtual void rotateUp(float degrees) override;
 
     virtual glm::mat4 getViewMatrix() const override;
+    virtual glm::mat4 getProjectionMatrix() const override;
+    virtual glm::mat4 getVPMatrix() const override;
 };
 
 #endif /* _TrackballCamera_HPP_ */

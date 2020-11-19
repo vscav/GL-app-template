@@ -29,6 +29,8 @@ public:
     // This processes any needed input for the application
     virtual void processInput() = 0;
 
+    virtual void clear() = 0;
+
     // This destroys the window and OpenGL context
     virtual void destroy() = 0;
 

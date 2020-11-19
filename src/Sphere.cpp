@@ -1,4 +1,10 @@
 #include "../include/Sphere.hpp"
+#include "../include/Camera.hpp"
+#include "../include/Shader2.hpp"
+
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtx/matrix_operation.hpp>
 
 #include <vector>
 
@@ -40,13 +46,32 @@ void Sphere::buildVAO()
     m_vao.unbind();
 }
 
-void Sphere::render()
+void Sphere::render(const Camera *camera, Shader2 &shader)
 {
+    glm::mat4 MVMatrix = camera->getViewMatrix();
+    glm::mat4 ProjectionMatrix = camera->getProjectionMatrix();
+
+    shader.bind();
+
+    shader.setMat4("uMVMatrix", MVMatrix);
+    shader.setMat4("uNormalMatrix", glm::transpose(glm::inverse(MVMatrix)));
+    shader.setMat4("uMVPMatrix", ProjectionMatrix * MVMatrix);
+
+    glm::vec3 lightPos_vs(MVMatrix * glm::vec4(0, 1, 1, 0.8));
+
+    shader.setVec3f("uLightIntensity", 1, 1, 1);
+    shader.setVec3f("uLightPos_vs", lightPos_vs);
+    shader.setVec3f("uKd", 0.35, 0, 1);
+    shader.setVec3f("uKs", 0.85, 0, 1);
+    shader.setFloat("uShininess", 5.0);
+
     m_vao.bind();
 
     glDrawArrays(GL_TRIANGLES, 0, this->getVertexCount());
 
     m_vao.unbind();
+
+    shader.unbind();
 }
 
 void Sphere::build(GLfloat r, GLsizei discLat, GLsizei discLong)

@@ -46,3 +46,11 @@ glm::mat4 FreeflyCamera::getViewMatrix() const
     glm::mat4 viewMatrix = glm::lookAt(m_Position, m_Position + m_FrontVector, m_UpVector);
     return viewMatrix;
 }
+
+glm::mat4 FreeflyCamera::getProjectionMatrix() const { 
+	return glm::perspective(glm::radians(70.f), 800.f / 600.f, 0.1f, 300.0f);
+}
+
+glm::mat4 FreeflyCamera::getVPMatrix() const {
+	return getProjectionMatrix() * getViewMatrix();
+}

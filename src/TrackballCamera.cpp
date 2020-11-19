@@ -40,3 +40,11 @@ glm::mat4 TrackballCamera::getViewMatrix() const
 
 	return ViewMatrix;
 }
+
+glm::mat4 TrackballCamera::getProjectionMatrix() const { 
+	return glm::perspective(glm::radians(70.f), 800.f / 600.f, 0.1f, 300.0f);
+}
+
+glm::mat4 TrackballCamera::getVPMatrix() const {
+	return getProjectionMatrix() * getViewMatrix();
+}

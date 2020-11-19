@@ -5,6 +5,8 @@
 #include "Common.hpp"
 #include "VertexBufferObject.hpp"
 #include "VertexArrayObject.hpp"
+#include "Camera.hpp"
+#include "Shader2.hpp"
 
 #include <glm/gtc/constants.hpp>
 
@@ -37,7 +39,7 @@ public:
 
     inline GLsizei getVertexCount() const { return m_nVertexCount; };
 
-    void render();
+    void render(const Camera *camera, Shader2 &shader);
 };
 
 #endif /* _Sphere_HPP_ */

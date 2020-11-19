@@ -30,19 +30,15 @@ private:
 
   GLApplication &operator=(const GLApplication &) { return *this; }
 
-  // GLFWwindow *m_window;
-
   WindowManager *m_windowManager;
 
   InputManager *m_inputManager;
 
   Camera *m_camera;
 
-  // Time:
   float m_time;
   float m_deltaTime;
 
-  // Dimensions:
   int m_width;
   int m_height;
 
@@ -50,8 +46,6 @@ protected:
   GLApplication(const GLApplication &){};
 
   std::string m_title;
-
-  // GLuint m_vao, m_vbo, m_ibo;
 
   virtual void loop();
 

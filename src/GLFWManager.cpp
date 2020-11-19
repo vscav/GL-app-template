@@ -134,6 +134,13 @@ void GLFWManager::processInput()
     glfwPollEvents();
 }
 
+void GLFWManager::clear()
+{
+    glClear(GL_COLOR_BUFFER_BIT);
+    glClearColor(0.0, 0.0, 0.0, 0.0);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+}
+
 // This destroys the window
 void GLFWManager::destroy()
 {
