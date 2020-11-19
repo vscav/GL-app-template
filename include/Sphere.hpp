@@ -23,8 +23,13 @@ private:
     VertexArrayObject m_vao;
     VertexBufferObject m_vbo;
 
+    void buildVAO();
+
+    void buildVBO();
+
 public:
     Sphere(GLfloat radius, GLsizei discLat, GLsizei discLong);
+    ~Sphere() = default;
 
     inline const ShapeVertex *getDataPointer() const { return &m_Vertices[0]; };
 

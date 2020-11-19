@@ -51,14 +51,6 @@ int GLFWManager::initialize()
     // This turns on STICKY_KEYS for keyboard input
     glfwSetInputMode(m_window, GLFW_STICKY_KEYS, GL_TRUE);
 
-    // We want to hide the mouse since it will be used to move the camera's view around
-    // and don't want to see it being pushed up into the top left corner.
-    //glfwSetInputMode(m_window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
-
-    // Set the cursor position of the hidden mouse to be in the top left of the window.
-    // This way we can get a delta of the mouse position from (0, 0) and reset it again.
-    //glfwSetCursorPos(m_window, 0, 0);
-
     // This turns off the vertical sync to your monitor so it renders as fast as possible
     glfwSwapInterval(0);
 
