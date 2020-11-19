@@ -22,7 +22,7 @@ private:
   float m_time = 0.f;
   const int m_size = 100;
 
-  std::vector<Sphere> m_spheres;
+  Sphere *m_sphere;
 
   glm::mat4 m_ProjMatrix = glm::mat4(1.0);
   glm::mat4 m_MVMatrix = glm::translate(glm::mat4(1), glm::vec3(1.0));

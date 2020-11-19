@@ -26,7 +26,7 @@ public:
     // This swaps the backbuffer to the front and should be called every frame
     virtual void swapBuffers() = 0;
 
-    // This processes any needed input for the application, like the Escape key
+    // This processes any needed input for the application
     virtual void processInput() = 0;
 
     // This destroys the window and OpenGL context

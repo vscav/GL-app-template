@@ -30,8 +30,8 @@ void GLApplication::exit()
 {
   std::cout << "Application exited successfully" << std::endl;
 
-  glDeleteBuffers(1, &m_vbo);
-	glDeleteVertexArrays(1, &m_vao);
+  // glDeleteBuffers(1, &m_vbo);
+	// glDeleteVertexArrays(1, &m_vao);
 
   m_state = stateExit;
 }

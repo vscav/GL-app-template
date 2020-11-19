@@ -51,7 +51,7 @@ protected:
 
   std::string m_title;
 
-  GLuint m_vao, m_vbo, m_ibo;
+  // GLuint m_vao, m_vbo, m_ibo;
 
   virtual void loop();
 
