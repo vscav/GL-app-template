@@ -1,8 +1,8 @@
-#include "../include/Game.hpp"
+#include "../include/Application.hpp"
 
 int main(int argc, const char *argv[])
 {
-  Game app;
+  Application app("Application", 1600, 900, false);
   app.run();
 
   return 0;

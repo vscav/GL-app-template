@@ -2,7 +2,7 @@
 #ifndef _Program_HPP_
 #define _Program_HPP_
 
-#include "Shader.hpp"
+#include "ProgramShader.hpp"
 #include "FilePath.hpp"
 
 #include <GL/glew.h>
@@ -44,7 +44,7 @@ public:
 		return m_nGLId;
 	}
 
-	void attachShader(const Shader &shader)
+	void attachShader(const ProgramShader &shader)
 	{
 		glAttachShader(m_nGLId, shader.getGLId());
 	}

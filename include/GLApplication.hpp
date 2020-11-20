@@ -39,13 +39,12 @@ private:
   float m_time;
   float m_deltaTime;
 
-  int m_width;
-  int m_height;
+  void initialize(std::string title, int width, int height, bool fullScreen);
 
 protected:
-  GLApplication(const GLApplication &){};
+  GLApplication(const GLApplication &);
 
-  std::string m_title;
+  GLApplication(std::string title, int width, int height, bool fullScreen);
 
   virtual void loop();
 
@@ -63,11 +62,6 @@ public:
 
   // GLApplication run
   void run();
-
-  // GLApplication informations
-  int getWidth();
-  int getHeight();
-  float getWindowRatio();
 
   inline void setWindowManager(WindowManager *windowManager) { m_windowManager = windowManager; }
   inline WindowManager *getWindowManager() const { return m_windowManager; }

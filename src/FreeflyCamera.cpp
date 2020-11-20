@@ -1,7 +1,7 @@
 #include "../include/FreeflyCamera.hpp"
 
 FreeflyCamera::FreeflyCamera()
-    : m_Position(glm::vec3(.0f, .0f, 5.f)), m_fPhi(M_PI), m_fTheta(.0f)
+    : m_Position(glm::vec3(.0f, .0f, 3.5f)), m_fPhi(M_PI), m_fTheta(.0f)
 {
     computeDirectionVectors();
 }

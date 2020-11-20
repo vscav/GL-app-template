@@ -34,9 +34,16 @@ public:
     // This destroys the window and OpenGL context
     virtual void destroy() = 0;
 
+    virtual std::string getTitle() const = 0;
+    virtual int getWidth() const = 0;
+    virtual int getHeight() const = 0;
+    virtual float getWindowRatio() const = 0;
+    virtual bool isFullScreen() const = 0;
+
     // Add a way to access and get the application's InputManager for camera movements
     virtual inline void *setInputManager(InputManager *inputManager) { m_inputManager = inputManager; }
     virtual inline InputManager *getInputManager() const { return m_inputManager; }
+    // virtual inline auto *getWindow() const = 0;
 };
 
 #endif /* _WindowManager_HPP_ */

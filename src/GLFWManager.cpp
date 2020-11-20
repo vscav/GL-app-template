@@ -3,13 +3,8 @@
 
 #include <iostream>
 
-GLFWManager::GLFWManager()
-{
-    initialize();
-}
-
-GLFWManager::GLFWManager(int width, int height, std::string strTitle, bool bFullScreen)
-    : m_width(width), m_height(height), m_strTitle(strTitle), m_bFullScreen(bFullScreen)
+GLFWManager::GLFWManager(std::string title, int width, int height, bool fullScreen)
+    : m_width(width), m_height(height), m_title(title), m_fullScreen(fullScreen)
 {
     initialize();
 }
@@ -17,9 +12,8 @@ GLFWManager::GLFWManager(int width, int height, std::string strTitle, bool bFull
 // This initializes our window and creates the OpenGL context
 int GLFWManager::initialize()
 {
-    std::cout << "[Info] GLFW initialisation" << std::endl;
+    std::cout << "[GLFWManager] GLFW initialisation" << std::endl;
 
-    // This tries to first init the GLFW library and make sure it is available
     if (!glfwInit())
     {
         throw std::runtime_error("Couldn't init GLFW");
@@ -33,10 +27,10 @@ int GLFWManager::initialize()
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
     // Create a window either in full screen or not
-    if (m_bFullScreen)
-        m_window = glfwCreateWindow(m_width, m_height, m_strTitle.c_str(), glfwGetPrimaryMonitor(), nullptr);
+    if (m_fullScreen)
+        m_window = glfwCreateWindow(m_width, m_height, m_title.c_str(), glfwGetPrimaryMonitor(), nullptr);
     else
-        m_window = glfwCreateWindow(m_width, m_height, m_strTitle.c_str(), nullptr, nullptr);
+        m_window = glfwCreateWindow(m_width, m_height, m_title.c_str(), nullptr, nullptr);
 
     // Make sure the window is valid, if not, throw an error.
     if (m_window == nullptr)
@@ -66,12 +60,17 @@ int GLFWManager::initialize()
         glfwTerminate();
         throw std::runtime_error(std::string("Could initialize GLEW, error = ") + (const char *)glewGetErrorString(err));
     }
+    else
+    {
+        std::cout << "[GLFWManager] GLFW window successfully created" << std::endl;
+    }
+    
 
     // get version info
     const GLubyte *renderer = glGetString(GL_RENDERER);
     const GLubyte *version = glGetString(GL_VERSION);
-    std::cout << "Renderer: " << renderer << std::endl;
-    std::cout << "OpenGL version supported " << version << std::endl;
+    std::cout << "[Info] Renderer: " << renderer << std::endl;
+    std::cout << "[Info] version supported " << version << std::endl;
 
     // opengl configuration
     glEnable(GL_DEPTH_TEST);

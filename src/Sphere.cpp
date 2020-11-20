@@ -1,6 +1,6 @@
 #include "../include/Sphere.hpp"
 #include "../include/Camera.hpp"
-#include "../include/Shader2.hpp"
+#include "../include/Shader.hpp"
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -46,7 +46,7 @@ void Sphere::buildVAO()
     m_vao.unbind();
 }
 
-void Sphere::render(const Camera *camera, Shader2 &shader)
+void Sphere::render(const Camera *camera, Shader &shader, float time)
 {
     glm::mat4 MVMatrix = camera->getViewMatrix();
     glm::mat4 ProjectionMatrix = camera->getProjectionMatrix();
@@ -57,7 +57,10 @@ void Sphere::render(const Camera *camera, Shader2 &shader)
     shader.setMat4("uNormalMatrix", glm::transpose(glm::inverse(MVMatrix)));
     shader.setMat4("uMVPMatrix", ProjectionMatrix * MVMatrix);
 
-    glm::vec3 lightPos_vs(MVMatrix * glm::vec4(0, 1, 1, 0.8));
+    glm::mat4 lightMVMatrix = glm::rotate(MVMatrix, time, glm::vec3(0, 1, 0));
+    lightMVMatrix = glm::scale(lightMVMatrix, glm::vec3(1.25));
+    glm::vec3 lightPos(2, 2 * (glm::cos(time) * glm::sin(time)), 0);
+    glm::vec3 lightPos_vs(lightMVMatrix * glm::vec4(lightPos, 1));
 
     shader.setVec3f("uLightIntensity", 1, 1, 1);
     shader.setVec3f("uLightPos_vs", lightPos_vs);
@@ -105,7 +108,7 @@ void Sphere::build(GLfloat r, GLsizei discLat, GLsizei discLong)
 
     m_nVertexCount = discLat * discLong * 6;
 
-    GLuint idx = 0;
+    // GLuint idx = 0;
 
     for (GLsizei j = 0; j < discLong; ++j)
     {

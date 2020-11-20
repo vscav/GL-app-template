@@ -2,63 +2,56 @@
 #ifndef _Shader_HPP_
 #define _Shader_HPP_
 
-#include "FilePath.hpp"
-
 #include <GL/glew.h>
+#include <glm/glm.hpp>
 
-#include <fstream>
-#include <stdexcept>
 #include <string>
+#include <unordered_map>
+#include <fstream>
+#include <iostream>
 #include <sstream>
-
-#define GLIMAC_SHADER_SRC(str) #str
+#include <vector>
 
 class Shader
 {
 private:
-	Shader(const Shader &);
-	Shader &operator=(const Shader &);
+    GLuint m_programId;
+    GLuint m_vertexId;
+    GLuint m_fragmentId;
+    GLuint m_geometryId;
 
-	GLuint m_nGLId;
+    std::unordered_map<std::string, GLint> m_uniformLocationCache;
+
+    bool m_compiled;
+
+    GLuint compileShader(const GLenum &shaderType, const std::string &shaderStr);
+    std::string parseFile(const char *filepath);
+    std::string shaderTypeStr(const GLenum &shaderType);
+    void AttachShaderId(const char *shaderName, const GLuint id);
 
 public:
-	Shader(GLenum type) : m_nGLId(glCreateShader(type))
-	{
-	}
+    Shader() = default;
+    Shader(const Shader &s);
+    Shader(const char *vertexShader, const char *fragmentShader, const char *geometryShader = nullptr, const bool &fromFile = true);
+    ~Shader();
 
-	~Shader()
-	{
-		glDeleteShader(m_nGLId);
-	}
+    bool bind() const;
+    inline void unbind() const { glUseProgram(-1); }
 
-	Shader(Shader &&rvalue) : m_nGLId(rvalue.m_nGLId)
-	{
-		rvalue.m_nGLId = 0;
-	}
+    GLint getUniform(const std::string &uniformName);
 
-	Shader &operator=(Shader &&rvalue)
-	{
-		m_nGLId = rvalue.m_nGLId;
-		rvalue.m_nGLId = 0;
-		return *this;
-	}
+    void setInt(const std::string &uniformName, int v);
+    void setFloat(const std::string &uniformName, float v);
+    void setVec2f(const std::string &uniformName, const glm::vec2 &v);
+    void setVec2f(const std::string &uniformName, const float &x, const float &y);
+    void setVec3f(const std::string &uniformName, const glm::vec3 &v);
+    void setVec3f(const std::string &uniformName, const float &x, const float &y, const float &z);
+    void setVec4f(const std::string &uniformName, const glm::vec4 &v);
+    void setVec4f(const std::string &uniformName, const float &a, const float &b, const float &c, const float &d);
+    void setMat3(const std::string &uniformName, const glm::mat3 &mat);
+    void setMat4(const std::string &uniformName, const glm::mat4 &mat);
 
-	GLuint getGLId() const
-	{
-		return m_nGLId;
-	}
-
-	void setSource(const char *src)
-	{
-		glShaderSource(m_nGLId, 1, &src, 0);
-	}
-
-	bool compile();
-
-	const std::string getInfoLog() const;
+    inline GLuint getID() const { return m_programId; };
 };
-
-// Load a shader (but does not compile it)
-Shader loadShader(GLenum type, const FilePath &filepath);
 
 #endif /* _Shader_HPP_ */

@@ -13,11 +13,22 @@ GLApplication &GLApplication::getInstance()
 }
 
 GLApplication::GLApplication()
-    : m_state(stateReady), m_width(1600), m_height(900), m_title("GLApplication")
+    : m_state(stateReady)
+{
+  initialize("GLApplication", 1600, 900, false);
+}
+
+GLApplication::GLApplication(std::string title, int width, int height, bool fullScreen)
+    : m_state(stateReady)
+{
+  initialize(title, width, height, fullScreen);
+};
+
+void GLApplication::initialize(std::string title, int width, int height, bool fullScreen)
 {
   currentGLApplication = this;
-  
-  GLFWManager *windowManager = new GLFWManager(m_width, m_height, m_title, false);
+
+  GLFWManager *windowManager = new GLFWManager(title, width, height, false);
   setWindowManager(windowManager);
 
   FreeflyCamera *camera = new FreeflyCamera();
@@ -28,10 +39,7 @@ GLApplication::GLApplication()
 
 void GLApplication::exit()
 {
-  std::cout << "Application exited successfully" << std::endl;
-
-  // glDeleteBuffers(1, &m_vbo);
-	// glDeleteVertexArrays(1, &m_vao);
+  std::cout << "[GLApplication] Application exited successfully" << std::endl;
 
   m_state = stateExit;
 }
@@ -50,13 +58,12 @@ void GLApplication::run()
 {
   m_state = stateRun;
 
-  // glfwMakeContextCurrent(m_window);
-
-  m_time = glfwGetTime();
+  // glfwMakeContextCurrent(m_windowManager->getWindow());
 
   while (m_state == stateRun)
   {
     float t = glfwGetTime();
+    
     m_deltaTime = t - m_time;
     m_time = t;
 
@@ -70,20 +77,5 @@ void GLApplication::run()
 
 void GLApplication::loop()
 {
-  std::cout << "[INFO] : loop" << std::endl;
-}
-
-int GLApplication::getWidth()
-{
-  return m_width;
-}
-
-int GLApplication::getHeight()
-{
-  return m_height;
-}
-
-float GLApplication::getWindowRatio()
-{
-  return float(m_width) / float(m_height);
+  std::cout << "[Info] GLApplication main loop" << std::endl;
 }

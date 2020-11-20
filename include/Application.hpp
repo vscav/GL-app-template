@@ -4,7 +4,6 @@
 
 #include "GLApplication.hpp"
 #include "Shader.hpp"
-#include "Shader2.hpp"
 #include "FreeflyCamera.hpp"
 #include "Sphere.hpp"
 #include "Program.hpp"
@@ -17,21 +16,19 @@
 
 #include <vector>
 
-class Game : public GLApplication
+class Application : public GLApplication
 {
 private:
-  float m_time = 0.f;
-  const int m_size = 100;
-
   Sphere *m_sphere;
 
-  Shader2 m_sphereShader;
+  Shader m_sphereShader;
 
 protected:
   virtual void loop();
 
 public:
-  Game();
+  Application();
+  Application(std::string title, int width, int height, bool fullScreen);
 };
 
 #endif /* _Game_HPP_ */

@@ -22,7 +22,7 @@ const std::string Program::getInfoLog() const
 // Build a GLSL program from source code
 Program buildProgram(const GLchar *vsSrc, const GLchar *fsSrc)
 {
-	Shader vs(GL_VERTEX_SHADER);
+	ProgramShader vs(GL_VERTEX_SHADER);
 	vs.setSource(vsSrc);
 
 	if (!vs.compile())
@@ -30,7 +30,7 @@ Program buildProgram(const GLchar *vsSrc, const GLchar *fsSrc)
 		throw std::runtime_error("Compilation error for vertex shader: " + vs.getInfoLog());
 	}
 
-	Shader fs(GL_FRAGMENT_SHADER);
+	ProgramShader fs(GL_FRAGMENT_SHADER);
 	fs.setSource(fsSrc);
 
 	if (!fs.compile())
@@ -53,8 +53,8 @@ Program buildProgram(const GLchar *vsSrc, const GLchar *fsSrc)
 // Load source code from files and build a GLSL program
 Program loadProgram(const FilePath &vsFile, const FilePath &fsFile)
 {
-	Shader vs = loadShader(GL_VERTEX_SHADER, vsFile);
-	Shader fs = loadShader(GL_FRAGMENT_SHADER, fsFile);
+	ProgramShader vs = loadShader(GL_VERTEX_SHADER, vsFile);
+	ProgramShader fs = loadShader(GL_FRAGMENT_SHADER, fsFile);
 
 	if (!vs.compile())
 	{
