@@ -18,7 +18,7 @@ public:
     // The function to get the instance of the manager, or initialize and return the instance.
     // By creating a static variable of the instance we ensure this only gets created once.
     // This is also thread-safe in C++ 11 according to the specifications.
-    static TimeManager &Instance()
+    static TimeManager &getInstance()
     {
         static TimeManager instance;
 

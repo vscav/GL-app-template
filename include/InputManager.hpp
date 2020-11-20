@@ -2,7 +2,7 @@
 #ifndef _InputManager_HPP_
 #define _InputManager_HPP_
 
-#include "FreeflyCamera.hpp"
+#include "TimeManager.hpp"
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -75,14 +75,14 @@ enum InputCodes
 class InputManager
 {
 protected:
-	FreeflyCamera *m_camera;
+	double getCurrentDeltaTime()
+	{
+		return TimeManager::getInstance().deltaTime;
+	}
 
 public:
 	void keyPressed(InputCodes code);
 	void mouseMoved(float mouseX, float mouseY);
-
-	inline void setCamera(FreeflyCamera *pCamera) { m_camera = pCamera; }
-	inline const FreeflyCamera *getCamera() const { return m_camera; }
 };
 
 #endif /* _InputManager_HPP_ */

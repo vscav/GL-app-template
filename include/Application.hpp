@@ -14,12 +14,10 @@
 #include <glm/gtx/matrix_operation.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-#include <vector>
-
 class Application : public GLApplication
 {
 private:
-  Sphere *m_sphere;
+  Sphere m_sphere;
 
   Shader m_sphereShader;
 
@@ -29,7 +27,7 @@ protected:
 public:
   Application();
   Application(std::string title, int width, int height, bool fullScreen);
-  ~Application() = default;
+  ~Application();
 };
 
 #endif /* _Game_HPP_ */

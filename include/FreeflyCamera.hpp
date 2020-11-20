@@ -38,8 +38,8 @@ public:
     virtual void rotateLeft(float degrees) override;
     virtual void rotateUp(float degrees) override;
 
-    inline void setSpeed(const double speed) { m_speed = speed; }
-	inline double const getSpeed() const { return m_speed; }
+    virtual inline void setSpeed(const double speed) { m_speed = speed; };
+	virtual inline double const getSpeed() const { return m_speed; };
 
     virtual glm::mat4 getViewMatrix() const override;
     virtual glm::mat4 getProjectionMatrix() const override;

@@ -8,6 +8,9 @@
 #include "Camera.hpp"
 #include "Shader.hpp"
 
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtx/matrix_operation.hpp>
 #include <glm/gtc/constants.hpp>
 
 #include <cmath>
@@ -31,7 +34,7 @@ private:
 
 public:
     Sphere(GLfloat radius, GLsizei discLat, GLsizei discLong);
-    ~Sphere() = default;
+    ~Sphere();
 
     inline const ShapeVertex *getDataPointer() const { return &m_Vertices[0]; };
 

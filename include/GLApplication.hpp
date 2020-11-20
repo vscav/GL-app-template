@@ -4,7 +4,6 @@
 
 #include "TimeManager.hpp"
 #include "FreeflyCamera.hpp"
-#include "InputManager.hpp"
 #include "GLWindowManager.hpp"
 
 #include <GL/glew.h>
@@ -13,8 +12,6 @@
 #include <iostream>
 #include <stdexcept>
 #include <string>
-
-struct GLFWwindow;
 
 class GLApplication
 {
@@ -31,8 +28,7 @@ private:
   GLApplication &operator=(const GLApplication &) { return *this; }
 
   GLWindowManager *m_windowManager;
-
-  InputManager *m_inputManager;
+  //std::unique_ptr<GLWindowManager> m_windowManager;
 
   Camera *m_camera;
 
@@ -49,28 +45,24 @@ protected:
 public:
   GLApplication();
   GLApplication(std::string title, int width, int height, bool fullScreen);
-  ~GLApplication() = default;
+  ~GLApplication();
 
   static GLApplication &getInstance();
 
-  // window control
   void exit();
 
-  // delta time between frame and time from beginning
   float getFrameDeltaTime() const;
   float getTime() const;
 
-  // GLApplication run
   void run();
 
   inline void setWindowManager(GLWindowManager *windowManager) { m_windowManager = windowManager; }
   inline GLWindowManager *getWindowManager() const { return m_windowManager; }
+  // const GLWindowManager *getWindowManager() const;
+  // std::unique_ptr<GLWindowManager> setWindowManager(std::unique_ptr<GLWindowManager> windowManager);
 
   inline void setCamera(Camera *camera) { m_camera = camera; };
-  inline Camera *getCamera() const { return m_camera; };
-
-  inline void setInputManager(InputManager *inputManager) { m_inputManager = inputManager; };
-  inline InputManager *getInputManager() const { return m_inputManager; };
+  inline Camera *getCamera() { return m_camera; };
 };
 
 #endif /* _GLApplication_HPP_ */

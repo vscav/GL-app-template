@@ -2,18 +2,16 @@
 #include "../include/Camera.hpp"
 #include "../include/Shader.hpp"
 
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtx/matrix_operation.hpp>
-
-#include <vector>
-
 Sphere::Sphere(GLfloat radius, GLsizei discLat, GLsizei discLong) : m_nVertexCount(0)
 {
     build(radius, discLat, discLong);
 
     buildVBO();
     buildVAO();
+}
+
+Sphere::~Sphere()
+{
 }
 
 void Sphere::buildVBO()

@@ -20,8 +20,13 @@ public:
     ~TrackballCamera();
 
     virtual void moveFront(float t) override;
+    virtual void moveLeft(float t) {};
+
     virtual void rotateLeft(float degrees) override;
     virtual void rotateUp(float degrees) override;
+
+    virtual inline void setSpeed(const double speed) {}
+	virtual inline double const getSpeed() const { return 2.0; }
 
     virtual glm::mat4 getViewMatrix() const override;
     virtual glm::mat4 getProjectionMatrix() const override;

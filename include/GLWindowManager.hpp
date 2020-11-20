@@ -14,11 +14,11 @@
 class GLWindowManager
 {
 protected:
-    // We created a variable to store an InputManager
-    InputManager *m_inputManager;
-
     // Variable to store an utilitary class for our window
     GLWindowUtils *m_windowUtils;
+
+    // We created a variable to store an InputManager
+    InputManager *m_inputManager;
 
 public:
     // This is needed so that the class inheriting this will have it's deconstructor called
@@ -45,11 +45,11 @@ public:
     virtual bool isFullScreen() const = 0;
 
     // Add a way to access and get the application's InputManager for camera movements
-    virtual inline void *setInputManager(InputManager *inputManager) { m_inputManager = inputManager; }
-    virtual inline InputManager *getInputManager() const { return m_inputManager; }
+    virtual inline void *setInputManager(InputManager *inputManager) { m_inputManager = inputManager; };
+    virtual inline InputManager *getInputManager() const { return m_inputManager; };
     // Add a way to access and get the application's InputManager for camera movements
-    virtual inline void *setWindowUtils(GLWindowUtils *windowUtils) { m_windowUtils = windowUtils; }
-    virtual inline GLWindowUtils *getWindowUtils() const { return m_windowUtils; }
+    virtual inline void *setWindowUtils(GLWindowUtils *windowUtils) { m_windowUtils = windowUtils; };
+    virtual inline GLWindowUtils *getWindowUtils() const { return m_windowUtils; };
     // virtual inline auto *getWindow() const = 0;
 };
 

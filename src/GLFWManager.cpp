@@ -1,5 +1,5 @@
-#include "../include/GLFWManager.hpp"
 #include "../include/GLApplication.hpp"
+#include "../include/GLFWManager.hpp"
 
 GLFWManager::GLFWManager(std::string title, int width, int height, bool fullScreen)
     : m_width(width), m_height(height), m_title(title), m_fullScreen(fullScreen)

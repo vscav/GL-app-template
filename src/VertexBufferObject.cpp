@@ -1,5 +1,7 @@
 #include "../include/VertexBufferObject.hpp"
 
+#include <iostream>
+
 VertexBufferObject::VertexBufferObject()
 {
     glGenBuffers(1, &m_index);
@@ -7,6 +9,7 @@ VertexBufferObject::VertexBufferObject()
 
 VertexBufferObject::~VertexBufferObject()
 {
+    std::cout << "[VBO] Delete VBO with index " << m_index << std::endl;
     glDeleteBuffers(1, &m_index);
 }
 
