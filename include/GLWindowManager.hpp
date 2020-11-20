@@ -3,6 +3,7 @@
 #define _WindowManager_HPP_
 
 #include "InputManager.hpp"
+#include "GLWindowUtils.hpp"
 
 #include <string>
 #include <fstream>
@@ -10,15 +11,18 @@
 // This is our class definition for managing the creation of the window, input and the
 // creating of the OpenGL context.  This class should be inherited from to create
 // specific implementations like GLFW (i.e. GLFWManager), Win32, GLUT or SDL.
-class WindowManager
+class GLWindowManager
 {
 protected:
     // We created a variable to store an InputManager
     InputManager *m_inputManager;
 
+    // Variable to store an utilitary class for our window
+    GLWindowUtils *m_windowUtils;
+
 public:
     // This is needed so that the class inheriting this will have it's deconstructor called
-    virtual ~WindowManager() {}
+    virtual ~GLWindowManager() {}
 
     // This initialized the window and creates the OpenGL context
     virtual int initialize() = 0;
@@ -43,6 +47,9 @@ public:
     // Add a way to access and get the application's InputManager for camera movements
     virtual inline void *setInputManager(InputManager *inputManager) { m_inputManager = inputManager; }
     virtual inline InputManager *getInputManager() const { return m_inputManager; }
+    // Add a way to access and get the application's InputManager for camera movements
+    virtual inline void *setWindowUtils(GLWindowUtils *windowUtils) { m_windowUtils = windowUtils; }
+    virtual inline GLWindowUtils *getWindowUtils() const { return m_windowUtils; }
     // virtual inline auto *getWindow() const = 0;
 };
 

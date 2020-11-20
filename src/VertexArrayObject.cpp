@@ -9,7 +9,7 @@ VertexArrayObject::VertexArrayObject()
 
 VertexArrayObject::~VertexArrayObject()
 {
-    std::cout << "Delete Sphere VAO with index " << &m_index << std::endl;
+    std::cout << "[VAO] Delete VAO with index " << &m_index << std::endl;
     glDeleteVertexArrays(1, &m_index);
 }
 

@@ -5,7 +5,7 @@
 #include "TimeManager.hpp"
 #include "FreeflyCamera.hpp"
 #include "InputManager.hpp"
-#include "WindowManager.hpp"
+#include "GLWindowManager.hpp"
 
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
@@ -30,7 +30,7 @@ private:
 
   GLApplication &operator=(const GLApplication &) { return *this; }
 
-  WindowManager *m_windowManager;
+  GLWindowManager *m_windowManager;
 
   InputManager *m_inputManager;
 
@@ -44,12 +44,12 @@ private:
 protected:
   GLApplication(const GLApplication &);
 
-  GLApplication(std::string title, int width, int height, bool fullScreen);
-
   virtual void loop();
 
 public:
   GLApplication();
+  GLApplication(std::string title, int width, int height, bool fullScreen);
+  ~GLApplication() = default;
 
   static GLApplication &getInstance();
 
@@ -63,8 +63,8 @@ public:
   // GLApplication run
   void run();
 
-  inline void setWindowManager(WindowManager *windowManager) { m_windowManager = windowManager; }
-  inline WindowManager *getWindowManager() const { return m_windowManager; }
+  inline void setWindowManager(GLWindowManager *windowManager) { m_windowManager = windowManager; }
+  inline GLWindowManager *getWindowManager() const { return m_windowManager; }
 
   inline void setCamera(Camera *camera) { m_camera = camera; };
   inline Camera *getCamera() const { return m_camera; };

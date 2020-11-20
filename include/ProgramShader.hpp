@@ -1,6 +1,6 @@
 #pragma once
 #ifndef _ProgramShader_HPP_
-#define _Shader_HPP_
+#define _ProgramShader_HPP_
 
 #include "FilePath.hpp"
 

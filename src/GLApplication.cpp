@@ -1,5 +1,5 @@
 #include "../include/GLApplication.hpp"
-#include "../include/WindowManager.hpp"
+#include "../include/GLWindowManager.hpp"
 #include "../include/GLFWManager.hpp"
 
 GLApplication *currentGLApplication = NULL;

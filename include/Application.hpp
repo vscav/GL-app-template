@@ -29,6 +29,7 @@ protected:
 public:
   Application();
   Application(std::string title, int width, int height, bool fullScreen);
+  ~Application() = default;
 };
 
 #endif /* _Game_HPP_ */

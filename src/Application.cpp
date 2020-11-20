@@ -29,6 +29,9 @@ void Application::loop()
   // Clear GL window
   getWindowManager()->clear();
 
+  // How to use window utils class :
+  // getWindowManager()->getWindowUtils()->enableDepthTesting(true);
+
   // Render Sphere
   m_sphere->render(getCamera(), m_sphereShader, t);
 

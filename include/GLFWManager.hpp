@@ -2,7 +2,7 @@
 #ifndef _GLFWManager_HPP_
 #define _GLFWManager_HPP_
 
-#include "WindowManager.hpp"
+#include "GLWindowManager.hpp"
 
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
@@ -14,7 +14,7 @@
 // This is our implementation of the abstract base class WindowManager, which uses the
 // GLFW cross-platform library to create a window, handle input and create the OpenGL
 // context.
-class GLFWManager : public WindowManager
+class GLFWManager : public GLWindowManager
 {
 protected:
     // This is the GLFW window object that manages the window and input

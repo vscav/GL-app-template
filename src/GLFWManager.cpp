@@ -1,8 +1,6 @@
 #include "../include/GLFWManager.hpp"
 #include "../include/GLApplication.hpp"
 
-#include <iostream>
-
 GLFWManager::GLFWManager(std::string title, int width, int height, bool fullScreen)
     : m_width(width), m_height(height), m_title(title), m_fullScreen(fullScreen)
 {
@@ -64,7 +62,6 @@ int GLFWManager::initialize()
     {
         std::cout << "[GLFWManager] GLFW window successfully created" << std::endl;
     }
-    
 
     // get version info
     const GLubyte *renderer = glGetString(GL_RENDERER);
@@ -72,11 +69,17 @@ int GLFWManager::initialize()
     std::cout << "[Info] Renderer: " << renderer << std::endl;
     std::cout << "[Info] version supported " << version << std::endl;
 
-    // opengl configuration
-    glEnable(GL_DEPTH_TEST);
-
     InputManager *inputManager = new InputManager();
     setInputManager(inputManager);
+
+    GLWindowUtils *windowUtils = new GLWindowUtils();
+    setWindowUtils(windowUtils);
+
+    // opengl configuration : enable depth test
+    m_windowUtils->enableDepthTesting(true);
+
+    // opengl configuration : antialiasing
+    m_windowUtils->antialias(true);
 
     // Return success
     return 0;
@@ -111,8 +114,6 @@ void GLFWManager::processInput()
     {
         double xpos, ypos;
         glfwGetCursorPos(m_window, &xpos, &ypos);
-
-        std::cout << m_firstMouse << std::endl;
 
         if (m_firstMouse)
         {
