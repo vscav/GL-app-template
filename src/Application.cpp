@@ -5,14 +5,14 @@
 Application::Application()
     : GLApplication(),
       m_sphere(1, 64, 32),
-      m_sphereShader("../shader/3D.vert", "../shader/pointlight.frag")
+      m_sphereShader("../shader/3D.vert", "../shader/sphere.frag")
 {
 }
 
 Application::Application(std::string title, int width, int height, bool fullScreen)
     : GLApplication(title, width, height, fullScreen),
       m_sphere(1, 64, 32),
-      m_sphereShader("../shader/3D.vert", "../shader/pointlight.frag")
+      m_sphereShader("../shader/3D.vert", "../shader/sphere.frag")
 {
 }
 

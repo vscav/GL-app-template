@@ -23,6 +23,8 @@ public:
     virtual glm::mat4 getViewMatrix() const = 0;
     virtual glm::mat4 getProjectionMatrix() const = 0;
     virtual glm::mat4 getVPMatrix() const = 0;
+
+    virtual glm::vec3 const getPosition() const = 0;
 };
 
 #endif /* _Camera_HPP_ */
