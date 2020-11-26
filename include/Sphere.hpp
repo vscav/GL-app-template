@@ -8,10 +8,7 @@
 #include "Camera.hpp"
 #include "Shader.hpp"
 
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtx/matrix_operation.hpp>
-#include <glm/gtc/constants.hpp>
+#include "./dependencies/glm.hpp"
 
 #include <cmath>
 #include <vector>

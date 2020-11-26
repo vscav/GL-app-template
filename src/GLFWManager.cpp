@@ -63,6 +63,8 @@ int GLFWManager::initialize()
         std::cout << "[GLFWManager] GLFW window successfully created" << std::endl;
     }
 
+    glfwMakeContextCurrent(m_window);
+
     // get version info
     const GLubyte *renderer = glGetString(GL_RENDERER);
     const GLubyte *version = glGetString(GL_VERSION);
@@ -92,7 +94,7 @@ void GLFWManager::swapBuffers()
     glfwSwapBuffers(m_window);
 }
 
-// This function processes all the application's input and returns a bool to tell us if we should continue
+// This function processes all the application's input
 void GLFWManager::processInput()
 {
     if (glfwGetKey(m_window, GLFW_KEY_ESCAPE) == GLFW_PRESS || glfwWindowShouldClose(m_window) != 0)
@@ -134,18 +136,20 @@ void GLFWManager::processInput()
     glfwPollEvents();
 }
 
-void GLFWManager::clear()
+void GLFWManager::update()
 {
-    glClear(GL_COLOR_BUFFER_BIT);
-    glClearColor(0.0, 0.0, 0.0, 0.0);
-    // glClearColor(1.0, 1.0, 1.0, 1.0);
+    int width, height;
+    glfwGetFramebufferSize(m_window, &width, &height);
+    glViewport(0, 0, width, height);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glClearColor(0.0, 0.0, 0.0, 0.0);
 }
 
 // This destroys the window
 void GLFWManager::destroy()
 {
+    glfwDestroyWindow(m_window);
     std::cout << "[GLFWManager] Destroy GLFW window" << std::endl;
-    // This closes the OpenGL window and terminates the application
+
     glfwTerminate();
 }

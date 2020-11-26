@@ -10,7 +10,7 @@
 
 // This is our class definition for managing the creation of the window, input and the
 // creating of the OpenGL context.  This class should be inherited from to create
-// specific implementations like GLFW (i.e. GLFWManager), Win32, GLUT or SDL.
+// specific implementations like GLFW or SDL.
 class GLWindowManager
 {
 protected:
@@ -33,7 +33,7 @@ public:
     // This processes any needed input for the application
     virtual void processInput() = 0;
 
-    virtual void clear() = 0;
+    virtual void update() = 0;
 
     // This destroys the window and OpenGL context
     virtual void destroy() = 0;

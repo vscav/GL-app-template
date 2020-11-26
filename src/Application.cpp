@@ -1,18 +1,21 @@
-#include "../include/Application.hpp"
 #include "../include/GLError.hpp"
 #include "../include/Sphere.hpp"
+
+#include "../include/Application.hpp"
+
+#include <functional>
 
 Application::Application()
     : GLApplication(),
       m_sphere(1, 64, 32),
-      m_sphereShader("../shader/3D.vert", "../shader/sphere.frag")
+      m_sphereShader("../shader/3D.vert", "../shader/directionallight.frag")
 {
 }
 
 Application::Application(std::string title, int width, int height, bool fullScreen)
     : GLApplication(title, width, height, fullScreen),
       m_sphere(1, 64, 32),
-      m_sphereShader("../shader/3D.vert", "../shader/sphere.frag")
+      m_sphereShader("../shader/3D.vert", "../shader/directionallight.frag")
 {
 }
 
@@ -27,9 +30,6 @@ void Application::loop()
 
   // Get current context time
   float t = getTime();
-
-  // Clear GL window
-  getWindowManager()->clear();
 
   // How to use window utils class (wireframe example) :
   // getWindowManager()->getWindowUtils()->goWireframe(true);

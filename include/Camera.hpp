@@ -2,9 +2,7 @@
 #ifndef _Camera_HPP_
 #define _Camera_HPP_
 
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtx/matrix_operation.hpp>
+#include "./dependencies/glm.hpp"
 
 class Camera
 {

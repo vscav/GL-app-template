@@ -43,7 +43,7 @@ public:
     // This processes any needed input for the application
     virtual void processInput() override;
 
-    virtual void clear() override;
+    virtual void update() override;
 
     // This destroys the window and OpenGL context
     virtual void destroy();

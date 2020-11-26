@@ -2,8 +2,9 @@
 #ifndef _VertexArrayObject_HPP_
 #define _VertexArrayObject_HPP_
 
+#include "./dependencies/glm.hpp"
+
 #include <GL/glew.h>
-#include <glm/glm.hpp>
 
 class VertexArrayObject
 {

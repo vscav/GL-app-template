@@ -2,8 +2,9 @@
 #ifndef _Shader_HPP_
 #define _Shader_HPP_
 
+#include "./dependencies/glm.hpp"
+
 #include <GL/glew.h>
-#include <glm/glm.hpp>
 
 #include <string>
 #include <unordered_map>

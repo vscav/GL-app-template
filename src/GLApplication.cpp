@@ -100,6 +100,8 @@ void GLApplication::run()
     m_deltaTime = t - m_time;
     m_time = t;
 
+    getWindowManager()->update();
+
     getWindowManager()->processInput();
 
     loop();

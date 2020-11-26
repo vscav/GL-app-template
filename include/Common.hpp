@@ -2,8 +2,9 @@
 #ifndef _Common_HPP_
 #define _Common_HPP_
 
+#include "./dependencies/glm.hpp"
+
 #include <GL/glew.h>
-#include <glm/glm.hpp>
 
 struct ShapeVertex
 {

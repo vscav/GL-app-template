@@ -55,23 +55,17 @@ void Sphere::render(const Camera *camera, Shader &shader, float time)
     shader.setMat4("uNormalMatrix", glm::transpose(glm::inverse(MVMatrix)));
     shader.setMat4("uMVPMatrix", ProjectionMatrix * MVMatrix);
 
-    shader.setVec3f("uCameraPosition", camera->getPosition());
+    // shader.setVec3f("uCameraPosition", camera->getPosition());
 
-    // // Point light
-    // glm::mat4 lightMVMatrix = glm::rotate(MVMatrix, time, glm::vec3(0, 1, 0));
-    // // lightMVMatrix = glm::scale(lightMVMatrix, glm::vec3(1.25));
-    // // glm::vec3 lightPos(2, 2 * (glm::cos(time) * glm::sin(time)), 0);
-    // // glm::vec3 lightPos_vs(lightMVMatrix * glm::vec4(lightPos, 1));
+    // Directional light
+    glm::mat4 lightMVMatrix = glm::rotate(MVMatrix, time, glm::vec3(0, 1, 0));
+    glm::vec3 lightDir_vs(lightMVMatrix * glm::vec4(1, 1, 1, 0));
 
-    // // Directional light
-    // glm::vec3 lightDir_vs(lightMVMatrix * glm::vec4(1, 1, 1, 0));
-
-    // shader.setVec3f("uLightIntensity", 0.9, 0.9, 0.9);
-    // // shader.setVec3f("uLightPos_vs", lightPos_vs);
-    // shader.setVec3f("uLightDir_vs", lightDir_vs);
-    // shader.setVec3f("uKd", 0, 0, 1);
-    // shader.setVec3f("uKs", 0, 0, 1);
-    // shader.setFloat("uShininess", 10.0);
+    shader.setVec3f("uLightIntensity", 1.0, 1.0, 1.0);
+    shader.setVec3f("uLightDir_vs", lightDir_vs);
+    shader.setVec3f("uKd", 0.7, 0.75, 1.0);
+    shader.setVec3f("uKs", 0, 0, 0.25);
+    shader.setFloat("uShininess", 2.75);
 
     m_vao.bind();
 

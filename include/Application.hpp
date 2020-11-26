@@ -1,6 +1,6 @@
 #pragma once
-#ifndef _Game_HPP_
-#define _Game_HPP_
+#ifndef _Application_HPP_
+#define _Application_HPP_
 
 #include "GLApplication.hpp"
 #include "Shader.hpp"
@@ -8,11 +8,9 @@
 #include "Sphere.hpp"
 #include "Program.hpp"
 
+#include "./dependencies/glm.hpp"
+
 #include <GLFW/glfw3.h>
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtx/matrix_operation.hpp>
-#include <glm/gtc/type_ptr.hpp>
 
 class Application : public GLApplication
 {
@@ -30,4 +28,4 @@ public:
   ~Application();
 };
 
-#endif /* _Game_HPP_ */
+#endif /* _Application_HPP_ */

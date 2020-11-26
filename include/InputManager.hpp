@@ -4,11 +4,13 @@
 
 #include "TimeManager.hpp"
 
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtx/transform2.hpp>
+#include "./dependencies/glm.hpp"
 
-// This is a standardized enum to code for keyboard input, since Win32 and GLFW use some different codes
+#include <functional>
+#include <map>
+#include <vector>
+
+// // This is a standardized enum to code for keyboard input, since Win32 and GLFW use some different codes
 enum InputCodes
 {
 	kEscape = 27,
@@ -71,7 +73,6 @@ enum InputCodes
 	Z = 90,
 };
 
-// This manager takes care of any input from the user and sent to the camera.
 class InputManager
 {
 protected:

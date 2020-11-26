@@ -4,9 +4,7 @@
 
 #include "Camera.hpp"
 
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtx/matrix_operation.hpp>
+#include "./dependencies/glm.hpp"
 
 #include <cmath>
 

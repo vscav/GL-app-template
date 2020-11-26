@@ -2,8 +2,9 @@
 #ifndef _VertexBufferObject_HPP_
 #define _VertexBufferObject_HPP_
 
+#include "./dependencies/glm.hpp"
+
 #include <GL/glew.h>
-#include <glm/glm.hpp>
 
 #include <vector>
 
