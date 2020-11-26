@@ -1,8 +1,6 @@
 #include "../include/GLApplication.hpp"
 #include "../include/GLFWManager.hpp"
 
-// #include <memory>
-
 GLApplication *currentGLApplication = NULL;
 
 GLApplication &GLApplication::getInstance()
@@ -27,6 +25,8 @@ GLApplication::GLApplication(std::string title, int width, int height, bool full
 
 GLApplication::~GLApplication()
 {
+  delete m_camera;
+  delete m_windowManager;
 }
 
 void GLApplication::initialize(std::string title, int width, int height, bool fullScreen)
@@ -35,11 +35,15 @@ void GLApplication::initialize(std::string title, int width, int height, bool fu
 
   GLFWManager *windowManager = new GLFWManager(title, width, height, false);
   setWindowManager(windowManager);
-  // std::unique_ptr<GLFWManager> windowManager(new GLFWManager(title, width, height, false));
+
+  // std::unique_ptr<GLWindowManager> windowManager(new GLFWManager(title, width, height, false));
   // setWindowManager(windowManager);
 
   FreeflyCamera *camera = new FreeflyCamera();
   setCamera(camera);
+
+  // std::unique_ptr<Camera> camera(new FreeflyCamera());
+  // setCamera(camera);
 }
 
 // const GLWindowManager *GLApplication::getWindowManager() const
@@ -51,6 +55,18 @@ void GLApplication::initialize(std::string title, int width, int height, bool fu
 // {
 //   std::unique_ptr<GLWindowManager> old = std::move(m_windowManager);
 //   m_windowManager = std::move(windowManager);
+//   return std::move(old);
+// };
+
+// const Camera *GLApplication::getCamera() const
+// {
+//   return m_camera.get();
+// };
+
+// std::unique_ptr<Camera> GLApplication::setCamera(std::unique_ptr<Camera> camera)
+// {
+//   std::unique_ptr<Camera> old = std::move(m_camera);
+//   m_camera = std::move(camera);
 //   return std::move(old);
 // };
 

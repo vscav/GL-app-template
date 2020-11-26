@@ -12,6 +12,7 @@
 #include <iostream>
 #include <stdexcept>
 #include <string>
+#include <memory>
 
 class GLApplication
 {
@@ -28,9 +29,9 @@ private:
   GLApplication &operator=(const GLApplication &) { return *this; }
 
   GLWindowManager *m_windowManager;
-  //std::unique_ptr<GLWindowManager> m_windowManager;
-
+  // std::unique_ptr<GLWindowManager> m_windowManager;
   Camera *m_camera;
+  // std::unique_ptr<Camera> m_camera;
 
   float m_time;
   float m_deltaTime;
@@ -60,9 +61,10 @@ public:
   inline GLWindowManager *getWindowManager() const { return m_windowManager; }
   // const GLWindowManager *getWindowManager() const;
   // std::unique_ptr<GLWindowManager> setWindowManager(std::unique_ptr<GLWindowManager> windowManager);
-
   inline void setCamera(Camera *camera) { m_camera = camera; };
   inline Camera *getCamera() { return m_camera; };
+  // const Camera *getCamera() const;
+  // std::unique_ptr<Camera> setCamera(std::unique_ptr<Camera> camera);
 };
 
 #endif /* _GLApplication_HPP_ */

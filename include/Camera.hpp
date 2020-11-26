@@ -9,6 +9,8 @@
 class Camera
 {
 public:
+    virtual ~Camera() {}
+
     virtual void moveFront(float t) = 0;
     virtual void moveLeft(float t) = 0;
 

@@ -144,6 +144,7 @@ void GLFWManager::clear()
 // This destroys the window
 void GLFWManager::destroy()
 {
+    std::cout << "[GLFWManager] Destroy GLFW window" << std::endl;
     // This closes the OpenGL window and terminates the application
     glfwTerminate();
 }
