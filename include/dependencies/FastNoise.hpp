@@ -2,9 +2,6 @@
 #ifndef _FastNoise_HPP_
 #define _FastNoise_HPP_
 
-// Uncomment the line below to use doubles throughout FastNoise instead of floats
-//#define FN_USE_DOUBLES
-
 #define FN_CELLULAR_INDEX_MAX 3
 
 #ifdef FN_USE_DOUBLES

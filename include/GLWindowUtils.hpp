@@ -4,7 +4,7 @@
 
 #include <GL/glew.h>
 
-// Useful class for updating OpenGL state, such as alpha blending, depth testing, etc.
+// Utility class for updating OpenGL state, such as alpha blending, depth testing, etc.
 class GLWindowUtils
 {
 private:

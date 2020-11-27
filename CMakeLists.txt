@@ -24,3 +24,6 @@ target_link_libraries(${FILE} PRIVATE libglew_static)
 # glm library
 add_subdirectory(lib/glm EXCLUDE_FROM_ALL)
 target_link_libraries(${FILE} PRIVATE glm)
+
+# doxygen (documentation)
+add_subdirectory(doc)

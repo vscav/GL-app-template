@@ -10,7 +10,7 @@
 #include <map>
 #include <vector>
 
-// // This is a standardized enum to code for keyboard input, since Win32 and GLFW use some different codes
+/// \brief A standardized enum to code for keyboard inputs.
 enum InputCodes
 {
 	kEscape = 27,
@@ -73,16 +73,21 @@ enum InputCodes
 	Z = 90,
 };
 
+/// \class InputManager
+/// \brief Class used to represent the input manager of the application. It allows us to abstract the input away from the WindowManager.
 class InputManager
 {
 protected:
-	double getCurrentDeltaTime()
-	{
-		return TimeManager::getInstance().deltaTime;
-	}
+	/// \brief Return the delta time (elapsed time) of the current application.
+	inline double getCurrentDeltaTime() { return TimeManager::getInstance().deltaTime; };
 
 public:
+	/// \brief This fires an action depending on the key code received.
+	/// \param code : The key code captured.
 	void keyPressed(InputCodes code);
+	/// \brief This fires an action after detecting a mouse movement.
+	/// \param mouseX : The X position of the mouse relative to the screen.
+	/// \param mouseY : The Y position of the mouse relative to the screen..
 	void mouseMoved(float mouseX, float mouseY);
 };
 

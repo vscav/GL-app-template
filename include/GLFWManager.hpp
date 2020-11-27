@@ -11,50 +11,62 @@
 #include <string>
 #include <fstream>
 
-// This is our implementation of the abstract base class WindowManager, which uses the
-// GLFW cross-platform library to create a window, handle input and create the OpenGL
-// context.
+/// \class GLFWManager
+/// \brief Class which is the implementation of the abstract base class WindowManager, and which uses the
+/// GLFW cross-platform library to create a window, handle input and create the OpenGL
+/// context.
 class GLFWManager : public GLWindowManager
 {
 protected:
-    // This is the GLFW window object that manages the window and input
-    GLFWwindow *m_window;
+    GLFWwindow *m_window; /*!< The GLFW window object that manages the window and input. */
 
-    bool m_firstMouse = true;
+    bool m_firstMouse = true; /*!< A boolean used to determine if the click captured is the first. */
 
-    GLfloat m_lastX = m_width / 2.0;
-    GLfloat m_lastY = m_height / 2.0;
+    GLfloat m_lastX = m_width / 2.0;  /*!< The last position of the mouse X position. */
+    GLfloat m_lastY = m_height / 2.0; /*!< The last position of the mouse Y position. */
 
-    std::string m_title;
-    int m_width;
-    int m_height;
-    bool m_fullScreen;
+    std::string m_title; /*!< The window/application title (string). */
+    int m_width;         /*!< The window width value. */
+    int m_height;        /*!< The window height value. */
+    bool m_fullScreen;   /*!< A boolean to determine if the window is in full screen mode. */
 
 public:
+    /// \brief Constructor.
+    /// \param title : The window/application title.
+    /// \param width : The window width value.
+    /// \param height : The window height value.
+    /// \param fullScreen : A boolean to determine if the window is in full screen mode.
     GLFWManager(std::string title, int width, int height, bool fullScreen);
+    /// \brief Destructor.
     inline ~GLFWManager() { destroy(); };
 
-    // This initialized the window and creates the OpenGL context
+    /// \brief Initialize the window and creates the OpenGL context.
     virtual int initialize() override;
 
-    // This swaps the backbuffer to the front and should be called every frame
+    /// \brief Swap the backbuffer to the front (should be called every frame).
     virtual void swapBuffers() override;
 
-    // This processes any needed input for the application
+    /// \brief Process any needed input for the application.
     virtual void processInput() override;
 
+    /// \brief Update the window (should be called every frame).
     virtual void update() override;
 
-    // This destroys the window and OpenGL context
+    /// \brief Destroy the window and the OpenGL context.
     virtual void destroy();
 
+    /// \brief Return the window/application title.
     virtual inline std::string getTitle() const { return m_title; };
+    /// \brief Return the window width.
     virtual inline int getWidth() const { return m_width; };
+    /// \brief Return the window height.
     virtual inline int getHeight() const { return m_height; };
+    /// \brief Return the window ratio (window width divided by window height).
     virtual inline float getWindowRatio() const { return float(m_width) / float(m_height); };
+    /// \brief Return a boolean that indicates whether or not the window is in full screen mode.
     virtual inline bool isFullScreen() const { return m_fullScreen; };
 
-    // Add a way to access and get the application's window
+    /// \brief Access and get the application's window
     // virtual inline GLFWwindow *getWindow() const { return m_window; }
 };
 

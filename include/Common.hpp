@@ -6,11 +6,13 @@
 
 #include <GL/glew.h>
 
+/// \struct ShapeVertex
+/// \brief Structure used to represent a type of vertice.
 struct ShapeVertex
 {
-    glm::vec3 position;
-    glm::vec3 normal;
-    glm::vec2 texCoords;
+    glm::vec3 position; /*!< Position of the vertice. */
+    glm::vec3 normal; /*!< Normal of the vertice. */
+    glm::vec2 texCoords; /*!< Texture coordinates of the vertice. */
 };
 
 #endif /* _Common_HPP_ */

@@ -6,18 +6,20 @@
 #include <chrono>
 #include <thread>
 
-// Singleton class
+/// \class TimeManager
+/// \brief Class (Singleton) used to manage the time of our main application.
 class TimeManager
 {
 private:
+    /// \brief Default constructor.
     TimeManager(){};
+    /// \brief Copy constructor.
     TimeManager(TimeManager const &);
+    /// \brief Affectation operator.
     TimeManager &operator=(TimeManager const &);
 
 public:
-    // The function to get the instance of the manager, or initialize and return the instance.
-    // By creating a static variable of the instance we ensure this only gets created once.
-    // This is also thread-safe in C++ 11 according to the specifications.
+    /// \brief The function to get the instance of the manager, or initialize and return the instance.
     static TimeManager &getInstance()
     {
         static TimeManager instance;
@@ -25,20 +27,20 @@ public:
         return instance;
     }
 
-    // This calculates our current scene's frames per second and displays it in the console
+    /// \brief This calculates our current scene's frames per second and displays it in the console.
+    /// \param writeToConsole : A boolean to indicate wheter or not we display the value in the console.
     double calculateFrameRate(bool writeToConsole);
 
-    // This returns the current time in seconds (since 1/1/1970, call "epoch")
+    /// \brief This returns the current time in seconds.
     double getTime();
 
-    // This pauses the current thread for an amount of time in milliseconds
+    /// \brief This pauses the current thread for an amount of time in milliseconds.
+    /// \param milliseconds : The duration of sleep in milliseconds.
     void sleep(int milliseconds);
 
-    // This is the time slice that stores the total time in seconds that has elapsed since the last frame
-    double deltaTime = 0;
+    double deltaTime = 0; /*!< The time slice that stores the total time in seconds that has elapsed since the last frame. */
 
-    // This is the current time in seconds
-    double currentTime = 0;
+    double currentTime = 0; /*!< The current time of the manager instance. */
 };
 
 #endif /* _TimeManager_HPP */
