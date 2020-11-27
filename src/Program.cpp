@@ -1,5 +1,29 @@
 #include "../include/Program.hpp"
 
+Program::Program() : m_nGLId(glCreateProgram())
+{
+}
+
+Program::~Program()
+{
+	glDeleteProgram(m_nGLId);
+}
+
+Program::Program(Program &&rvalue) : m_nGLId(rvalue.m_nGLId)
+{
+	rvalue.m_nGLId = 0;
+}
+
+void Program::attachShader(const ProgramShader &shader)
+{
+	glAttachShader(m_nGLId, shader.getGLId());
+}
+
+void Program::use() const
+{
+	glUseProgram(m_nGLId);
+}
+
 bool Program::link()
 {
 	glLinkProgram(m_nGLId);

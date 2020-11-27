@@ -22,19 +22,9 @@ private:
 	GLuint m_nGLId;
 
 public:
-	ProgramShader(GLenum type) : m_nGLId(glCreateShader(type))
-	{
-	}
-
-	~ProgramShader()
-	{
-		glDeleteShader(m_nGLId);
-	}
-
-	ProgramShader(ProgramShader &&rvalue) : m_nGLId(rvalue.m_nGLId)
-	{
-		rvalue.m_nGLId = 0;
-	}
+	ProgramShader(GLenum type);
+	~ProgramShader();
+	ProgramShader(ProgramShader &&rvalue);
 
 	ProgramShader &operator=(ProgramShader &&rvalue)
 	{
@@ -43,15 +33,9 @@ public:
 		return *this;
 	}
 
-	GLuint getGLId() const
-	{
-		return m_nGLId;
-	}
+	inline GLuint getGLId() const { return m_nGLId; };
 
-	void setSource(const char *src)
-	{
-		glShaderSource(m_nGLId, 1, &src, 0);
-	}
+	void setSource(const char *src);
 
 	bool compile();
 

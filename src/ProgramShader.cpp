@@ -1,5 +1,24 @@
 #include "../include/ProgramShader.hpp"
 
+ProgramShader::ProgramShader(GLenum type) : m_nGLId(glCreateShader(type))
+{
+}
+
+ProgramShader::~ProgramShader()
+{
+	glDeleteShader(m_nGLId);
+}
+
+ProgramShader::ProgramShader(ProgramShader &&rvalue) : m_nGLId(rvalue.m_nGLId)
+{
+	rvalue.m_nGLId = 0;
+}
+
+void ProgramShader::setSource(const char *src)
+{
+	glShaderSource(m_nGLId, 1, &src, 0);
+}
+
 bool ProgramShader::compile()
 {
 	glCompileShader(m_nGLId);

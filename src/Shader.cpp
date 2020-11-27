@@ -143,6 +143,8 @@ std::string Shader::parseFile(const char *filepath)
     file.close();
     shaderStr = stream.str();
 
+    std::cout << shaderStr << std::endl;
+
     return shaderStr;
 }
 

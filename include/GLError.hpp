@@ -7,6 +7,9 @@
 #include <iostream>
 #include <string>
 
+/// \brief An utility function to print a specific OpenGL error to the console.
+/// \param file : The file in which the error occured.
+/// \param line : The line of the file where the error occured.
 void glCheckError(const char *file, unsigned int line);
 
 #endif /* _GLError_HPP_ */

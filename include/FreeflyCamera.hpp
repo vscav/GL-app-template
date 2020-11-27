@@ -9,7 +9,7 @@
 #include <cmath>
 
 /// \class FreeflyCamera
-/// \brief Class for creating a freefly camera class, which is an implementation of the abstract base class Camera.
+/// \brief Class for creating a freefly camera object, which is an implementation of the abstract base class Camera.
 class FreeflyCamera : public Camera
 {
 private:

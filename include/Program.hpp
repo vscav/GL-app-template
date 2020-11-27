@@ -18,19 +18,9 @@ private:
 	GLuint m_nGLId;
 
 public:
-	Program() : m_nGLId(glCreateProgram())
-	{
-	}
-
-	~Program()
-	{
-		glDeleteProgram(m_nGLId);
-	}
-
-	Program(Program &&rvalue) : m_nGLId(rvalue.m_nGLId)
-	{
-		rvalue.m_nGLId = 0;
-	}
+	Program();
+	~Program();
+	Program(Program &&rvalue);
 
 	Program &operator=(Program &&rvalue)
 	{
@@ -39,24 +29,15 @@ public:
 		return *this;
 	}
 
-	GLuint getGLId() const
-	{
-		return m_nGLId;
-	}
+	inline GLuint getGLId() const { return m_nGLId; };
 
-	void attachShader(const ProgramShader &shader)
-	{
-		glAttachShader(m_nGLId, shader.getGLId());
-	}
+	void attachShader(const ProgramShader &shader);
 
 	bool link();
 
 	const std::string getInfoLog() const;
 
-	void use() const
-	{
-		glUseProgram(m_nGLId);
-	}
+	void use() const;
 };
 
 // Build a GLSL program from source code

@@ -12,13 +12,13 @@
 #include <fstream>
 
 /// \class GLFWManager
-/// \brief Class which is the implementation of the abstract base class WindowManager, and which uses the
+/// \brief Class which is the implementation of the abstract base class GLWindowManager, and which uses the
 /// GLFW cross-platform library to create a window, handle input and create the OpenGL
 /// context.
 class GLFWManager : public GLWindowManager
 {
 protected:
-    GLFWwindow *m_window; /*!< The GLFW window object that manages the window and input. */
+    GLFWwindow *m_window; /*!< The GLFW window object (pointer) that manages the window and input. */
 
     bool m_firstMouse = true; /*!< A boolean used to determine if the click captured is the first. */
 

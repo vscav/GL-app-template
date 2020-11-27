@@ -91,8 +91,6 @@ void GLApplication::run()
 {
   m_state = stateRun;
 
-  // glfwMakeContextCurrent(m_windowManager->getWindow());
-
   while (m_state == stateRun)
   {
     float t = glfwGetTime();
