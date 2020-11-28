@@ -5,7 +5,6 @@ double TimeManager::calculateFrameRate(bool writeToConsole = false)
     static double framesPerSecond = 0.0f;
     static double startTime = getTime();
     static double lastTime = getTime();
-    static char strFrameRate[50] = {0};
     static double currentFPS = 0.0f;
 
     currentTime = getTime();

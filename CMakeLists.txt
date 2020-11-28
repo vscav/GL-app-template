@@ -3,7 +3,7 @@ cmake_minimum_required (VERSION 3.1)
 project (opengl-app-template)
 
 # Get application files
-get_filename_component(FILE src/app.cpp NAME_WE)
+get_filename_component(FILE app.cpp NAME_WE)
 file(GLOB HEADER_FILES header/*.hpp)
 file(GLOB SRC_FILES src/*.cpp)
 
