@@ -1,64 +1,38 @@
-#include "../include/Program.hpp"
+#include "glimac/Program.hpp"
+#include <stdexcept>
 
-Program::Program() : m_nGLId(glCreateProgram())
-{
-}
+namespace glimac {
 
-Program::~Program()
-{
-	glDeleteProgram(m_nGLId);
-}
-
-Program::Program(Program &&rvalue) : m_nGLId(rvalue.m_nGLId)
-{
-	rvalue.m_nGLId = 0;
-}
-
-void Program::attachShader(const ProgramShader &shader)
-{
-	glAttachShader(m_nGLId, shader.getGLId());
-}
-
-void Program::use() const
-{
-	glUseProgram(m_nGLId);
-}
-
-bool Program::link()
-{
+bool Program::link() {
 	glLinkProgram(m_nGLId);
 	GLint status;
 	glGetProgramiv(m_nGLId, GL_LINK_STATUS, &status);
 	return status == GL_TRUE;
 }
 
-const std::string Program::getInfoLog() const
-{
+const std::string Program::getInfoLog() const {
 	GLint length;
 	glGetProgramiv(m_nGLId, GL_INFO_LOG_LENGTH, &length);
-	char *log = new char[length];
+	char* log = new char[length];
 	glGetProgramInfoLog(m_nGLId, length, 0, log);
 	std::string logString(log);
-	delete[] log;
+	delete [] log;
 	return logString;
 }
 
 // Build a GLSL program from source code
-Program buildProgram(const GLchar *vsSrc, const GLchar *fsSrc)
-{
-	ProgramShader vs(GL_VERTEX_SHADER);
+Program buildProgram(const GLchar* vsSrc, const GLchar* fsSrc) {
+	Shader vs(GL_VERTEX_SHADER);
 	vs.setSource(vsSrc);
 
-	if (!vs.compile())
-	{
+	if(!vs.compile()) {
 		throw std::runtime_error("Compilation error for vertex shader: " + vs.getInfoLog());
 	}
 
-	ProgramShader fs(GL_FRAGMENT_SHADER);
+	Shader fs(GL_FRAGMENT_SHADER);
 	fs.setSource(fsSrc);
 
-	if (!fs.compile())
-	{
+	if(!fs.compile()) {
 		throw std::runtime_error("Compilation error for fragment shader: " + fs.getInfoLog());
 	}
 
@@ -66,8 +40,7 @@ Program buildProgram(const GLchar *vsSrc, const GLchar *fsSrc)
 	program.attachShader(vs);
 	program.attachShader(fs);
 
-	if (!program.link())
-	{
+	if(!program.link()) {
 		throw std::runtime_error("Link error: " + program.getInfoLog());
 	}
 
@@ -75,18 +48,15 @@ Program buildProgram(const GLchar *vsSrc, const GLchar *fsSrc)
 }
 
 // Load source code from files and build a GLSL program
-Program loadProgram(const FilePath &vsFile, const FilePath &fsFile)
-{
-	ProgramShader vs = loadShader(GL_VERTEX_SHADER, vsFile);
-	ProgramShader fs = loadShader(GL_FRAGMENT_SHADER, fsFile);
+Program loadProgram(const FilePath& vsFile, const FilePath& fsFile) {
+	Shader vs = loadShader(GL_VERTEX_SHADER, vsFile);
+	Shader fs = loadShader(GL_FRAGMENT_SHADER, fsFile);
 
-	if (!vs.compile())
-	{
+	if(!vs.compile()) {
 		throw std::runtime_error("Compilation error for vertex shader (from file " + std::string(vsFile) + "): " + vs.getInfoLog());
 	}
 
-	if (!fs.compile())
-	{
+	if(!fs.compile()) {
 		throw std::runtime_error("Compilation error for fragment shader (from file " + std::string(fsFile) + "): " + fs.getInfoLog());
 	}
 
@@ -94,10 +64,11 @@ Program loadProgram(const FilePath &vsFile, const FilePath &fsFile)
 	program.attachShader(vs);
 	program.attachShader(fs);
 
-	if (!program.link())
-	{
-		throw std::runtime_error("Link error (for files " + vsFile.str() + " and " + fsFile.str() + "): " + program.getInfoLog());
+	if(!program.link()) {
+        throw std::runtime_error("Link error (for files " + vsFile.str() + " and " + fsFile.str() + "): " + program.getInfoLog());
 	}
 
 	return program;
+}
+
 }

@@ -1,4 +1,4 @@
-#pragma once#pragma once
+#pragma once
 #ifndef _GLError_HPP_
 #define _GLError_HPP_
 

@@ -51,14 +51,14 @@ public:
 
     /// \brief Set the application's InputManager
     /// \param inputManager : A pointer to the inputManager of the application.
-    virtual inline void *setInputManager(InputManager *inputManager) { m_inputManager = inputManager; };
+    inline void setInputManager(InputManager *inputManager) { m_inputManager = inputManager; };
     /// \brief Return the application's InputManager
-    virtual inline InputManager *getInputManager() const { return m_inputManager; };
+    inline InputManager *getInputManager() const { return m_inputManager; };
     /// \brief Set the application's window utility
     /// \param windowUtils : A pointer to the window utility of the application.
-    virtual inline void *setWindowUtils(GLWindowUtils *windowUtils) { m_windowUtils = windowUtils; };
+    inline void setWindowUtils(GLWindowUtils *windowUtils) { m_windowUtils = windowUtils; };
     /// \brief Return the application's window utility
-    virtual inline GLWindowUtils *getWindowUtils() const { return m_windowUtils; };
+    inline GLWindowUtils *getWindowUtils() const { return m_windowUtils; };
     // virtual inline auto *getWindow() const = 0;
 };
 

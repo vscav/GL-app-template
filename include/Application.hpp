@@ -6,7 +6,7 @@
 #include "Shader.hpp"
 #include "FreeflyCamera.hpp"
 #include "Sphere.hpp"
-#include "Program.hpp"
+#include "CubeMap.hpp"
 
 #include "./dependencies/glm.hpp"
 
@@ -17,9 +17,11 @@
 class Application : public GLApplication
 {
 private:
-  Sphere m_sphere; /*!< A sphere object. */
+  Sphere m_sphere;       /*!< A sphere object. */
+  Shader m_sphereShader; /*!< The shaders which will be used for the sphere object. */
 
-  Shader m_sphereShader; /*!< The shaders which will be applied to the sphere object. */
+  CubeMap m_cubeMap;      /*!< A cube map object. */
+  Shader m_cubeMapShader; /*!< The shaders which will be used for the cube map object. */
 
 protected:
   /// \brief The application loop (run until the user asks to quit).

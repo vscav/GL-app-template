@@ -28,6 +28,8 @@ void InputManager::keyPressed(InputCodes code)
 	case d:
 		GLApplication::getInstance().getCamera()->moveLeft(-1 * GLApplication::getInstance().getCamera()->getSpeed() * getCurrentDeltaTime());
 		break;
+	default:
+		break;
 	}
 }
 

@@ -63,7 +63,7 @@ void Sphere::render(const Camera *camera, Shader &shader, float time)
 
     shader.setVec3f("uLightIntensity", 1.0, 1.0, 1.0);
     shader.setVec3f("uLightDir_vs", lightDir_vs);
-    shader.setVec3f("uKd", 0.7, 0.75, 1.0);
+    shader.setVec3f("uKd", 0, 0.5, 0.8);
     shader.setVec3f("uKs", 0, 0, 0.25);
     shader.setFloat("uShininess", 2.75);
 
@@ -114,12 +114,12 @@ void Sphere::build(GLfloat r, GLsizei discLat, GLsizei discLong)
         GLsizei offset = j * (discLat + 1);
         for (GLsizei i = 0; i < discLat; ++i)
         {
-            m_Vertices.push_back(data[offset + i]);
-            m_Vertices.push_back(data[offset + (i + 1)]);
-            m_Vertices.push_back(data[offset + discLat + 1 + (i + 1)]);
-            m_Vertices.push_back(data[offset + i]);
-            m_Vertices.push_back(data[offset + discLat + 1 + (i + 1)]);
-            m_Vertices.push_back(data[offset + i + discLat + 1]);
+            m_vertices.push_back(data[offset + i]);
+            m_vertices.push_back(data[offset + (i + 1)]);
+            m_vertices.push_back(data[offset + discLat + 1 + (i + 1)]);
+            m_vertices.push_back(data[offset + i]);
+            m_vertices.push_back(data[offset + discLat + 1 + (i + 1)]);
+            m_vertices.push_back(data[offset + i + discLat + 1]);
         }
     }
 }

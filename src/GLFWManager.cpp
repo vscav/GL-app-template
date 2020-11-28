@@ -4,7 +4,7 @@
 #include <iostream>
 
 GLFWManager::GLFWManager(std::string title, int width, int height, bool fullScreen)
-    : m_width(width), m_height(height), m_title(title), m_fullScreen(fullScreen)
+    : m_title(title), m_width(width), m_height(height), m_fullScreen(fullScreen)
 {
     initialize();
 }
@@ -72,12 +72,6 @@ void GLFWManager::getContext()
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 }
 
-void framebuffer_size_callback(GLFWwindow *window, int width, int height)
-{
-    glViewport(0, 0, width, height);
-    std::cout << "Resized window" << std::endl;
-}
-
 void GLFWManager::createWindow()
 {
     m_monitor = glfwGetPrimaryMonitor();
@@ -111,8 +105,6 @@ void GLFWManager::createWindow()
 
     // Create the OpenGL context from the window and settings specified
     glfwMakeContextCurrent(m_window);
-
-    glfwSetFramebufferSizeCallback(m_window, framebuffer_size_callback);
 
     // This turns on STICKY_KEYS for keyboard input
     glfwSetInputMode(m_window, GLFW_STICKY_KEYS, GL_TRUE);
