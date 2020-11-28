@@ -41,10 +41,10 @@ public:
     virtual void moveLeft(float t) override;
 
     /// \brief Rotate the camera to the right or to the left according to the degree value.
-    /// \param t : The value (in degrees) used to move the camera on the right or on the left.
+    /// \param degrees : The value (in degrees) used to move the camera on the right or on the left.
     virtual void rotateLeft(float degrees) override;
     /// \brief Rotate the camera to the top or the bottom according to the degree value.
-    /// \param t : The value (in degrees) used to move the camera to the top or to the bottom.
+    /// \param degrees : The value (in degrees) used to move the camera to the top or to the bottom.
     virtual void rotateUp(float degrees) override;
 
     /// \brief Set the camera speed value.

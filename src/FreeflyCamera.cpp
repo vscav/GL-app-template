@@ -1,9 +1,10 @@
 #include "../include/FreeflyCamera.hpp"
+#include "../include/GLApplication.hpp"
 
 #include <iostream>
 
 FreeflyCamera::FreeflyCamera()
-    : m_Position(glm::vec3(.0f, .0f, 2.0f)), m_fPhi(M_PI), m_fTheta(.0f)
+    : m_Position(glm::vec3(.0f, .0f, 3.0f)), m_fPhi(M_PI), m_fTheta(.0f)
 {
     computeDirectionVectors();
 }
@@ -49,10 +50,15 @@ glm::mat4 FreeflyCamera::getViewMatrix() const
     return viewMatrix;
 }
 
-glm::mat4 FreeflyCamera::getProjectionMatrix() const { 
-	return glm::perspective(glm::radians(70.f), 800.f / 600.f, 0.1f, 300.0f);
+glm::mat4 FreeflyCamera::getProjectionMatrix() const
+{
+    float width = GLApplication::getInstance().getWindowManager()->getWidth();
+    float height = GLApplication::getInstance().getWindowManager()->getHeight();
+
+    return glm::perspective(glm::radians(70.f), width / height, 0.1f, 300.0f);
 }
 
-glm::mat4 FreeflyCamera::getVPMatrix() const {
-	return getProjectionMatrix() * getViewMatrix();
+glm::mat4 FreeflyCamera::getVPMatrix() const
+{
+    return getProjectionMatrix() * getViewMatrix();
 }

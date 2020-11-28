@@ -20,6 +20,8 @@ class GLFWManager : public GLWindowManager
 protected:
     GLFWwindow *m_window; /*!< The GLFW window object (pointer) that manages the window and input. */
 
+    GLFWmonitor *m_monitor; /*!< The primary monitor of the user, which will be used to displai the application window. */
+
     bool m_firstMouse = true; /*!< A boolean used to determine if the click captured is the first. */
 
     GLfloat m_lastX = m_width / 2.0;  /*!< The last position of the mouse X position. */
@@ -42,6 +44,15 @@ public:
 
     /// \brief Initialize the window and creates the OpenGL context.
     virtual int initialize() override;
+
+    /// \brief Get information about GLFW and OpenGL contexts.
+    void getContext();
+
+    /// \brief Create the GLFW window, either in full screen or not.
+    void createWindow();
+
+    /// \brief Center the GLFW window on the monitor screen.
+    void centerWindow();
 
     /// \brief Swap the backbuffer to the front (should be called every frame).
     virtual void swapBuffers() override;

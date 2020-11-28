@@ -78,14 +78,14 @@ public:
   void run();
 
   /// \brief Set the window manager for the GL application.
-  /// \param : A pointer to the window manager.
+  /// \param windowManager : A pointer to the window manager.
   inline void setWindowManager(GLWindowManager *windowManager) { m_windowManager = windowManager; }
   /// \brief Return the window manager (pointer) of the GL application.
   inline GLWindowManager *getWindowManager() const { return m_windowManager; }
   // const GLWindowManager *getWindowManager() const;
   // std::unique_ptr<GLWindowManager> setWindowManager(std::unique_ptr<GLWindowManager> windowManager);
   /// \brief Set the camera for the GL application.
-  /// \param : A pointer to the camera.
+  /// \param camera : A pointer to the camera.
   inline void setCamera(Camera *camera) { m_camera = camera; };
   /// \brief Return the camera (pointer) of the GL application.
   inline Camera *getCamera() { return m_camera; };

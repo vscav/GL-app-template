@@ -23,7 +23,7 @@ public:
     ~GLWindowUtils() = default;
 
     /// \brief Enable/Disable the antialiasing option.
-    /// \param enable A boolean to enable (true) or disable (false) the option.
+    /// \param enable : A boolean to enable (true) or disable (false) the option.
     void antialias(bool enable);
 
     /// \brief Enable the alpha blending mode.
@@ -36,15 +36,15 @@ public:
     void disableBlending();
 
     /// \brief Enable/Disable the depth testing.
-    /// \param enable A boolean to enable (true) or disable (false) the testing.
+    /// \param enable : A boolean to enable (true) or disable (false) the testing.
     void enableDepthTesting(bool enable);
 
     /// \brief Enable/Disable the culling back face option.
-    /// \param enable A boolean to cull (true) or reject (false) the back face.
+    /// \param cull : A boolean to cull (true) or reject (false) the back face.
     void cullBackFaces(bool cull);
 
     /// \brief Enable/Disable the wireframe mode.
-    /// \param enable A boolean to enable (true) or disable (false) the wireframe mode.
+    /// \param goWireframe : A boolean to enable (true) or disable (false) the wireframe mode.
     void goWireframe(bool goWireframe);
 };
 

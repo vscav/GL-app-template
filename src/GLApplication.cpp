@@ -33,10 +33,10 @@ void GLApplication::initialize(std::string title, int width, int height, bool fu
 {
   currentGLApplication = this;
 
-  GLFWManager *windowManager = new GLFWManager(title, width, height, false);
+  GLFWManager *windowManager = new GLFWManager(title, width, height, fullScreen);
   setWindowManager(windowManager);
 
-  // std::unique_ptr<GLWindowManager> windowManager(new GLFWManager(title, width, height, false));
+  // std::unique_ptr<GLWindowManager> windowManager(new GLFWManager(title, width, height, fullScreen));
   // setWindowManager(windowManager);
 
   FreeflyCamera *camera = new FreeflyCamera();
