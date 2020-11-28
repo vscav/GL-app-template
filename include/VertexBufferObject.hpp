@@ -3,6 +3,7 @@
 #define _VertexBufferObject_HPP_
 
 #include "./dependencies/glm.hpp"
+#include "Container.hpp"
 
 #include <GL/glew.h>
 
@@ -31,10 +32,14 @@ public:
     /// \param data : Specifies a pointer to data that will be copied into the data store for initialization.
     /// \param drawType : Specifies the expected usage pattern of the data store.
     template <typename T>
-    void setData(const std::vector<T> &data, const GLenum &drawType)
+    void setData(const Container<T> &data, const GLenum &drawType)
     {
         bind();
-        glBufferData(GL_ARRAY_BUFFER, sizeof(T) * data.size(), data.data(), drawType);
+        glBufferData(
+            GL_ARRAY_BUFFER,
+            sizeof(T) * data.size(),
+            data.data(),
+            drawType);
         unbind();
     }
 

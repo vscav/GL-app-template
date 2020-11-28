@@ -45,21 +45,23 @@ CubeMap::CubeMap(const char *cubeFront, const char *cubeLeft, const char *cubeBa
         -1.0f, -1.0f, 1.0f,
         1.0f, -1.0f, 1.0f};
 
-    int n = sizeof(vertices) / sizeof(vertices[0]);
-
-    std::vector<GLfloat> dest(vertices, vertices + n);
+    Container<GLfloat> dest;
+    for (GLfloat i : vertices)
+    {
+        dest.add(i);
+    }
 
     m_vertices = dest;
 
     buildVBO();
     buildVAO();
 
-    m_faces.push_back(cubeRight);
-    m_faces.push_back(cubeLeft);
-    m_faces.push_back(cubeTop);
-    m_faces.push_back(cubeBottom);
-    m_faces.push_back(cubeFront);
-    m_faces.push_back(cubeBack);
+    m_faces.add(cubeRight);
+    m_faces.add(cubeLeft);
+    m_faces.add(cubeTop);
+    m_faces.add(cubeBottom);
+    m_faces.add(cubeFront);
+    m_faces.add(cubeBack);
 
     m_cubeMapTexture = loadCubeMap(m_faces);
 }
@@ -88,17 +90,18 @@ void CubeMap::buildVAO()
     m_vao.unbind();
 }
 
-GLuint CubeMap::loadCubeMap(std::vector<std::string> faces)
+GLuint CubeMap::loadCubeMap(Container<std::string> faces)
 {
     unsigned int textureID;
     glGenTextures(1, &textureID);
     glBindTexture(GL_TEXTURE_CUBE_MAP, textureID);
 
-    int x, y;
+    int x, y, i = 0;
 
-    for (unsigned int i = 0; i < faces.size(); i++)
+    Iterator<std::string, Container<std::string>> *it = faces.CreateIterator();
+    for (it->first(); !it->isDone(); it->next())
     {
-        std::unique_ptr<glimac::Image> sideTexture = glimac::loadImage(faces[i]);
+        std::unique_ptr<glimac::Image> sideTexture = glimac::loadImage(faces.at(i));
 
         if (sideTexture != nullptr)
         {
@@ -115,6 +118,8 @@ GLuint CubeMap::loadCubeMap(std::vector<std::string> faces)
                      GL_RGBA,
                      GL_FLOAT,
                      sideTexture->getPixels());
+
+        i++;
     }
 
     glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);

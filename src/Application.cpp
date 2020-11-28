@@ -9,7 +9,7 @@
 Application::Application()
     : GLApplication(),
       m_sphere(1, 64, 32),
-      m_sphereShader("../shader/3D.vert", "../shader/directionallight.frag"),
+      m_sphereShader("../res/shaders/3D.vert", "../res/shaders/directionallight.frag"),
       m_cubeMap(
           "../res/textures/skybox/front.png",
           "../res/textures/skybox/left.png",
@@ -17,14 +17,14 @@ Application::Application()
           "../res/textures/skybox/bottom.png",
           "../res/textures/skybox/right.png",
           "../res/textures/skybox/top.png"),
-      m_cubeMapShader("../shader/skybox.vert", "../shader/skybox.frag")
+      m_cubeMapShader("../res/shaders/skybox.vert", "../res/shaders/skybox.frag")
 {
 }
 
 Application::Application(std::string title, int width, int height, bool fullScreen)
     : GLApplication(title, width, height, fullScreen),
       m_sphere(1, 64, 32),
-      m_sphereShader("../shader/3D.vert", "../shader/directionallight.frag"),
+      m_sphereShader("../res/shaders/3D.vert", "../res/shaders/directionallight.frag"),
       m_cubeMap(
           "../res/textures/skybox/front.png",
           "../res/textures/skybox/left.png",
@@ -32,7 +32,7 @@ Application::Application(std::string title, int width, int height, bool fullScre
           "../res/textures/skybox/bottom.png",
           "../res/textures/skybox/right.png",
           "../res/textures/skybox/top.png"),
-      m_cubeMapShader("../shader/skybox.vert", "../shader/skybox.frag")
+      m_cubeMapShader("../res/shaders/skybox.vert", "../res/shaders/skybox.frag")
 {
 }
 

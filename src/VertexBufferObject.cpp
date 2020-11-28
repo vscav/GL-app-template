@@ -32,6 +32,6 @@ void VertexBufferObject::setVertexAttrib(const GLuint &VertexBufferObjectID, con
         dataType,
         GL_FALSE,
         stride,
-        (const GLvoid *)(offset)
+        (const GLvoid *)(intptr_t)(offset)
     );
 }

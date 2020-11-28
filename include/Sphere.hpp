@@ -7,6 +7,7 @@
 #include "VertexArrayObject.hpp"
 #include "Camera.hpp"
 #include "Shader.hpp"
+#include "Container.hpp"
 
 #include "./dependencies/glm.hpp"
 
@@ -25,8 +26,8 @@ class Sphere
     void build(GLfloat radius, GLsizei discLat, GLsizei discLong);
 
 private:
-    std::vector<ShapeVertex> m_vertices; /*!< Vertices of the sphere. */
-    GLsizei m_nVertexCount;              /*!< Number of vertices. */
+    Container<ShapeVertex> m_vertices; /*!< Vertices of the sphere. */
+    GLsizei m_nVertexCount;            /*!< Number of vertices. */
 
     VertexArrayObject m_vao;  /*!< Vertex Array Object of the sphere. */
     VertexBufferObject m_vbo; /*!< Vertex Buffer Object of the sphere. */
@@ -45,11 +46,8 @@ public:
     Sphere(GLfloat radius, GLsizei discLat, GLsizei discLong);
     ~Sphere();
 
-    /// \brief Return a pointer to the data beginning.
-    inline const ShapeVertex *getDataPointer() const { return &m_vertices[0]; };
-
     /// \brief Return the data (vertices) of the sphere.
-    inline std::vector<ShapeVertex> getVertices() const { return m_vertices; };
+    inline Container<ShapeVertex> getVertices() const { return m_vertices; };
 
     /// \brief Return the number of vertices of the sphere.
     inline GLsizei getVertexCount() const { return m_nVertexCount; };

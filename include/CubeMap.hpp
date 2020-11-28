@@ -9,6 +9,8 @@
 #include "VertexBufferObject.hpp"
 #include "Camera.hpp"
 #include "Shader.hpp"
+#include "Container.hpp"
+#include "Iterator.hpp"
 
 #include "./dependencies/glm.hpp"
 #include <GL/glew.h>
@@ -16,12 +18,15 @@
 #include <iostream>
 #include <string>
 
+/// \class CubeMap
+/// \brief Class for creating a cube map, a textured cube
+/// that contains 6 individual 2D textures that each form one side of a cube.
 class CubeMap
 {
 private:
-    std::vector<GLfloat> m_vertices; /*!< Vertices of the cube map. */
+    Container<GLfloat> m_vertices; /*!< Vertices of the cube map. */
 
-    std::vector<std::string> m_faces; /*!< A vector containing all the path to each images used to create the cube map texture. */
+    Container<std::string> m_faces; /*!< A vector containing all the path to each images used to create the cube map texture. */
 
     GLuint m_cubeMapTexture; /*!< The texture to apply to the cube map */
 
@@ -42,7 +47,7 @@ public:
     ~CubeMap() = default;
 
     /// \brief Load the approprate image for each side of the cube map.
-    GLuint loadCubeMap(std::vector<std::string> faces);
+    GLuint loadCubeMap(Container<std::string> faces);
 
     /// \brief Render the sphere to the screen/window.
     /// \param camera : A pointer to the camera of the application.
@@ -51,7 +56,7 @@ public:
     void render(const Camera *camera, Shader &shader, float time);
 
     /// \brief Return the data (vertices) of the cube map.
-    inline std::vector<GLfloat> getVertices() const { return m_vertices; };
+    inline Container<GLfloat> getVertices() const { return m_vertices; };
 };
 
 #endif /* _CubeMap_HPP_ */

@@ -81,7 +81,7 @@ void Sphere::build(GLfloat r, GLsizei discLat, GLsizei discLong)
     GLfloat rcpLat = 1.f / discLat, rcpLong = 1.f / discLong;
     GLfloat dPhi = 2 * glm::pi<float>() * rcpLat, dTheta = glm::pi<float>() * rcpLong;
 
-    std::vector<ShapeVertex> data;
+    Container<ShapeVertex> data;
 
     for (GLsizei j = 0; j <= discLong; ++j)
     {
@@ -101,25 +101,23 @@ void Sphere::build(GLfloat r, GLsizei discLat, GLsizei discLong)
 
             vertex.position = r * vertex.normal;
 
-            data.push_back(vertex);
+            data.add(vertex);
         }
     }
 
     m_nVertexCount = discLat * discLong * 6;
-
-    // GLuint idx = 0;
 
     for (GLsizei j = 0; j < discLong; ++j)
     {
         GLsizei offset = j * (discLat + 1);
         for (GLsizei i = 0; i < discLat; ++i)
         {
-            m_vertices.push_back(data[offset + i]);
-            m_vertices.push_back(data[offset + (i + 1)]);
-            m_vertices.push_back(data[offset + discLat + 1 + (i + 1)]);
-            m_vertices.push_back(data[offset + i]);
-            m_vertices.push_back(data[offset + discLat + 1 + (i + 1)]);
-            m_vertices.push_back(data[offset + i + discLat + 1]);
+            m_vertices.add(data.at(offset + i));
+            m_vertices.add(data.at(offset + (i + 1)));
+            m_vertices.add(data.at(offset + discLat + 1 + (i + 1)));
+            m_vertices.add(data.at(offset + i));
+            m_vertices.add(data.at(offset + discLat + 1 + (i + 1)));
+            m_vertices.add(data.at(offset + i + discLat + 1));
         }
     }
 }
