@@ -1,6 +1,6 @@
 #include "../include/Application.hpp"
 
-int main(int argc, const char *argv[])
+int main()
 {
   Application app("Application", 1600, 900, false);
   app.run();
