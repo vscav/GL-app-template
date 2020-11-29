@@ -35,11 +35,7 @@ public:
     void setData(const Container<T> &data, const GLenum &drawType)
     {
         bind();
-        glBufferData(
-            GL_ARRAY_BUFFER,
-            sizeof(T) * data.size(),
-            data.data(),
-            drawType);
+        glBufferData(GL_ARRAY_BUFFER, sizeof(T) * data.size(), data.data(), drawType);
         unbind();
     }
 
