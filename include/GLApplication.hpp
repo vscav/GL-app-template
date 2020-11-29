@@ -2,9 +2,9 @@
 #ifndef _GLApplication_HPP_
 #define _GLApplication_HPP_
 
-#include "TimeManager.hpp"
-#include "FreeflyCamera.hpp"
-#include "GLWindowManager.hpp"
+#include "manager/TimeManager.hpp"
+#include "manager/GLWindowManager.hpp"
+#include "world/FreeflyCamera.hpp"
 
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
@@ -32,9 +32,9 @@ private:
   /// \brief Affectation/Copy assignment operator.
   GLApplication &operator=(const GLApplication &) { return *this; }
 
-  GLWindowManager *m_windowManager; /*!< A pointer to the window manager of the GL application. */
+  manager::GLWindowManager *m_windowManager; /*!< A pointer to the window manager of the GL application. */
   // std::unique_ptr<GLWindowManager> m_windowManager;
-  Camera *m_camera; /*!< A pointer to the camera of the GL application. */
+  world::Camera *m_camera; /*!< A pointer to the camera of the GL application. */
   // std::unique_ptr<Camera> m_camera;
 
   float m_time;      /*!< The GL application total time ellapsed. */
@@ -80,16 +80,16 @@ public:
 
   /// \brief Set the window manager for the GL application.
   /// \param windowManager : A pointer to the window manager.
-  inline void setWindowManager(GLWindowManager *windowManager) { m_windowManager = windowManager; }
+  inline void setWindowManager(manager::GLWindowManager *windowManager) { m_windowManager = windowManager; }
   /// \brief Return the window manager (pointer) of the GL application.
-  inline GLWindowManager *getWindowManager() const { return m_windowManager; }
+  inline manager::GLWindowManager *getWindowManager() const { return m_windowManager; }
   // const GLWindowManager *getWindowManager() const;
   // std::unique_ptr<GLWindowManager> setWindowManager(std::unique_ptr<GLWindowManager> windowManager);
   /// \brief Set the camera for the GL application.
   /// \param camera : A pointer to the camera.
-  inline void setCamera(Camera *camera) { m_camera = camera; };
+  inline void setCamera(world::Camera *camera) { m_camera = camera; };
   /// \brief Return the camera (pointer) of the GL application.
-  inline Camera *getCamera() { return m_camera; };
+  inline world::Camera *getCamera() { return m_camera; };
   // const Camera *getCamera() const;
   // std::unique_ptr<Camera> setCamera(std::unique_ptr<Camera> camera);
 };

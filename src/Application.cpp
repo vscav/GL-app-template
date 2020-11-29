@@ -1,5 +1,5 @@
-#include "../include/GLError.hpp"
-#include "../include/Sphere.hpp"
+#include "../include/opengl/GLError.hpp"
+// #include "../include/world/Sphere.hpp"
 
 #include "../include/Application.hpp"
 
@@ -11,12 +11,12 @@ Application::Application()
       m_sphere(1, 64, 32),
       m_sphereShader("../res/shaders/3D.vert", "../res/shaders/directionallight.frag"),
       m_cubeMap(
-          "../res/textures/skybox/front.png",
-          "../res/textures/skybox/left.png",
-          "../res/textures/skybox/back.png",
-          "../res/textures/skybox/bottom.png",
-          "../res/textures/skybox/right.png",
-          "../res/textures/skybox/top.png"),
+          "../res/textures/skybox/space/front.png",
+          "../res/textures/skybox/space/left.png",
+          "../res/textures/skybox/space/back.png",
+          "../res/textures/skybox/space/bottom.png",
+          "../res/textures/skybox/space/right.png",
+          "../res/textures/skybox/space/top.png"),
       m_cubeMapShader("../res/shaders/skybox.vert", "../res/shaders/skybox.frag")
 {
 }
@@ -26,12 +26,12 @@ Application::Application(std::string title, int width, int height, bool fullScre
       m_sphere(1, 64, 32),
       m_sphereShader("../res/shaders/3D.vert", "../res/shaders/directionallight.frag"),
       m_cubeMap(
-          "../res/textures/skybox/front.png",
-          "../res/textures/skybox/left.png",
-          "../res/textures/skybox/back.png",
-          "../res/textures/skybox/bottom.png",
-          "../res/textures/skybox/right.png",
-          "../res/textures/skybox/top.png"),
+          "../res/textures/skybox/space/front.png",
+          "../res/textures/skybox/space/left.png",
+          "../res/textures/skybox/space/back.png",
+          "../res/textures/skybox/space/bottom.png",
+          "../res/textures/skybox/space/right.png",
+          "../res/textures/skybox/space/top.png"),
       m_cubeMapShader("../res/shaders/skybox.vert", "../res/shaders/skybox.frag")
 {
 }
@@ -43,7 +43,7 @@ Application::~Application()
 void Application::loop()
 {
   // Print fps in console by passing true
-  TimeManager::getInstance().calculateFrameRate(false);
+  manager::TimeManager::getInstance().calculateFrameRate(false);
 
   // Get current context time
   float t = getTime();
@@ -60,5 +60,5 @@ void Application::loop()
   m_sphere.render(getCamera(), m_sphereShader, t);
 
   // Check for GL errors
-  // glCheckError(__FILE__, __LINE__);
+  // opengl::glCheckError(__FILE__, __LINE__);
 }

@@ -1,5 +1,5 @@
 #include "../include/GLApplication.hpp"
-#include "../include/GLFWManager.hpp"
+#include "../include/manager/GLFWManager.hpp"
 
 GLApplication *currentGLApplication = NULL;
 
@@ -33,13 +33,13 @@ void GLApplication::initialize(std::string title, int width, int height, bool fu
 {
   currentGLApplication = this;
 
-  GLFWManager *windowManager = new GLFWManager(title, width, height, fullScreen);
+  manager::GLFWManager *windowManager = new manager::GLFWManager(title, width, height, fullScreen);
   setWindowManager(windowManager);
 
   // std::unique_ptr<GLWindowManager> windowManager(new GLFWManager(title, width, height, fullScreen));
   // setWindowManager(windowManager);
 
-  FreeflyCamera *camera = new FreeflyCamera();
+  world::FreeflyCamera *camera = new world::FreeflyCamera();
   setCamera(camera);
 
   // std::unique_ptr<Camera> camera(new FreeflyCamera());

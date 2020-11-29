@@ -3,12 +3,12 @@
 #define _Application_HPP_
 
 #include "GLApplication.hpp"
-#include "Shader.hpp"
-#include "FreeflyCamera.hpp"
-#include "Sphere.hpp"
-#include "CubeMap.hpp"
+#include "opengl/Shader.hpp"
+#include "world/FreeflyCamera.hpp"
+#include "world/Sphere.hpp"
+#include "world/CubeMap.hpp"
 
-#include "./dependencies/glm.hpp"
+#include "dependencies/glm.hpp"
 
 #include <GLFW/glfw3.h>
 
@@ -17,11 +17,11 @@
 class Application : public GLApplication
 {
 private:
-  Sphere m_sphere;       /*!< A sphere object. */
-  Shader m_sphereShader; /*!< The shaders which will be used for the sphere object. */
+  world::Sphere m_sphere;               /*!< A sphere object. */
+  opengl::Shader m_sphereShader; /*!< The shaders which will be used for the sphere object. */
 
-  CubeMap m_cubeMap;      /*!< A cube map object. */
-  Shader m_cubeMapShader; /*!< The shaders which will be used for the cube map object. */
+  world::CubeMap m_cubeMap;              /*!< A cube map object. */
+  opengl::Shader m_cubeMapShader; /*!< The shaders which will be used for the cube map object. */
 
 protected:
   /// \brief The application loop (run until the user asks to quit).

@@ -4,8 +4,8 @@ project (opengl-app-template)
 
 # Get application files
 get_filename_component(FILE app.cpp NAME_WE)
-file(GLOB HEADER_FILES header/*.hpp)
-file(GLOB SRC_FILES src/*.cpp)
+file(GLOB_RECURSE HEADER_FILES header/*.hpp)
+file(GLOB_RECURSE SRC_FILES src/*.cpp)
 
 # App executable
 add_executable(${FILE} ${SRC_FILES} ${HEADER_FILES})
