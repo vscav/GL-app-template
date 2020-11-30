@@ -125,7 +125,7 @@ Coming soon.
 - [GLFW](https://www.glfw.org/documentation.html) - GLFW documentation
 - [Doxygen](https://www.doxygen.nl/manual/index.html) - Doxygen documentation
 - [CMake](https://cmake.org/cmake/help/v3.19/) - CMake documentation
-- [CLion](https://www.jetbrains.com/fr-fr/clion/) - CLion IDE
-- [Visual Studio 2019](https://visualstudio.microsoft.com/fr/vs/) - Visual Studio 2019
-- [Visual Studio Code](https://code.visualstudio.com/) - Visual Studio Code
+- [CLion](https://www.jetbrains.com/fr-fr/clion/) - Download CLion IDE
+- [Visual Studio 2019](https://visualstudio.microsoft.com/fr/vs/) - Download Visual Studio 2019 IDE
+- [Visual Studio Code](https://code.visualstudio.com/) - Download Visual Studio Code
 
