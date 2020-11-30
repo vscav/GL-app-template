@@ -6,8 +6,13 @@
 
 * [Get started](#get-started)
   * [Repository](#repository)
-  * [Linux requirements](#linux-requirements)
-* [Usage](#usage)
+  * [Linux](#linux)
+    * [Requirements](#requirements)
+    * [Usage](#usage)
+  * [Windows and Mac OSX](#windows-and-mac-osx)
+    * [CLion](#clion)
+    * [Visual Studio 2019](#visual-studio-2019)
+    * [Visual Studio Code](#visual-studio-code)
 * [Features](#features)
 * [Resources](#resources)
 
@@ -30,33 +35,37 @@ $ git submodule init
 $ git submodule update
 ```
 
-### Linux requirements
+### Linux
 
-Update package database:
+You can build the project on linux by using command lines only. In order to do that, you will have to follow some steps.
+
+#### Requirements
+
+First, Update package database:
 
 ```
 $ sudo apt update
 ```
 
-Install the updates identified previously:
+And install the updates identified previously:
 
 ```
 $ sudo apt upgrade
 ```
 
-Install g++ (C++ compiler):
+Then, install g++ (a C++ compiler):
 
 ```
 $ sudo apt install g++
 ```
 
-Install CMake:
+Finally, install CMake:
 
 ```
 $ sudo apt install cmake
 ```
 
-## Usage
+#### Usage
 
 In the apllication directory, create the build folder and move into it:
 
@@ -84,7 +93,31 @@ $ make doc
 
 The documentation can be found in `build/doc/doc`. It is generated as html and LaTeX files.
 
-## Usage
+### Windows and Mac OSX
+
+#### CLion
+
+The template can be build on Windows and Mac OSX by using CLion, a C/C++ IDE.
+
+Open CLion and go to `File/Open`. Then, in the search window, select the template directory containing the CMake file.
+
+CLion will detect that the opened project is a CMake project and will generate and build the files.
+
+Then, you just need to check that the app executable is selected in the dropdown menu at the top and run it by clicking on the play button.
+
+To generate the documentation, select the docs executable in the dropdown list and as well run it by clicking on the play button.
+
+#### Visual Studio 2019
+
+Coming soon.
+
+#### Visual Studio Code
+
+Coming soon.
+
+## Features
+
+Coming soon.
 
 ## Resources
 
@@ -92,4 +125,7 @@ The documentation can be found in `build/doc/doc`. It is generated as html and L
 - [GLFW](https://www.glfw.org/documentation.html) - GLFW documentation
 - [Doxygen](https://www.doxygen.nl/manual/index.html) - Doxygen documentation
 - [CMake](https://cmake.org/cmake/help/v3.19/) - CMake documentation
+- [CLion](https://www.jetbrains.com/fr-fr/clion/) - CLion IDE
+- [Visual Studio 2019](https://visualstudio.microsoft.com/fr/vs/) - Visual Studio 2019
+- [Visual Studio Code](https://code.visualstudio.com/) - Visual Studio Code
 
