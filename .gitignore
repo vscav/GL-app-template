@@ -1,7 +1,9 @@
 # Build folder
 build/
+cmake-build-debug/
 
 # IDE settings files
+.idea
 .vscode
 
 # Prerequisites
