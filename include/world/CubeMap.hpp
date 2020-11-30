@@ -2,8 +2,9 @@
 #ifndef _CubeMap_HPP_
 #define _CubeMap_HPP_
 
-#include <glimac/Image.hpp>
+// #include <glimac/Image.hpp>
 
+#include "../utils/Image.hpp"
 #include "Camera.hpp"
 #include "../utils/Common.hpp"
 #include "../opengl/VertexArrayObject.hpp"

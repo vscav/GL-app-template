@@ -104,7 +104,7 @@ namespace world
         iterator::Iterator<std::string, iterator::Container<std::string>> *it = faces.CreateIterator();
         for (it->first(); !it->isDone(); it->next())
         {
-            std::unique_ptr<glimac::Image> sideTexture = glimac::loadImage(faces.at(i));
+            std::unique_ptr<utils::Image> sideTexture = utils::loadImage(faces.at(i));
 
             if (sideTexture != nullptr)
             {
