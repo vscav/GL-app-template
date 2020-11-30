@@ -49,11 +49,11 @@ namespace opengl
             m_geometryId = compileShader(GL_GEOMETRY_SHADER, gsStr);
         }
 
-        AttachShaderId("vertex", m_vertexId);
-        AttachShaderId("fragment", m_fragmentId);
+        AttachShaderId("Vertex", m_vertexId);
+        AttachShaderId("Fragment", m_fragmentId);
         if (geometryShader != nullptr)
         {
-            AttachShaderId("geometry", m_geometryId);
+            AttachShaderId("Geometry", m_geometryId);
         }
 
         glLinkProgram(m_programId);
@@ -63,7 +63,7 @@ namespace opengl
         if (linkResult == GL_FALSE)
         {
             glDeleteProgram(m_programId);
-            std::cerr << "Shader creation aborded (linking doesn't work)" << std::endl;
+            std::cerr << "[Shader] ERROR: Shader creation aborded (linking doesn't work)" << std::endl;
         }
         else
         {
@@ -92,7 +92,7 @@ namespace opengl
         }
         else
         {
-            std::cout << "[Shader] creation aborded (" << shaderName << " shader not compiled)" << std::endl;
+            std::cout << "[Shader] ERROR: Creation aborded (" << shaderName << " shader not compiled)" << std::endl;
             assert(false);
         }
     }
@@ -118,14 +118,14 @@ namespace opengl
                 glGetShaderiv(shaderId, GL_INFO_LOG_LENGTH, &infosLength);
                 std::vector<char> message(infosLength);
                 glGetShaderInfoLog(shaderId, infosLength, &infosLength, &message[0]);
-                std::cout << "[Shader] error during compiling shader (" << shaderTypeStr(shaderType) << ") :" << std::endl
+                std::cout << "[Shader] ERROR: Error during compiling shader (" << shaderTypeStr(shaderType) << ") :" << std::endl
                           << &message[0] << std::endl;
                 return 0;
             }
         }
         else
         {
-            std::cerr << "[Shader] Failed to assign new shader id (" << shaderTypeStr(shaderType) << " shader)" << std::endl;
+            std::cerr << "[Shader] ERROR: Failed to assign new shader id (" << shaderTypeStr(shaderType) << " shader)" << std::endl;
         }
         return shaderId;
     }
@@ -138,7 +138,7 @@ namespace opengl
 
         if (!file.is_open())
         {
-            std::cerr << "[Shader] Failed to open file : " + *filepath << std::endl;
+            std::cerr << "[Shader] ERROR: Failed to open file : " + *filepath << std::endl;
         }
 
         std::stringstream stream;
@@ -197,7 +197,7 @@ namespace opengl
 
         if (location == -1)
         {
-            std::cerr << "[Shader] uniform \"" << uniformName << "\" doesn't exist" << std::endl;
+            std::cerr << "[Shader] ERROR: uniform \"" << uniformName << "\" doesn't exist" << std::endl;
         }
 
         m_uniformLocationCache[uniformName] = location;

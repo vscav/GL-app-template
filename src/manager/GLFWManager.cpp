@@ -47,7 +47,7 @@ namespace manager
         const GLubyte *renderer = glGetString(GL_RENDERER);
         const GLubyte *version = glGetString(GL_VERSION);
         std::cout << "[Info] Renderer: " << renderer << std::endl;
-        std::cout << "[Info] version supported " << version << std::endl;
+        std::cout << "[Info] Version supported: " << version << std::endl;
 
         InputManager *inputManager = new InputManager();
         setInputManager(inputManager);
