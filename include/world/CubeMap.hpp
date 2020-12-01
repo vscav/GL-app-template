@@ -50,9 +50,6 @@ namespace world
         /// \brief Default destructor.
         ~CubeMap() = default;
 
-        /// \brief Load the approprate image for each side of the cube map.
-        GLuint loadCubeMap(iterator::Container<std::string> faces);
-
         /// \brief Render the sphere to the screen/window.
         /// \param camera : A pointer to the camera of the application.
         /// \param shader : The shaders associated to the sphere.

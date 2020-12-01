@@ -1,4 +1,5 @@
 #include "../../include/world/CubeMap.hpp"
+#include "../../include/opengl/Texture.hpp"
 
 namespace world
 {
@@ -66,7 +67,8 @@ namespace world
         m_faces.add(cubeFront);
         m_faces.add(cubeBack);
 
-        m_cubeMapTexture = loadCubeMap(m_faces);
+        // m_cubeMapTexture = loadCubeMap(m_faces);
+        m_cubeMapTexture = opengl::Texture::loadCubeMapTexture(m_faces);
     }
 
     void CubeMap::buildVBO()
@@ -91,47 +93,6 @@ namespace world
         m_vbo.unbind();
 
         m_vao.unbind();
-    }
-
-    GLuint CubeMap::loadCubeMap(iterator::Container<std::string> faces)
-    {
-        unsigned int textureID;
-        glGenTextures(1, &textureID);
-        glBindTexture(GL_TEXTURE_CUBE_MAP, textureID);
-
-        int x, y, i = 0;
-
-        iterator::Iterator<std::string, iterator::Container<std::string>> *it = faces.CreateIterator();
-        for (it->first(); !it->isDone(); it->next())
-        {
-            std::unique_ptr<utils::Image> sideTexture = utils::loadImage(faces.at(i));
-
-            if (sideTexture != nullptr)
-            {
-                x = sideTexture->getWidth();
-                y = sideTexture->getHeight();
-            }
-
-            glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i,
-                         0,
-                         GL_RGBA,
-                         x,
-                         y,
-                         0,
-                         GL_RGBA,
-                         GL_FLOAT,
-                         sideTexture->getPixels());
-
-            i++;
-        }
-
-        glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-        glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-        glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-        glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-        glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
-
-        return textureID;
     }
 
     void CubeMap::render(const Camera *camera, opengl::Shader &shader, float time)
