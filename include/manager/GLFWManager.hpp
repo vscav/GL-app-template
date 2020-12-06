@@ -35,6 +35,9 @@ namespace manager
         int m_height;        /*!< The window height value. */
         bool m_fullScreen;   /*!< A boolean to determine if the window is in full screen mode. */
 
+        float m_deltaTime; /*!< The GLFW window total time ellapsed. */
+        float m_time;      /*!< The time difference between the previous frame that was drawn and the current frame of the GLFW window. */
+
     public:
         /// \brief Constructor.
         /// \param title : The window/application title.
@@ -79,6 +82,11 @@ namespace manager
         virtual inline float getWindowRatio() const { return float(m_width) / float(m_height); };
         /// \brief Return a boolean that indicates whether or not the window is in full screen mode.
         virtual inline bool isFullScreen() const { return m_fullScreen; };
+
+        /// \brief Return the total time ellapsed since the GL application was started.
+        virtual float const getTimeElapsed();
+        /// \brief
+        virtual float const getFrameDeltaTime();
 
         /// \brief Access and get the application's window
         // virtual inline GLFWwindow *getWindow() const { return m_window; }

@@ -33,7 +33,6 @@ namespace manager
         return currentFPS;
     }
 
-    // This returns the current time in seconds (uses C++ 11 system_clock)
     double TimeManager::getTime()
     {
         // Grab the current system time since 1/1/1970, otherwise know as the Unix Timestamp or Epoch
@@ -42,11 +41,10 @@ namespace manager
         // Convert the system time to milliseconds
         auto ms = std::chrono::duration_cast<std::chrono::milliseconds>(beginningOfTime).count();
 
-        // Return the time in seconds and give us a fractional value (important!)
+        // Return the time in seconds and give us a fractional value
         return ms * 0.001;
     }
 
-    // This pauses the current thread for an amount of time in milliseconds
     void TimeManager::sleep(int ms)
     {
         // Use the C++ 11 sleep_for() function to pause the current thread

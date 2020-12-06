@@ -32,10 +32,8 @@ private:
   /// \brief Affectation/Copy assignment operator.
   GLApplication &operator=(const GLApplication &) { return *this; }
 
-  manager::GLWindowManager *m_windowManager; /*!< A pointer to the window manager of the GL application. */
-  // std::unique_ptr<GLWindowManager> m_windowManager;
-  world::Camera *m_camera; /*!< A pointer to the camera of the GL application. */
-  // std::unique_ptr<Camera> m_camera;
+  std::unique_ptr<manager::GLWindowManager> m_windowManager; /*!< A unique pointer to the window manager of the application. */
+  std::unique_ptr<world::Camera> m_camera;                   /*!< A unique pointer to the camera used by the application. */
 
   float m_time;      /*!< The GL application total time ellapsed. */
   float m_deltaTime; /*!< The time difference between the previous frame that was drawn and the current frame. */
@@ -62,7 +60,7 @@ public:
   /// \param height : The GL application height value.
   /// \param fullScreen : A boolean to determine if the GL application window is in full screen mode.
   GLApplication(std::string title, int width, int height, bool fullScreen);
-  ~GLApplication();
+  ~GLApplication() = default;
 
   /// \brief Return the current GL application instance.
   static GLApplication &getInstance();
@@ -70,28 +68,13 @@ public:
   /// \brief Exit the GL application by changing the current state.
   void exit();
 
-  /// \brief Return the delta time (the time difference between the previous frame that was drawn and the current frame).
-  float getFrameDeltaTime() const;
-  /// \brief Return the total time ellapsed since the GL application was started.
-  float getTime() const;
-
   /// \brief Run the GL application by changing the current state and starting the GL application main loop.
   void run();
 
-  /// \brief Set the window manager for the GL application.
-  /// \param windowManager : A pointer to the window manager.
-  inline void setWindowManager(manager::GLWindowManager *windowManager) { m_windowManager = windowManager; }
   /// \brief Return the window manager (pointer) of the GL application.
-  inline manager::GLWindowManager *getWindowManager() const { return m_windowManager; }
-  // const GLWindowManager *getWindowManager() const;
-  // std::unique_ptr<GLWindowManager> setWindowManager(std::unique_ptr<GLWindowManager> windowManager);
-  /// \brief Set the camera for the GL application.
-  /// \param camera : A pointer to the camera.
-  inline void setCamera(world::Camera *camera) { m_camera = camera; };
+  inline manager::GLWindowManager *getWindowManager() const { return m_windowManager.get(); }
   /// \brief Return the camera (pointer) of the GL application.
-  inline world::Camera *getCamera() { return m_camera; };
-  // const Camera *getCamera() const;
-  // std::unique_ptr<Camera> setCamera(std::unique_ptr<Camera> camera);
+  inline world::Camera *getCamera() { return m_camera.get(); };
 };
 
 #endif /* _GLApplication_HPP_ */

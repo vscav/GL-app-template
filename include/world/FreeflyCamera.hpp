@@ -25,7 +25,7 @@ namespace world
         glm::vec3 m_LeftVector;  /*!< The left vector. */
         glm::vec3 m_UpVector;    /*!< The up vector. */
 
-        float m_speed = 5.0;
+        float m_speed = 0.05;
 
         /// \brief Calcul the Front, Left and Up vectors.
         void computeDirectionVectors();
@@ -34,7 +34,7 @@ namespace world
         /// \brief Constructor.
         FreeflyCamera();
         /// \brief Destructor.
-        ~FreeflyCamera();
+        ~FreeflyCamera() = default;
 
         /// \brief Move the camera forward or backward according to a certain value.
         /// \param t : The value used to move the camera forward or back.
@@ -54,7 +54,6 @@ namespace world
         /// \param speed : The value representing the speed apply to the camera.
         virtual inline void setSpeed(const double speed) { m_speed = speed; };
         /// \brief Get the camera speed value.
-        /// \param speed : The value representing the speed apply to the camera.
         virtual inline double const getSpeed() const { return m_speed; };
 
         /// \brief Calculate and get the view matrix of the camera based on its member variables.

@@ -1,6 +1,4 @@
 #include "../include/opengl/GLError.hpp"
-// #include "../include/world/Sphere.hpp"
-
 #include "../include/Application.hpp"
 
 #include <functional>
@@ -36,20 +34,13 @@ Application::Application(std::string title, int width, int height, bool fullScre
 {
 }
 
-Application::~Application()
-{
-}
-
 void Application::loop()
 {
   // Print fps in console by passing true
   manager::TimeManager::getInstance().calculateFrameRate(false);
 
   // Get current context time
-  float t = getTime();
-
-  // How to use window utils class (wireframe example) :
-  // getWindowManager()->getWindowUtils()->goWireframe(true);
+  float t = getWindowManager()->getTimeElapsed();
 
   // Render cube map
   getWindowManager()->getWindowUtils()->enableDepthTesting(false);
@@ -58,7 +49,4 @@ void Application::loop()
 
   // Render Sphere
   m_sphere.render(getCamera(), m_sphereShader, t);
-
-  // Check for GL errors
-  // opengl::glCheckError(__FILE__, __LINE__);
 }

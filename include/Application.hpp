@@ -17,10 +17,10 @@
 class Application : public GLApplication
 {
 private:
-  world::Sphere m_sphere;               /*!< A sphere object. */
+  world::Sphere m_sphere;        /*!< A sphere object. */
   opengl::Shader m_sphereShader; /*!< The shaders which will be used for the sphere object. */
 
-  world::CubeMap m_cubeMap;              /*!< A cube map object. */
+  world::CubeMap m_cubeMap;       /*!< A cube map object. */
   opengl::Shader m_cubeMapShader; /*!< The shaders which will be used for the cube map object. */
 
 protected:
@@ -37,7 +37,7 @@ public:
   /// \param fullScreen : A boolean to determine if the application window is in full screen mode.
   Application(std::string title, int width, int height, bool fullScreen);
   /// \brief Destructor.
-  ~Application();
+  ~Application() = default;
 };
 
 #endif /* _Application_HPP_ */

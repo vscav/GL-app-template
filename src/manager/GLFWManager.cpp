@@ -191,7 +191,22 @@ namespace manager
 
         glViewport(0, 0, m_width, m_height);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-        glClearColor(0.0, 0.0, 0.0, 0.0);
+        // glClearColor(0.0, 0.0, 0.0, 0.0);
+        glClearColor(0.25f, 0.25f, 0.25f, 1.0f);
+    }
+
+    float const GLFWManager::getTimeElapsed()
+    {
+        m_time = glfwGetTime();
+        
+        return m_time;
+    }
+
+    float const GLFWManager::getFrameDeltaTime()
+    {
+        m_deltaTime = getTimeElapsed() - m_time;
+
+        return m_deltaTime;
     }
 
     // This destroys the window

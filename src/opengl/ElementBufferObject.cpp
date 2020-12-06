@@ -1,5 +1,7 @@
 #include "../../include/opengl/ElementBufferObject.hpp"
 
+#include <iostream>
+
 namespace opengl
 {
 
@@ -10,6 +12,7 @@ namespace opengl
 
     ElementBufferObject::~ElementBufferObject()
     {
+        std::cout << "[EBO] Delete EBO with index " << m_index << std::endl;
         glDeleteBuffers(1, &m_index);
     }
 
@@ -21,13 +24,6 @@ namespace opengl
     void ElementBufferObject::unbind()
     {
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
-    }
-
-    void ElementBufferObject::setData(const iterator::Container<glm::uvec3> &indices, const GLenum &drawType)
-    {
-        bind();
-        glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(glm::uvec3) * indices.size(), indices.data(), drawType);
-        unbind();
     }
 
 } // namespace opengl

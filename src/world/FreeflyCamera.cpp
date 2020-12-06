@@ -2,6 +2,8 @@
 #include "../../include/GLApplication.hpp"
 
 #include <iostream>
+#define _USE_MATH_DEFINES
+#include <math.h>
 
 namespace world
 {
@@ -10,10 +12,6 @@ namespace world
         : m_Position(glm::vec3(.0f, .0f, 3.0f)), m_fPhi(M_PI), m_fTheta(.0f)
     {
         computeDirectionVectors();
-    }
-
-    FreeflyCamera::~FreeflyCamera()
-    {
     }
 
     void FreeflyCamera::computeDirectionVectors()

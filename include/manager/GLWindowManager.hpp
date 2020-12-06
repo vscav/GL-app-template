@@ -24,7 +24,7 @@ namespace manager
 
     public:
         /// \brief Destructor. This is needed so that the class inheriting this will have it's deconstructor called.
-        virtual ~GLWindowManager() {}
+        virtual ~GLWindowManager() = default;
 
         /// \brief Initialize the window and creates the OpenGL context.
         virtual int initialize() = 0;
@@ -51,6 +51,11 @@ namespace manager
         virtual float getWindowRatio() const = 0;
         /// \brief Return a boolean that indicates whether or not the window is in full screen mode.
         virtual bool isFullScreen() const = 0;
+
+        /// \brief Return the total time ellapsed since the window was launched.
+        virtual float const getTimeElapsed() = 0;
+        /// \brief
+        virtual float const getFrameDeltaTime() = 0;
 
         /// \brief Set the application's InputManager
         /// \param inputManager : A pointer to the inputManager of the application.
