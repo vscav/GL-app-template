@@ -76,7 +76,7 @@ $ mkdir build && cd build
 Build and compile the template:
 
 ```
-$ cmake ..
+$ cmake .. && make -j
 ```
 
 Run the executable by using this pattern:
@@ -85,7 +85,7 @@ Run the executable by using this pattern:
 $ ./app
 ```
 
-The template uses Doxygen as its main documentation generator. If you have previously installed Doxygen, run the following command:
+The template uses Doxygen as its main documentation generator for its engine. If you have previously installed Doxygen, run the following command:
 
 ```
 $ make doc
