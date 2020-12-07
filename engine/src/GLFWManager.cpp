@@ -12,7 +12,6 @@ namespace engine
         initialize();
     }
 
-    // This initializes our window and creates the OpenGL context
     int GLFWManager::initialize()
     {
         std::cout << "[GLFWManager] GLFW initialisation" << std::endl;
@@ -49,10 +48,10 @@ namespace engine
         std::cout << "[Info] Renderer: " << renderer << std::endl;
         std::cout << "[Info] Version supported: " << version << std::endl;
 
-        InputManager *inputManager = new InputManager();
+        auto *inputManager = new InputManager();
         setInputManager(inputManager);
 
-        GLWindowUtils *windowUtils = new GLWindowUtils();
+        auto *windowUtils = new GLWindowUtils();
         setWindowUtils(windowUtils);
 
         // opengl configuration : enable depth test
@@ -133,10 +132,9 @@ namespace engine
                          monitorY + (mode->height - m_height) / 2);
     }
 
-    // This swaps the backbuffer with the front buffer to display the content rendered in OpenGL
     void GLFWManager::swapBuffers()
     {
-        // This takes the Window and swaps the backbuffer to the front
+        // This takes the Window and swaps the back buffer to the front
         glfwSwapBuffers(m_window);
     }
 
@@ -197,7 +195,7 @@ namespace engine
 
     float const GLFWManager::getTimeElapsed()
     {
-        m_time = glfwGetTime();
+        m_time = (float) glfwGetTime();
         
         return m_time;
     }

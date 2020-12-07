@@ -26,48 +26,57 @@ namespace engine
         /// \brief Destructor. This is needed so that the class inheriting this will have it's deconstructor called.
         virtual ~GLWindowManager() = default;
 
-        /// \brief Initialize the window and creates the OpenGL context.
+        /// \brief Initializes the window and creates the OpenGL context.
+        /// \return An integer acting as a boolean for success/fail information.
         virtual int initialize() = 0;
 
-        /// \brief Swap the backbuffer to the front (should be called every frame).
+        /// \brief Swaps the back buffer to the front (should be called every frame).
         virtual void swapBuffers() = 0;
 
-        /// \brief Process any needed input for the application.
+        /// \brief Processes any needed input for the application.
         virtual void processInput() = 0;
 
-        /// \brief Update the window (should be called every frame).
+        /// \brief Updates the window (should be called every frame).
         virtual void update() = 0;
 
-        /// \brief Destroy the window and the OpenGL context.
+        /// \brief Destroys the window and the OpenGL context.
         virtual void destroy() = 0;
 
-        /// \brief Return the window/application title.
+        /// \brief Returns the window/application title.
+        /// \return The title of the window/application.
         virtual std::string getTitle() const = 0;
-        /// \brief Return the window width.
+        /// \brief Returns the window width.
+        /// \return The window width.
         virtual int getWidth() const = 0;
-        /// \brief Return the window height.
+        /// \brief Returns the window height.
+        /// \return The window height.
         virtual int getHeight() const = 0;
-        /// \brief Return the window ratio (window width divided by window height).
+        /// \brief Returns the window ratio (window width divided by window height).
+        /// \return The window ratio (window width divided by window height).
         virtual float getWindowRatio() const = 0;
-        /// \brief Return a boolean that indicates whether or not the window is in full screen mode.
+        /// \brief Returns a boolean that indicates whether or not the window is in full screen mode.
+        /// \return A boolean that indicates whether or not the window is in full screen mode.
         virtual bool isFullScreen() const = 0;
 
-        /// \brief Return the total time ellapsed since the window was launched.
+        /// \brief Returns the total time elapsed since the window was launched.
+        /// \return The total time elapsed since the GL application was started.
         virtual float const getTimeElapsed() = 0;
-        /// \brief
+        /// \brief Returns the time elapsed since the last frame.
+        /// \return The time elapsed since the last frame.
         virtual float const getFrameDeltaTime() = 0;
 
-        /// \brief Set the application's InputManager
+        /// \brief Sets the application's inputs manager.
         /// \param inputManager : A pointer to the inputManager of the application.
         inline void setInputManager(InputManager *inputManager) { m_inputManager = inputManager; };
-        /// \brief Return the application's InputManager
+        /// \brief Returns the application's inputs manager.
+        /// \return A pointer to the application's inputs manager.
         inline InputManager *getInputManager() const { return m_inputManager; };
-        /// \brief Set the application's window utility
+        /// \brief Sets the application's window utility.
         /// \param windowUtils : A pointer to the window utility of the application.
         inline void setWindowUtils(GLWindowUtils *windowUtils) { m_windowUtils = windowUtils; };
-        /// \brief Return the application's window utility
+        /// \brief Returns the application's window utility.
+        /// \return A pointer to the window utility of the application.
         inline GLWindowUtils *getWindowUtils() const { return m_windowUtils; };
-        // virtual inline auto *getWindow() const = 0;
     };
 
 } // namespace engine

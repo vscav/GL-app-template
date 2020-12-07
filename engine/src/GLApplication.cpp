@@ -4,7 +4,7 @@
 namespace engine
 {
 
-  GLApplication *currentGLApplication = NULL;
+  GLApplication *currentGLApplication = nullptr;
 
   GLApplication &GLApplication::getInstance()
   {

@@ -27,13 +27,13 @@ namespace engine
 
         bool m_firstMouse = true; /*!< A boolean used to determine if the click captured is the first. */
 
-        GLfloat m_lastX = m_width / 2.0;  /*!< The last position of the mouse X position. */
-        GLfloat m_lastY = m_height / 2.0; /*!< The last position of the mouse Y position. */
-
         std::string m_title; /*!< The window/application title (string). */
         int m_width;         /*!< The window width value. */
         int m_height;        /*!< The window height value. */
         bool m_fullScreen;   /*!< A boolean to determine if the window is in full screen mode. */
+
+        GLfloat m_lastX = m_width / 2.0;  /*!< The last position of the mouse X position. */
+        GLfloat m_lastY = m_height / 2.0; /*!< The last position of the mouse Y position. */
 
         float m_deltaTime; /*!< The GLFW window total time ellapsed. */
         float m_time;      /*!< The time difference between the previous frame that was drawn and the current frame of the GLFW window. */
@@ -48,48 +48,53 @@ namespace engine
         /// \brief Destructor.
         inline ~GLFWManager() { destroy(); };
 
-        /// \brief Initialize the window and creates the OpenGL context.
-        virtual int initialize() override;
+        /// \brief Initializes the window and creates the OpenGL context.
+        /// \return An integer acting as a boolean for success/fail information.
+        int initialize() override;
 
-        /// \brief Get information about GLFW and OpenGL contexts.
+        /// \brief Gets information about GLFW and OpenGL contexts.
         void getContext();
 
-        /// \brief Create the GLFW window, either in full screen or not.
+        /// \brief Creates the GLFW window, either in full screen or not.
         void createWindow();
 
-        /// \brief Center the GLFW window on the monitor screen.
+        /// \brief Centers the GLFW window on the monitor screen.
         void centerWindow();
 
-        /// \brief Swap the backbuffer to the front (should be called every frame).
-        virtual void swapBuffers() override;
+        /// \brief Swaps the back buffer to the front (should be called every frame).
+        void swapBuffers() override;
 
-        /// \brief Process any needed input for the application.
-        virtual void processInput() override;
+        /// \brief Processes any needed input for the application.
+        void processInput() override;
 
-        /// \brief Update the window (should be called every frame).
-        virtual void update() override;
+        /// \brief Updates the window (should be called every frame).
+        void update() override;
 
-        /// \brief Destroy the window and the OpenGL context.
-        virtual void destroy();
+        /// \brief Destroys the window and the OpenGL context.
+        void destroy() override;
 
-        /// \brief Return the window/application title.
-        virtual inline std::string getTitle() const { return m_title; };
-        /// \brief Return the window width.
-        virtual inline int getWidth() const { return m_width; };
-        /// \brief Return the window height.
-        virtual inline int getHeight() const { return m_height; };
-        /// \brief Return the window ratio (window width divided by window height).
-        virtual inline float getWindowRatio() const { return float(m_width) / float(m_height); };
-        /// \brief Return a boolean that indicates whether or not the window is in full screen mode.
-        virtual inline bool isFullScreen() const { return m_fullScreen; };
+        /// \brief Returns the window/application title.
+        /// \return The title of the window/application.
+        inline std::string getTitle() const override { return m_title; };
+        /// \brief Returns the window width.
+        /// \return The window width.
+        inline int getWidth() const override { return m_width; };
+        /// \brief Returns the window height.
+        /// \return The window height.
+        inline int getHeight() const override { return m_height; };
+        /// \brief Returns the window ratio (window width divided by window height).
+        /// \return The window ratio (window width divided by window height).
+        inline float getWindowRatio() const override { return float(m_width) / float(m_height); };
+        /// \brief Returns a boolean that indicates whether or not the window is in full screen mode.
+        /// \return A boolean that indicates whether or not the window is in full screen mode.
+        inline bool isFullScreen() const override { return m_fullScreen; };
 
-        /// \brief Return the total time ellapsed since the GL application was started.
-        virtual float const getTimeElapsed();
-        /// \brief
-        virtual float const getFrameDeltaTime();
-
-        /// \brief Access and get the application's window
-        // virtual inline GLFWwindow *getWindow() const { return m_window; }
+        /// \brief Returns the total time elapsed since the GL application was started.
+        /// \return The total time elapsed since the GL application was started.
+        float const getTimeElapsed() override;
+        /// \brief Returns the time elapsed since the last frame.
+        /// \return The time elapsed since the last frame.
+        float const getFrameDeltaTime() override;
     };
 
 } // namespace engine

@@ -34,27 +34,29 @@ namespace engine
         VertexArrayObject m_vao;  /*!< Vertex Array Object of the sphere. */
         VertexBufferObject m_vbo; /*!< Vertex Buffer Object of the sphere. */
 
-        /// \brief Build the Vertex Array Object of the sphere.
+        /// \brief Builds the Vertex Array Object of the sphere.
         void buildVAO();
 
-        /// \brief Build the Vertex Buffer Object of the sphere.
+        /// \brief Builds the Vertex Buffer Object of the sphere.
         void buildVBO();
 
     public:
-        /// \brief Build the Vertex Buffer Object of the sphere.
+        /// \brief Builds the Vertex Buffer Object of the sphere.
         /// \param radius : The radius of the sphere.
         /// \param discLat : The number of segments to discretize the latitude of the sphere.
         /// \param discLong : The number of segments to discretize the longitude of the sphere.
         Sphere(GLfloat radius, GLsizei discLat, GLsizei discLong);
-        ~Sphere();
+        ~Sphere() = default;
 
-        /// \brief Return the data (vertices) of the sphere.
+        /// \brief Returns the data (vertices) of the sphere.
+        /// \return The data (vertices) of the sphere.
         inline Container<ShapeVertex> getVertices() const { return m_vertices; };
 
-        /// \brief Return the number of vertices of the sphere.
+        /// \brief Returns the number of vertices of the sphere.
+        /// \return The number of vertices of the sphere.
         inline GLsizei getVertexCount() const { return m_nVertexCount; };
 
-        /// \brief Render the sphere to the screen/window.
+        /// \brief Renders the sphere to the screen/window.
         /// \param camera : A pointer to the camera of the application.
         /// \param shader : The shaders associated to the sphere.
         /// \param time : The time of the window manager.

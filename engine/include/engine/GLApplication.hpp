@@ -36,20 +36,10 @@ namespace engine
     GLApplication &operator=(const GLApplication &) { return *this; }
 
     std::unique_ptr<GLWindowManager> m_windowManager; /*!< A unique pointer to the window manager of the application. */
-    std::unique_ptr<Camera> m_camera;                   /*!< A unique pointer to the camera used by the application. */
-
-    float m_time;      /*!< The GL application total time ellapsed. */
-    float m_deltaTime; /*!< The time difference between the previous frame that was drawn and the current frame. */
-
-    /// \brief Initialize the GL application (create a window manager and a camera).
-    /// \param title : The GL application title (string).
-    /// \param width : The GL application width value.
-    /// \param height : The GL application height value.
-    /// \param fullScreen : A boolean to determine if the GL application window is in full screen mode.
-    void initialize(std::string title, int width, int height, bool fullScreen);
+    std::unique_ptr<Camera> m_camera;                 /*!< A unique pointer to the camera used by the application. */
 
   protected:
-    /// \brief Copy constructor
+    /// \brief Copy constructor.
     GLApplication(const GLApplication &);
     /// \brief The GL application loop (run until the user asks to quit).
     virtual void loop();
@@ -57,7 +47,7 @@ namespace engine
   public:
     /// \brief Constructor.
     GLApplication();
-    /// \brief Parameterized Constructor.
+    /// \brief Parameterized constructor.
     /// \param title : The GL application title (string).
     /// \param width : The GL application width value.
     /// \param height : The GL application height value.
@@ -65,18 +55,21 @@ namespace engine
     GLApplication(std::string title, int width, int height, bool fullScreen);
     virtual ~GLApplication() = default;
 
-    /// \brief Return the current GL application instance.
+    /// \brief Returns the current GL application instance.
+    /// \return The instance of the current application.
     static GLApplication &getInstance();
 
-    /// \brief Exit the GL application by changing the current state.
+    /// \brief Exits the GL application by changing the current state.
     void exit();
 
-    /// \brief Run the GL application by changing the current state and starting the GL application main loop.
+    /// \brief Runs the GL application by changing the current state and starting the GL application main loop.
     void run();
 
-    /// \brief Return the window manager (pointer) of the GL application.
+    /// \brief Returns the window manager (pointer) of the GL application.
+    /// \return A pointer to the window manager of the GL application.
     inline GLWindowManager *getWindowManager() const { return m_windowManager.get(); }
-    /// \brief Return the camera (pointer) of the GL application.
+    /// \brief Returns the camera (pointer) of the GL application.
+    /// \return A pointer to the camera of the GL application.
     inline Camera *getCamera() { return m_camera.get(); };
   };
 

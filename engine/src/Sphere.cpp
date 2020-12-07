@@ -12,10 +12,6 @@ namespace engine
         buildVAO();
     }
 
-    Sphere::~Sphere()
-    {
-    }
-
     void Sphere::buildVBO()
     {
         m_vbo.bind();

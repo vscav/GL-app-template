@@ -15,7 +15,7 @@ include_directories(../lib/glew/include)
 include_directories(../lib/glfw/include)
 
 # compile engine as library
-add_library(engine ${SRC_FILES} ${HEADER_FILES})
+add_library(engine ${SRC_FILES} ${HEADER_FILES} src/FilePath.cpp)
 
 # set compilation flags
 target_compile_features(engine PRIVATE cxx_std_11)

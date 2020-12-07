@@ -10,12 +10,12 @@ namespace engine
 {
 
     /// \struct ShapeVertex
-    /// \brief Structure used to represent a type of vertice.
+    /// \brief Structure used to represent a type of vertex.
     struct ShapeVertex
     {
-        glm::vec3 position;  /*!< Position of the vertice. */
-        glm::vec3 normal;    /*!< Normal of the vertice. */
-        glm::vec2 texCoords; /*!< Texture coordinates of the vertice. */
+        glm::vec3 position;  /*!< Position of the vertex. */
+        glm::vec3 normal;    /*!< Normal of the vertex. */
+        glm::vec2 texCoords; /*!< Texture coordinates of the vertex. */
     };
 
 } // namespace engine

@@ -23,12 +23,13 @@ namespace engine
         /// \brief Destructor.
         ~VertexArrayObject();
 
-        /// \brief Bind the VAO.
+        /// \brief Binds the VAO.
         void bind();
-        /// \brief Unbind the VAO.
+        /// \brief Unbinds the VAO.
         void unbind();
 
-        /// \brief Return the id of the VAO instance.
+        /// \brief Returns the ID of the VAO instance.
+        /// \return The ID of the VAO instance.
         inline GLuint getId() const { return m_index; }
     };
 

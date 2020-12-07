@@ -15,14 +15,14 @@ namespace engine
     {
     private:
         /// \brief Default constructor.
-        TimeManager(){};
+        TimeManager() = default;
         /// \brief Copy constructor.
         TimeManager(TimeManager const &);
         /// \brief Affectation operator.
         TimeManager &operator=(TimeManager const &);
 
     public:
-        /// \brief The function to get the instance of the manager, or initialize and return the instance.
+        /// \brief Gets the instance of the manager, or initializes and returns the instance.
         static TimeManager &getInstance()
         {
             static TimeManager instance;
@@ -30,14 +30,16 @@ namespace engine
             return instance;
         }
 
-        /// \brief This calculates our current scene's frames per second and displays it in the console.
-        /// \param writeToConsole : A boolean to indicate wheter or not we display the value in the console.
+        /// \brief Calculates our current scene's frames per second and displays it in the console.
+        /// \param writeToConsole : A boolean to indicate whether or not we display the value in the console.
+        /// \return The current scene's frames per second.
         double calculateFrameRate(bool writeToConsole);
 
-        /// \brief This returns the current time in seconds.
+        /// \brief Returns the current time in seconds.
+        /// \return The current time in seconds.
         double getTime();
 
-        /// \brief This pauses the current thread for an amount of time in milliseconds.
+        /// \brief Pauses the current thread for an amount of time in milliseconds.
         /// \param milliseconds : The duration of sleep in milliseconds.
         void sleep(int milliseconds);
 

@@ -37,26 +37,27 @@ namespace engine
         VertexArrayObject m_vao;  /*!< Vertex Array Object of the cube map. */
         VertexBufferObject m_vbo; /*!< Vertex Buffer Object of the cube map. */
 
-        /// \brief Build the Vertex Array Object of the cube map.
+        /// \brief Builds the Vertex Array Object of the cube map.
         void buildVAO();
 
-        /// \brief Build the Vertex Buffer Object of the cube map.
+        /// \brief Builds the Vertex Buffer Object of the cube map.
         void buildVBO();
 
     public:
         /// \brief Constructor.
         CubeMap(const char *cubeFront, const char *cubeLeft, const char *cubeBack,
                 const char *cubeBottom, const char *cubeRight, const char *cubeTop);
-        /// \brief Default destructor.
+        /// \brief Destructor.
         ~CubeMap() = default;
 
-        /// \brief Render the sphere to the screen/window.
+        /// \brief Renders the sphere to the screen/window.
         /// \param camera : A pointer to the camera of the application.
         /// \param shader : The shaders associated to the sphere.
         /// \param time : The current time of the window manager.
         void render(const Camera *camera, Shader &shader, float time);
 
-        /// \brief Return the data (vertices) of the cube map.
+        /// \brief Returns the data (vertices) of the cube map.
+        /// \return The container holding the vertices of the cube map.
         inline Container<GLfloat> getVertices() const { return m_vertices; };
     };
 

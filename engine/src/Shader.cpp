@@ -138,7 +138,9 @@ namespace engine
 
         if (!file.is_open())
         {
-            std::cerr << "[Shader] ERROR: Failed to open file : " + *filepath << std::endl;
+            std::string message = "[Shader] ERROR: Failed to open file: ";
+            message += filepath;
+            std::cerr << message.c_str() << std::endl;
         }
 
         std::stringstream stream;
@@ -181,7 +183,6 @@ namespace engine
             return "GL_TESS_EVALUATION_SHADER";
 
         default:
-            assert(!"unknown shader type");
             return nullptr;
         }
     }

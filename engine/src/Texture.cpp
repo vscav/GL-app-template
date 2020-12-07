@@ -3,14 +3,14 @@
 namespace engine
 {
 
-    GLuint Texture::loadTexture(std::string path)
+    GLuint Texture::loadTexture(std::string &path)
     {
         GLuint textureID;
 
         glGenTextures(1, &textureID);
         glBindTexture(GL_TEXTURE_2D, textureID);
 
-        int x = 0, y = 0;
+        unsigned int x = 0, y = 0;
 
         std::unique_ptr<Image> texture = loadImage(path);
 
@@ -48,7 +48,7 @@ namespace engine
         glGenTextures(1, &textureID);
         glBindTexture(GL_TEXTURE_CUBE_MAP, textureID);
 
-        int x = 0, y = 0, i = 0;
+        unsigned int x = 0, y = 0, i = 0;
 
         Iterator<std::string, Container<std::string>> *it = faces.CreateIterator();
         for (it->first(); !it->isDone(); it->next())

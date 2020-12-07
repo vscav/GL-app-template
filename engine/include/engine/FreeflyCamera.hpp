@@ -26,44 +26,49 @@ namespace engine
 
         float m_speed = 0.05;
 
-        /// \brief Calcul the Front, Left and Up vectors.
+        /// \brief Calculates the front, left and up vectors of the camera.
         void computeDirectionVectors();
 
     public:
         /// \brief Constructor.
         FreeflyCamera();
         /// \brief Destructor.
-        ~FreeflyCamera() = default;
+        ~FreeflyCamera() override = default;
 
-        /// \brief Move the camera forward or backward according to a certain value.
+        /// \brief Moves the camera forward or backward according to a certain value.
         /// \param t : The value used to move the camera forward or back.
-        virtual void moveFront(float t) override;
-        /// \brief Move the camera to the right or to the left according to the t value.
+        void moveFront(float t) override;
+        /// \brief Moves the camera to the right or to the left according to the t value.
         /// \param t : The value used to move the camera on the right or on the left.
-        virtual void moveLeft(float t) override;
+        void moveLeft(float t) override;
 
-        /// \brief Rotate the camera to the right or to the left according to the degree value.
+        /// \brief Rotates the camera to the right or to the left according to the degree value.
         /// \param degrees : The value (in degrees) used to move the camera on the right or on the left.
-        virtual void rotateLeft(float degrees) override;
-        /// \brief Rotate the camera to the top or the bottom according to the degree value.
+        void rotateLeft(float degrees) override;
+        /// \brief Rotates the camera to the top or the bottom according to the degree value.
         /// \param degrees : The value (in degrees) used to move the camera to the top or to the bottom.
-        virtual void rotateUp(float degrees) override;
+        void rotateUp(float degrees) override;
 
-        /// \brief Set the camera speed value.
+        /// \brief Sets the camera speed value.
         /// \param speed : The value representing the speed apply to the camera.
-        virtual inline void setSpeed(const double speed) { m_speed = speed; };
-        /// \brief Get the camera speed value.
-        virtual inline double const getSpeed() const { return m_speed; };
+        inline void setSpeed(const float speed) override { m_speed = speed; };
+        /// \brief Gets the camera speed value.
+        /// \return The current speed of the camera.
+        inline float const getSpeed() const override { return m_speed; };
 
-        /// \brief Calculate and get the view matrix of the camera based on its member variables.
-        virtual glm::mat4 getViewMatrix() const override;
-        /// \brief Calculate and get the projection matrix of the camera based on its member variables.
-        virtual glm::mat4 getProjectionMatrix() const override;
-        /// \brief Calculate and get the view projection matrix of the camera based on the view and the projection matrices.
-        virtual glm::mat4 getVPMatrix() const override;
+        /// \brief Calculates and get the view matrix of the camera based on its member variables.
+        /// \return The view matrix of the camera.
+        glm::mat4 getViewMatrix() const override;
+        /// \brief Calculates and get the projection matrix of the camera based on its member variables.
+        /// \return The projection matrix of the camera.
+        glm::mat4 getProjectionMatrix() const override;
+        /// \brief Calculates and get the view projection matrix of the camera based on the view and the projection matrices.
+        /// \return The view projection matrix of the camera.
+        glm::mat4 getVPMatrix() const override;
 
-        /// \brief Get the current position of the camera.
-        virtual inline const glm::vec3 getPosition() const { return m_Position; };
+        /// \brief Gets the current position of the camera.
+        /// \return The position of the camera.
+        inline const glm::vec3 getPosition() const override { return m_Position; };
     };
 
 } // namespace engine

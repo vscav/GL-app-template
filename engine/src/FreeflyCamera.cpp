@@ -1,7 +1,6 @@
 #include <engine/FreeflyCamera.hpp>
 #include <engine/GLApplication.hpp>
 
-#include <iostream>
 #define _USE_MATH_DEFINES
 #include <math.h>
 
@@ -53,8 +52,8 @@ namespace engine
 
     glm::mat4 FreeflyCamera::getProjectionMatrix() const
     {
-        float width = GLApplication::getInstance().getWindowManager()->getWidth();
-        float height = GLApplication::getInstance().getWindowManager()->getHeight();
+        auto width = (float) GLApplication::getInstance().getWindowManager()->getWidth();
+        auto height = (float) GLApplication::getInstance().getWindowManager()->getHeight();
 
         return glm::perspective(glm::radians(70.f), width / height, 0.1f, 300.0f);
     }

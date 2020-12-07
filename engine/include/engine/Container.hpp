@@ -18,23 +18,27 @@ namespace engine
         friend class Iterator<T, Container>; /*!< The Iterator class as a friend class. */
 
     private:
-        std::vector<T> m_data; /*!< The vector of data (type T). */
+        std::vector<T> m_data; /*!< The vector of data (type of T). */
 
     public:
-        /// \brief Add a value to the container.
+        /// \brief Adds a value to the container.
         /// \param a : The value to add to the container.
         inline void add(T a) { m_data.push_back(a); };
 
-        /// \brief Return the size of the container.
+        /// \brief Returns the size/length of the container.
+        /// \return The size/length of the container.
         inline int size() const { return m_data.size(); };
 
-        /// \brief Return the value hold by the container at a given index.
+        /// \brief Returns the value hold by the container at a given index.
+        /// \return The value at a given index.
         inline T at(unsigned int index) { return m_data.at(index); };
 
-        /// \brief Return a pointer to the first element in the array used internally by the container.
+        /// \brief Returns a pointer to the first element in the array used internally by the container.
+        /// \return A pointer to the first element in the array used internally by the container.
         inline const T *data() const { return m_data.data(); };
 
-        /// \brief Create a new Iterator based on the container.
+        /// \brief Creates a new Iterator based on the container.
+        /// \return A new iterator for the container.
         inline Iterator<T, Container> *CreateIterator() { return new Iterator<T, Container>(this); };
     };
 

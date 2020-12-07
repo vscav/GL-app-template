@@ -14,8 +14,11 @@ namespace engine
     class Texture
     {
     public:
-        static GLuint loadTexture(std::string path);
-
+        /// \brief Loads a texture.
+        /// \return The ID of the texture loaded.
+        static GLuint loadTexture(std::string &path);
+        /// \brief Loads a cube map texture.
+        /// \return The ID of the cube map texture loaded.
         static GLuint loadCubeMapTexture(Container<std::string> faces);
     };
 

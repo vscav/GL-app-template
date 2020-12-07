@@ -80,10 +80,10 @@ namespace engine
 	class InputManager
 	{
 	public:
-		/// \brief This fires an action depending on the key code received.
+		/// \brief Fires an action depending on the key code received.
 		/// \param code : The key code captured.
 		void keyPressed(InputCodes code);
-		/// \brief This sends in an updated mouse x and y position that should be a delta from (0, 0).
+		/// \brief Sends in an updated mouse x and y position that should be a delta from (0, 0).
 		/// \param mouseX : The X position of the mouse relative to the screen.
 		/// \param mouseY : The Y position of the mouse relative to the screen..
 		void mouseMoved(float mouseX, float mouseY);

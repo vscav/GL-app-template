@@ -25,10 +25,10 @@ namespace engine
         ///\brief Destructor.
         ~ElementBufferObject();
 
-        ///\brief Bind this EBO.
+        ///\brief Binds this EBO.
         void bind();
 
-        ///\brief Unbind the EBO.
+        ///\brief Unbinds the EBO.
         void unbind();
 
         /// \brief Creates and initializes an element buffer object's data store.
@@ -42,7 +42,8 @@ namespace engine
             unbind();
         }
 
-        ///\brief Return the ID of the EBO.
+        /// \brief Returns the ID of the EBO.
+        /// \return The ID of the EBO.
         inline GLuint getId() const { return m_index; };
     };
 

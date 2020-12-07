@@ -1,3 +1,5 @@
+add_definitions(-std=c++11)
+
 # get all application files
 file(GLOB_RECURSE HEADER_FILES *.hpp)
 file(GLOB_RECURSE SRC_FILES *.cpp)

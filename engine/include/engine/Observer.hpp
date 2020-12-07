@@ -10,7 +10,7 @@ namespace engine
 	class Observer
 	{
 	public:
-		/// \brief Update the state of this observer.
+		/// \brief Updates the state of this observer.
 		virtual void notify() = 0;
 	};
 

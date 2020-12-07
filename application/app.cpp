@@ -1,8 +1,8 @@
 #include "include/Application.hpp"
 
-int main(int argc, char **argv)
+int main()
 {
-  Application app("Application", 1600, 900, false);
+  Application app("Application", 1280, 720, false);
   app.run();
 
   return 0;
