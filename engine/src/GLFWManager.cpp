@@ -21,7 +21,7 @@ namespace engine
             throw std::runtime_error("Couldn't init GLFW");
         }
 
-        getContext();
+        getContext(3, 3);
 
         createWindow();
 
@@ -43,16 +43,10 @@ namespace engine
         }
 
         // get version info
-        const GLubyte *renderer = glGetString(GL_RENDERER);
-        const GLubyte *version = glGetString(GL_VERSION);
-        std::cout << "[Info] Renderer: " << renderer << std::endl;
-        std::cout << "[Info] Version supported: " << version << std::endl;
+        getLogInformation();
 
-        auto *inputManager = new InputManager();
-        setInputManager(inputManager);
-
-        auto *windowUtils = new GLWindowUtils();
-        setWindowUtils(windowUtils);
+        m_inputManager = std::make_unique<InputManager>();
+        m_windowUtils = std::make_unique<GLWindowUtils>();
 
         // opengl configuration : enable depth test
         m_windowUtils->enableDepthTesting(true);
@@ -64,14 +58,22 @@ namespace engine
         return 0;
     }
 
-    void GLFWManager::getContext()
+    void GLFWManager::getContext(int maj, int min)
     {
-        int major = 3;
-        int minor = 3;
+        int major = maj;
+        int minor = min;
         glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, major);
         glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, minor);
         glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
         glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+    }
+
+    void GLFWManager::getLogInformation()
+    {
+        const GLubyte *renderer = glGetString(GL_RENDERER);
+        const GLubyte *version = glGetString(GL_VERSION);
+        std::cout << "[Info] Renderer: " << renderer << std::endl;
+        std::cout << "[Info] Version supported: " << version << std::endl;
     }
 
     void GLFWManager::createWindow()
@@ -195,8 +197,8 @@ namespace engine
 
     float const GLFWManager::getTimeElapsed()
     {
-        m_time = (float) glfwGetTime();
-        
+        m_time = (float)glfwGetTime();
+
         return m_time;
     }
 

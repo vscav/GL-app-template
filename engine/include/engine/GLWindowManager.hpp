@@ -18,9 +18,9 @@ namespace engine
     class GLWindowManager
     {
     protected:
-        GLWindowUtils *m_windowUtils; /*!< The utilitary class for our window. */
+        std::unique_ptr<GLWindowUtils> m_windowUtils; /*!< The utilitary class for our window. */
 
-        InputManager *m_inputManager; /*!< The input manager for our window. */
+        std::unique_ptr<InputManager> m_inputManager; /*!< The input manager for our window. */
 
     public:
         /// \brief Destructor. This is needed so that the class inheriting this will have it's deconstructor called.
@@ -67,16 +67,16 @@ namespace engine
 
         /// \brief Sets the application's inputs manager.
         /// \param inputManager : A pointer to the inputManager of the application.
-        inline void setInputManager(InputManager *inputManager) { m_inputManager = inputManager; };
+        // inline void setInputManager(std::shared_ptr<InputManager> inputManager) { m_inputManager = std::move(inputManager); };
         /// \brief Returns the application's inputs manager.
         /// \return A pointer to the application's inputs manager.
-        inline InputManager *getInputManager() const { return m_inputManager; };
+        inline InputManager *getInputManager() const { return m_inputManager.get(); };
         /// \brief Sets the application's window utility.
         /// \param windowUtils : A pointer to the window utility of the application.
-        inline void setWindowUtils(GLWindowUtils *windowUtils) { m_windowUtils = windowUtils; };
+        // inline void setWindowUtils(std::shared_ptr<GLWindowUtils> windowUtils) { m_windowUtils = std::move(windowUtils); };
         /// \brief Returns the application's window utility.
         /// \return A pointer to the window utility of the application.
-        inline GLWindowUtils *getWindowUtils() const { return m_windowUtils; };
+        inline GLWindowUtils *getWindowUtils() const { return m_windowUtils.get(); };
     };
 
 } // namespace engine

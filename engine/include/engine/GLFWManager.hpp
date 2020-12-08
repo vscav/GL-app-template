@@ -23,7 +23,7 @@ namespace engine
     protected:
         GLFWwindow *m_window; /*!< The GLFW window object (pointer) that manages the window and input. */
 
-        GLFWmonitor *m_monitor; /*!< The primary monitor of the user, which will be used to displai the application window. */
+        GLFWmonitor *m_monitor; /*!< The primary monitor of the user, which will be used to display the application window. */
 
         bool m_firstMouse = true; /*!< A boolean used to determine if the click captured is the first. */
 
@@ -53,7 +53,12 @@ namespace engine
         int initialize() override;
 
         /// \brief Gets information about GLFW and OpenGL contexts.
-        void getContext();
+        /// \param maj : OpenGL major version accepted.
+        /// \param min : OpenGL minor version accepted.
+        void getContext(int maj, int min);
+
+        /// \brief Get information about OpenGL version and renderer.
+        void getLogInformation();
 
         /// \brief Creates the GLFW window, either in full screen or not.
         void createWindow();

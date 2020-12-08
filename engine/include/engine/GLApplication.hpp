@@ -33,14 +33,14 @@ namespace engine
     State m_state; /*!< The current state of the GL application (ready, run or exit). */
 
     /// \brief Affectation/Copy assignment operator.
-    GLApplication &operator=(const GLApplication &) { return *this; }
+    GLApplication &operator=(const GLApplication &) = delete;
 
     std::unique_ptr<GLWindowManager> m_windowManager; /*!< A unique pointer to the window manager of the application. */
     std::unique_ptr<Camera> m_camera;                 /*!< A unique pointer to the camera used by the application. */
 
   protected:
     /// \brief Copy constructor.
-    GLApplication(const GLApplication &);
+    GLApplication(const GLApplication &) = delete;
     /// \brief The GL application loop (run until the user asks to quit).
     virtual void loop();
 

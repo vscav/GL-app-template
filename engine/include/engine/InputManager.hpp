@@ -80,6 +80,11 @@ namespace engine
 	class InputManager
 	{
 	public:
+		/// \brief Constructor.
+		InputManager() = default;
+		/// \brief Destructor.
+		~InputManager() = default;
+
 		/// \brief Fires an action depending on the key code received.
 		/// \param code : The key code captured.
 		void keyPressed(InputCodes code);

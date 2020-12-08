@@ -17,9 +17,9 @@ namespace engine
         /// \brief Default constructor.
         TimeManager() = default;
         /// \brief Copy constructor.
-        TimeManager(TimeManager const &);
+        TimeManager(TimeManager const &) = delete;
         /// \brief Affectation operator.
-        TimeManager &operator=(TimeManager const &);
+        TimeManager &operator=(TimeManager const &) = delete;
 
     public:
         /// \brief Gets the instance of the manager, or initializes and returns the instance.
