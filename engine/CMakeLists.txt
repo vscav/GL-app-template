@@ -18,7 +18,7 @@ include_directories(../lib/glfw/include)
 add_library(engine ${SRC_FILES} ${HEADER_FILES} src/FilePath.cpp)
 
 # set compilation flags
-target_compile_features(engine PRIVATE cxx_std_11)
+target_compile_features(engine PRIVATE cxx_std_17)
 target_compile_options(engine PRIVATE -Wall -O2)
 
 # engine include directory

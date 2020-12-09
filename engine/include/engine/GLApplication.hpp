@@ -4,6 +4,7 @@
 
 #include <engine/TimeManager.hpp>
 #include <engine/GLWindowManager.hpp>
+#include <engine/GLFWManager.hpp>
 #include <engine/FreeflyCamera.hpp>
 
 #include <GL/glew.h>
@@ -35,10 +36,10 @@ namespace engine
     /// \brief Affectation/Copy assignment operator.
     GLApplication &operator=(const GLApplication &) = delete;
 
-    std::unique_ptr<GLWindowManager> m_windowManager; /*!< A unique pointer to the window manager of the application. */
-    std::unique_ptr<Camera> m_camera;                 /*!< A unique pointer to the camera used by the application. */
-
   protected:
+    std::unique_ptr<GLWindowManager> m_windowManager = std::make_unique<GLFWManager>(); /*!< A unique pointer to the window manager of the application (default is a GLFWManager). */
+    std::unique_ptr<Camera> m_camera = std::make_unique<FreeflyCamera>();               /*!< A unique pointer to the camera used by the application (default is a FreeflyCamera). */
+
     /// \brief Copy constructor.
     GLApplication(const GLApplication &) = delete;
     /// \brief The GL application loop (run until the user asks to quit).

@@ -16,7 +16,7 @@ namespace engine
 
   GLApplication::GLApplication()
       : m_state(stateReady),
-        m_windowManager(new GLFWManager("GLApplication", 1600, 900, false)),
+        m_windowManager(new GLFWManager()),
         m_camera(new FreeflyCamera())
   {
     currentGLApplication = this;
@@ -28,7 +28,7 @@ namespace engine
         m_camera(new FreeflyCamera())
   {
     currentGLApplication = this;
-  };
+  }
 
   void GLApplication::exit()
   {

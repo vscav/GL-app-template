@@ -1,4 +1,4 @@
-add_definitions(-std=c++11)
+add_definitions(-std=c++17)
 
 # get all application files
 file(GLOB_RECURSE HEADER_FILES *.hpp)

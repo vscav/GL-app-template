@@ -1,4 +1,6 @@
 #include <engine/GLError.hpp>
+#include <engine/FreeflyCamera.hpp>
+#include <engine/GLFWManager.hpp>
 
 #include "../include/Application.hpp"
 
@@ -18,10 +20,16 @@ Application::Application()
           "application/res/textures/skybox/space/top.png"),
       m_cubeMapShader("application/res/shaders/skybox.vert", "application/res/shaders/skybox.frag")
 {
+  // m_windowManager = std::move(std::make_unique<engine::GLFWManager>());
+  // m_camera = std::move(std::make_unique<engine::FreeflyCamera>());
+
+  // m_windowManager = std::unique_ptr<engine::GLFWManager>(new engine::GLFWManager());
+  // m_camera = std::unique_ptr<engine::FreeflyCamera>(new engine::FreeflyCamera());
 }
 
 Application::Application(std::string title, int width, int height, bool fullScreen)
-    : GLApplication(title, width, height, fullScreen),
+    : // GLApplication(),
+      GLApplication(title, width, height, fullScreen),
       m_sphere(1, 64, 32),
       m_sphereShader("application/res/shaders/3D.vert", "application/res/shaders/directionallight.frag"),
       m_cubeMap(
@@ -33,6 +41,11 @@ Application::Application(std::string title, int width, int height, bool fullScre
           "application/res/textures/skybox/space/top.png"),
       m_cubeMapShader("application/res/shaders/skybox.vert", "application/res/shaders/skybox.frag")
 {
+  // m_windowManager = std::move(std::make_unique<engine::GLFWManager>(title, width, height, fullScreen));
+  // m_camera = std::move(std::make_unique<engine::FreeflyCamera>());
+
+  // m_windowManager = std::unique_ptr<engine::GLFWManager>(new engine::GLFWManager(title, width, height, fullScreen));
+  // m_camera = std::unique_ptr<engine::FreeflyCamera>(new engine::FreeflyCamera());
 }
 
 void Application::loop()

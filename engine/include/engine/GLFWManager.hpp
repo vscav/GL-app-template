@@ -44,7 +44,7 @@ namespace engine
         /// \param width : The window width value.
         /// \param height : The window height value.
         /// \param fullScreen : A boolean to determine if the window is in full screen mode.
-        GLFWManager(std::string title, int width, int height, bool fullScreen);
+        GLFWManager(std::string title = "GL Application template", int width = 1280, int height = 720, bool fullScreen = false);
         /// \brief Destructor.
         inline ~GLFWManager() { destroy(); };
 
