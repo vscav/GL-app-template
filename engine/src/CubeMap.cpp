@@ -1,5 +1,5 @@
 #include <engine/CubeMap.hpp>
-#include <engine/Texture.hpp>
+#include <engine/ResourceManager.hpp>
 
 namespace engine
 {
@@ -68,7 +68,7 @@ namespace engine
         m_faces.add(cubeBack);
 
         // m_cubeMapTexture = loadCubeMap(m_faces);
-        m_cubeMapTexture = Texture::loadCubeMapTexture(m_faces);
+        m_cubeMapTexture = ResourceManager::getInstance().loadCubeMapTexture(m_faces);
     }
 
     void CubeMap::buildVBO()

@@ -1,5 +1,6 @@
 #include <engine/GLApplication.hpp>
 #include <engine/GLFWManager.hpp>
+#include <engine/utils/common.hpp>
 
 namespace engine
 {
@@ -32,7 +33,7 @@ namespace engine
 
   void GLApplication::exit()
   {
-    std::cout << "[GLApplication] Application exited successfully" << std::endl;
+    if(debug) std::cout << "[GLApplication] Application exited successfully" << std::endl;
 
     m_state = stateExit;
   }
@@ -55,7 +56,7 @@ namespace engine
 
   void GLApplication::loop()
   {
-    std::cout << "[Info] GLApplication main loop" << std::endl;
+    if(debug) std::cout << "[Info] GLApplication main loop" << std::endl;
   }
 
 } // namespace engine

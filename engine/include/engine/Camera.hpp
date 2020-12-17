@@ -35,7 +35,7 @@ namespace engine
         virtual inline void setSpeed(const float speed) = 0;
         /// \brief Gets the camera speed value.
         /// \return The current speed of the camera.
-        virtual inline float const getSpeed() const = 0;
+        virtual inline float getSpeed() const = 0;
 
         /// \brief Calculates and get the view matrix of the camera based on its member variables.
         /// \return The view matrix of the camera.

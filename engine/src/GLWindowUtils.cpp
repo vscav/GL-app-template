@@ -1,4 +1,5 @@
 #include <engine/GLWindowUtils.hpp>
+#include <engine/utils/common.hpp>
 
 #include <iostream>
 
@@ -7,7 +8,7 @@ namespace engine
 
     void GLWindowUtils::antialias(bool enable)
     {
-        std::cout << "[GLWindowUtils] " << (enable ? "Enable" : "Disable") << " antialiasing" << std::endl;
+        if(debug) std::cout << "[GLWindowUtils] " << (enable ? "Enable" : "Disable") << " antialiasing" << std::endl;
         if (enable && !m_antialiasing)
         {
             glEnable(GL_MULTISAMPLE);
@@ -22,7 +23,7 @@ namespace engine
 
     void GLWindowUtils::enableAlphaBlending()
     {
-        std::cout << "[GLWindowUtils] Enable alpha blending mode" << std::endl;
+        if(debug) std::cout << "[GLWindowUtils] Enable alpha blending mode" << std::endl;
         if (!m_isAlphaBlending)
         {
             glEnable(GL_BLEND);
@@ -34,7 +35,7 @@ namespace engine
 
     void GLWindowUtils::enableAdditiveBlending()
     {
-        std::cout << "[GLWindowUtils] Enable blending mode" << std::endl;
+        if(debug) std::cout << "[GLWindowUtils] Enable blending mode" << std::endl;
         if (!m_additiveBlending)
         {
             glEnable(GL_BLEND);
@@ -46,7 +47,7 @@ namespace engine
 
     void GLWindowUtils::disableBlending()
     {
-        std::cout << "[GLWindowUtils] Disable blending mode" << std::endl;
+        if(debug) std::cout << "[GLWindowUtils] Disable blending mode" << std::endl;
         if (m_isAlphaBlending || m_additiveBlending)
         {
             glDisable(GL_BLEND);
@@ -57,7 +58,7 @@ namespace engine
 
     void GLWindowUtils::enableDepthTesting(bool enable)
     {
-        // std::cout << "[GLWindowUtils] " << (enable ? "Enable" : "Disable") << " depth testing" << std::endl;
+        //if(debug) std::cout << "[GLWindowUtils] " << (enable ? "Enable" : "Disable") << " depth testing" << std::endl;
         if (enable && !m_depthTesting)
         {
             glEnable(GL_DEPTH_TEST);
@@ -72,7 +73,7 @@ namespace engine
 
     void GLWindowUtils::cullBackFaces(bool cull)
     {
-        std::cout << "[GLWindowUtils] " << (cull ? "Cull" : "Reject") << " back faces" << std::endl;
+        if(debug) std::cout << "[GLWindowUtils] " << (cull ? "Cull" : "Reject") << " back faces" << std::endl;
         if (cull && !m_cullingBackFace)
         {
             glEnable(GL_CULL_FACE);
@@ -88,7 +89,7 @@ namespace engine
 
     void GLWindowUtils::goWireframe(bool goWireframe)
     {
-        std::cout << "[GLWindowUtils] " << (goWireframe ? "Activate" : "Deactivate") << " wireframe mode" << std::endl;
+        if(debug) std::cout << "[GLWindowUtils] " << (goWireframe ? "Activate" : "Deactivate") << " wireframe mode" << std::endl;
         if (goWireframe && !m_inWireframe)
         {
             glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);

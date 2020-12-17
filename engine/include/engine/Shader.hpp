@@ -26,7 +26,7 @@ namespace engine
         GLuint m_fragmentId; /*!< The ID of the fragment shader. */
         GLuint m_geometryId; /*!< The ID of the geometric shader. */
 
-        std::unordered_map<std::string, GLint> m_uniformLocationCache; /*!< An unordered map to store the uniforms location. */
+        std::unordered_map<std::string, GLuint> m_uniformLocationCache; /*!< An unordered map to store the uniforms location. */
 
         bool m_compiled; /*!< A boolean to indicate the compilation state (success or not). */
 
@@ -52,13 +52,13 @@ namespace engine
         /// \brief Constructor.
         Shader() = default;
         /// \brief Copy constructor.
-        Shader(const Shader &s);
+        explicit Shader(const Shader &s);
         /// \brief Parameterized Constructor.
         /// \param vertexShader : The path to the vertex shader.
         /// \param fragmentShader : The path to the fragment shader.
         /// \param geometryShader : The path to the geometry shader.
         /// \param fromFile : A boolean to indicate if the shaders are from specific files.
-        Shader(const char *vertexShader, const char *fragmentShader, const char *geometryShader = nullptr, const bool &fromFile = true);
+        explicit Shader(const char *vertexShader, const char *fragmentShader, const char *geometryShader = nullptr, const bool &fromFile = true);
         ~Shader();
 
         /// \brief Installs the program object as part of the current rendering state.

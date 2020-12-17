@@ -2,11 +2,8 @@
 #ifndef _CubeMap_HPP_
 #define _CubeMap_HPP_
 
-// #include <glimac/Image.hpp>
-
-#include <engine/Image.hpp>
 #include <engine/Camera.hpp>
-#include <engine/Common.hpp>
+#include <engine/Shape.hpp>
 #include <engine/VertexArrayObject.hpp>
 #include <engine/VertexBufferObject.hpp>
 #include <engine/Shader.hpp>
@@ -45,7 +42,7 @@ namespace engine
 
     public:
         /// \brief Constructor.
-        CubeMap(const char *cubeFront, const char *cubeLeft, const char *cubeBack,
+        explicit CubeMap(const char *cubeFront, const char *cubeLeft, const char *cubeBack,
                 const char *cubeBottom, const char *cubeRight, const char *cubeTop);
         /// \brief Destructor.
         ~CubeMap() = default;

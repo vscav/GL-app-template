@@ -1,4 +1,5 @@
 #include <engine/VertexBufferObject.hpp>
+#include <engine/utils/common.hpp>
 
 #include <iostream>
 
@@ -12,7 +13,7 @@ namespace engine
 
     VertexBufferObject::~VertexBufferObject()
     {
-        std::cout << "[VBO] Delete VBO with index " << m_index << std::endl;
+        if(debug) std::cout << "[VBO] Delete VBO with index " << m_index << std::endl;
         glDeleteBuffers(1, &m_index);
     }
 

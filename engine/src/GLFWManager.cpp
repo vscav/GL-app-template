@@ -1,5 +1,8 @@
 #include <engine/GLApplication.hpp>
 #include <engine/GLFWManager.hpp>
+#include <engine/utils/gl_debug_output.hpp>
+#include <engine/utils/common.hpp>
+#include <engine/utils/cout_colors.hpp>
 
 #include <iostream>
 
@@ -14,7 +17,7 @@ namespace engine
 
     int GLFWManager::initialize()
     {
-        std::cout << "[GLFWManager] GLFW initialisation" << std::endl;
+        if(debug) std::cout << "[GLFWManager] GLFW initialisation" << std::endl;
 
         if (!glfwInit())
         {
@@ -39,8 +42,11 @@ namespace engine
         }
         else
         {
-            std::cout << "[GLFWManager] GLFW window successfully created" << std::endl;
+            if(debug) std::cout << "[GLFWManager] GLFW window successfully created" << std::endl;
         }
+
+        // init OpenGL debug
+        initGLDebugOutput();
 
         // get version info
         getLogInformation();
@@ -72,8 +78,8 @@ namespace engine
     {
         const GLubyte *renderer = glGetString(GL_RENDERER);
         const GLubyte *version = glGetString(GL_VERSION);
-        std::cout << "[Info] Renderer: " << renderer << std::endl;
-        std::cout << "[Info] Version supported: " << version << std::endl;
+        std::cout << COLOR_YELLOW << "[Info] " << COLOR_RESET << "Renderer: " << renderer << std::endl;
+        std::cout << COLOR_YELLOW << "[Info] " << COLOR_RESET << "Version supported: " << version << std::endl;
     }
 
     void GLFWManager::createWindow()
@@ -213,7 +219,7 @@ namespace engine
     void GLFWManager::destroy()
     {
         glfwDestroyWindow(m_window);
-        std::cout << "[GLFWManager] Destroy GLFW window" << std::endl;
+        if(debug) std::cout << "[GLFWManager] Destroy GLFW window" << std::endl;
 
         glfwTerminate();
     }

@@ -1,4 +1,5 @@
 #include <engine/VertexArrayObject.hpp>
+#include <engine/utils/common.hpp>
 
 #include <iostream>
 
@@ -12,7 +13,7 @@ namespace engine
 
     VertexArrayObject::~VertexArrayObject()
     {
-        std::cout << "[VAO] Delete VAO with index " << m_index << std::endl;
+        if(debug) std::cout << "[VAO] Delete VAO with index " << m_index << std::endl;
         glDeleteVertexArrays(1, &m_index);
     }
 

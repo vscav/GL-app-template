@@ -23,7 +23,7 @@ namespace engine
             startTime = currentTime;
 
             if (writeToConsole)
-                std::cout << "fps: " << int(framesPerSecond) << std::endl;
+                std::cout << int(framesPerSecond) << " fps" << std::endl;
 
             currentFPS = framesPerSecond;
 

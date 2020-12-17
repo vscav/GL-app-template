@@ -18,7 +18,7 @@ namespace engine
     /// \brief Class which is the implementation of the abstract base class GLWindowManager, and which uses the
     /// GLFW cross-platform library to create a window, handle input and create the OpenGL
     /// context.
-    class GLFWManager : public GLWindowManager
+    class GLFWManager final : public GLWindowManager
     {
     protected:
         GLFWwindow *m_window; /*!< The GLFW window object (pointer) that manages the window and input. */
@@ -44,7 +44,7 @@ namespace engine
         /// \param width : The window width value.
         /// \param height : The window height value.
         /// \param fullScreen : A boolean to determine if the window is in full screen mode.
-        GLFWManager(std::string title = "GL Application template", int width = 1280, int height = 720, bool fullScreen = false);
+        explicit GLFWManager(std::string title = "GL Application template", int width = 1280, int height = 720, bool fullScreen = false);
         /// \brief Destructor.
         inline ~GLFWManager() { destroy(); };
 
