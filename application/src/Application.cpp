@@ -3,6 +3,7 @@
 #include <engine/GLFWManager.hpp>
 
 #include "../include/Application.hpp"
+#include "../include/utils/directory.hpp"
 
 #include <functional>
 #include <string>
@@ -18,7 +19,9 @@ Application::Application()
           "application/res/textures/skybox/space/bottom.png",
           "application/res/textures/skybox/space/right.png",
           "application/res/textures/skybox/space/top.png"),
-      m_cubeMapShader("application/res/shaders/skybox.vert", "application/res/shaders/skybox.frag")
+      m_cubeMapShader("application/res/shaders/skybox.vert", "application/res/shaders/skybox.frag"),
+      m_model("application/res/models/Sponza.gltf"),
+      m_modelShader("application/res/shaders/forward.vert", "application/res/shaders/pbr_directional_light.frag")
 {
   // m_windowManager = std::move(std::make_unique<engine::GLFWManager>());
   // m_camera = std::move(std::make_unique<engine::FreeflyCamera>());
@@ -39,7 +42,9 @@ Application::Application(std::string title, int width, int height, bool fullScre
           "application/res/textures/skybox/space/bottom.png",
           "application/res/textures/skybox/space/right.png",
           "application/res/textures/skybox/space/top.png"),
-      m_cubeMapShader("application/res/shaders/skybox.vert", "application/res/shaders/skybox.frag")
+      m_cubeMapShader("application/res/shaders/skybox.vert", "application/res/shaders/skybox.frag"),
+      m_model("application/res/models/Sponza.gltf"),
+      m_modelShader("application/res/shaders/forward.vert", "application/res/shaders/pbr_directional_light.frag")
 {
   // m_windowManager = std::move(std::make_unique<engine::GLFWManager>(title, width, height, fullScreen));
   // m_camera = std::move(std::make_unique<engine::FreeflyCamera>());
@@ -56,11 +61,14 @@ void Application::loop()
   // Get current context time
   float t = getWindowManager()->getTimeElapsed();
 
-  // Render cube map
+  // // Render cube map
   getWindowManager()->getWindowUtils()->enableDepthTesting(false);
   m_cubeMap.render(getCamera(), m_cubeMapShader, t);
   getWindowManager()->getWindowUtils()->enableDepthTesting(true);
 
-  // Render Sphere
-  m_sphere.render(getCamera(), m_sphereShader, t);
+  // // Render Sphere
+  // m_sphere.render(getCamera(), m_sphereShader, t);
+
+  // Render Model
+  m_model.render(getCamera(), m_modelShader, t);
 }

@@ -5,6 +5,9 @@ project(gl-app-template)
 # use GLVND libraries
 set(OpenGL_GL_PREFERENCE GLVND)
 
+set(CXXFLAGS ${CXXFLAGS} std=c++17)
+set(LIBRARIES ${LIBRARIES} stdc++fs)
+
 # glfw library subdirectory
 add_subdirectory(lib/glfw EXCLUDE_FROM_ALL)
 

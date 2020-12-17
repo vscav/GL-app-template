@@ -1,8 +1,6 @@
 #include <engine/Image.hpp>
-
-#define STB_IMAGE_IMPLEMENTATION
-
-#include <engine/dependencies/stb_image.hpp>
+// #define STB_IMAGE_IMPLEMENTATION
+#include <engine/dependencies/stb_image.h>
 
 #include <iostream>
 

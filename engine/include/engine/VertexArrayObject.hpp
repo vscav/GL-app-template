@@ -31,6 +31,12 @@ namespace engine
         /// \brief Returns the ID of the VAO instance.
         /// \return The ID of the VAO instance.
         inline GLuint getId() const { return m_index; }
+
+        struct VaoRange
+        {
+            GLsizei begin; // Index of first element in the vertex array Object
+            GLsizei count; // Number of elements in range
+        };
     };
 
 } // namespace engine
