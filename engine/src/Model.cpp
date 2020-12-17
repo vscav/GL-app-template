@@ -80,11 +80,6 @@ namespace engine
                 const auto &pbrMetallicRoughness = material.pbrMetallicRoughness;
                 if (uBaseColorFactor >= 0)
                 {
-                    // glUniform4f(uBaseColorFactor,
-                    //             (float)pbrMetallicRoughness.baseColorFactor[0],
-                    //             (float)pbrMetallicRoughness.baseColorFactor[1],
-                    //             (float)pbrMetallicRoughness.baseColorFactor[2],
-                    //             (float)pbrMetallicRoughness.baseColorFactor[3]);
                     shader.setVec4f("uBaseColorFactor",
                                     (float)pbrMetallicRoughness.baseColorFactor[0],
                                     (float)pbrMetallicRoughness.baseColorFactor[1],
@@ -106,45 +101,28 @@ namespace engine
 
                     glActiveTexture(GL_TEXTURE0);
                     glBindTexture(GL_TEXTURE_2D, textureObject);
-                    //glUniform1i(uBaseColorTexture, 0);
                     shader.setInt("uBaseColorTexture", 0);
                 }
                 if (uMetallicFactor >= 0)
-                {
-                    // glUniform1f(
-                    //     uMetallicFactor, (float)pbrMetallicRoughness.metallicFactor);
                     shader.setFloat("uMetallicFactor", (float)pbrMetallicRoughness.metallicFactor);
-                }
                 if (uRoughnessFactor >= 0)
-                {
-                    // glUniform1f(
-                    //     uRoughnessFactor, (float)pbrMetallicRoughness.roughnessFactor);
                     shader.setFloat("uRoughnessFactor", (float)pbrMetallicRoughness.roughnessFactor);
-                }
                 if (uMetallicRoughnessTexture >= 0)
                 {
                     auto textureObject = 0u;
                     if (pbrMetallicRoughness.metallicRoughnessTexture.index >= 0)
                     {
-                        const auto &texture =
-                            m_model.textures[pbrMetallicRoughness.metallicRoughnessTexture
-                                                 .index];
+                        const auto &texture = m_model.textures[pbrMetallicRoughness.metallicRoughnessTexture.index];
                         if (texture.source >= 0)
-                        {
                             textureObject = m_textureObjects[texture.source];
-                        }
                     }
 
                     glActiveTexture(GL_TEXTURE1);
                     glBindTexture(GL_TEXTURE_2D, textureObject);
-                    // glUniform1i(uMetallicRoughnessTexture, 1);
                     shader.setInt("uMetallicRoughnessTexture", 1);
                 }
                 if (uEmissiveFactor >= 0)
                 {
-                    // glUniform3f(uEmissiveFactor, (float)material.emissiveFactor[0],
-                    //             (float)material.emissiveFactor[1],
-                    //             (float)material.emissiveFactor[2]);
                     shader.setVec3f("uEmissiveFactor",
                                     (float)material.emissiveFactor[0],
                                     (float)material.emissiveFactor[1],
@@ -164,15 +142,10 @@ namespace engine
 
                     glActiveTexture(GL_TEXTURE2);
                     glBindTexture(GL_TEXTURE_2D, textureObject);
-                    // glUniform1i(uEmissiveTexture, 2);
                     shader.setInt("uEmissiveTexture", 2);
                 }
                 if (uOcclusionStrength >= 0)
-                {
-                    // glUniform1f(
-                    //     uOcclusionStrength, (float)material.occlusionTexture.strength);
                     shader.setFloat("uOcclusionStrength", (float)material.occlusionTexture.strength);
-                }
                 if (uOcclusionTexture >= 0)
                 {
                     auto textureObject = m_whiteTexture;
@@ -180,70 +153,48 @@ namespace engine
                     {
                         const auto &texture = m_model.textures[material.occlusionTexture.index];
                         if (texture.source >= 0)
-                        {
                             textureObject = m_textureObjects[texture.source];
-                        }
                     }
 
                     glActiveTexture(GL_TEXTURE3);
                     glBindTexture(GL_TEXTURE_2D, textureObject);
-                    // glUniform1i(uOcclusionTexture, 3);
                     shader.setInt("uOcclusionTexture", 3);
                 }
             }
             else
             {
                 if (uBaseColorFactor >= 0)
-                {
-                    // glUniform4f(uBaseColorFactor, 1, 1, 1, 1);
                     shader.setVec4f("uBaseColorFactor", 1, 1, 1, 1);
-                }
                 if (uBaseColorTexture >= 0)
                 {
                     glActiveTexture(GL_TEXTURE0);
                     glBindTexture(GL_TEXTURE_2D, m_whiteTexture);
-                    // glUniform1i(uBaseColorTexture, 0);
                     shader.setInt("uBaseColorTexture", 0);
                 }
                 if (uMetallicFactor >= 0)
-                {
-                    // glUniform1f(uMetallicFactor, 1.f);
                     shader.setFloat("uMetallicFactor", 1.f);
-                }
                 if (uRoughnessFactor >= 0)
-                {
-                    // glUniform1f(uRoughnessFactor, 1.f);
                     shader.setFloat("uRoughnessFactor", 1.f);
-                }
                 if (uMetallicRoughnessTexture >= 0)
                 {
                     glActiveTexture(GL_TEXTURE1);
                     glBindTexture(GL_TEXTURE_2D, 0);
-                    // glUniform1i(uMetallicRoughnessTexture, 1);
                     shader.setInt("uMetallicRoughnessTexture", 1);
                 }
                 if (uEmissiveFactor >= 0)
-                {
-                    // glUniform3f(uEmissiveFactor, 0.f, 0.f, 0.f);
                     shader.setVec3f("uEmissiveFactor", 0.f, 0.f, 0.f);
-                }
                 if (uEmissiveTexture >= 0)
                 {
                     glActiveTexture(GL_TEXTURE2);
                     glBindTexture(GL_TEXTURE_2D, 0);
-                    // glUniform1i(uEmissiveTexture, 2);
                     shader.setInt("uEmissiveTexture", 2);
                 }
                 if (uOcclusionStrength >= 0)
-                {
-                    // glUniform1f(uOcclusionStrength, 0.f);
                     shader.setFloat("uOcclusionStrength", 0.f);
-                }
                 if (uOcclusionTexture >= 0)
                 {
                     glActiveTexture(GL_TEXTURE3);
                     glBindTexture(GL_TEXTURE_2D, 0);
-                    // glUniform1i(uOcclusionTexture, 3);
                     shader.setInt("uOcclusionTexture", 3);
                 }
             }
@@ -257,16 +208,11 @@ namespace engine
             if (uLightDirectionLocation >= 0)
             {
                 if (m_lightFromCamera)
-                {
-                    // glUniform3f(uLightDirectionLocation, 0, 0, 1);
                     shader.setVec3f("uLightDirection", 0, 0, 1);
-                }
                 else
                 {
                     const auto lightDirectionInViewSpace = glm::normalize(
                         glm::vec3(viewMatrix * glm::vec4(lightDirection, 0.)));
-                    // glUniform3f(uLightDirectionLocation, lightDirectionInViewSpace[0],
-                    //             lightDirectionInViewSpace[1], lightDirectionInViewSpace[2]);
                     shader.setVec3f("uLightDirection",
                                     lightDirectionInViewSpace[0],
                                     lightDirectionInViewSpace[1],
@@ -275,14 +221,10 @@ namespace engine
             }
 
             if (uLightIntensity >= 0)
-            {
-                // glUniform3f(uLightIntensity, lightIntensity[0], lightIntensity[1],
-                //             lightIntensity[2]);
                 shader.setVec3f("uLightIntensity",
                                 lightIntensity[0],
                                 lightIntensity[1],
                                 lightIntensity[2]);
-            }
 
             // if (uApplyOcclusion >= 0)
             // {
@@ -291,7 +233,7 @@ namespace engine
             // }
 
             // The recursive function that should draw a node
-            // We use a std::function because a simple lambda cannot be recursive
+            // Use of a std::function because a simple lambda cannot be recursive
             const std::function<void(int, const glm::mat4 &)> drawNode =
                 [&](int nodeIdx, const glm::mat4 &parentMatrix) {
                     const auto &node = m_model.nodes[nodeIdx];
@@ -309,13 +251,6 @@ namespace engine
                         // Normal matrix is necessary to maintain normal vectors
                         // orthogonal to tangent vectors
                         const auto normalMatrix = glm::transpose(glm::inverse(mvMatrix));
-
-                        // glUniformMatrix4fv(modelViewProjMatrixLocation, 1, GL_FALSE,
-                        //                    glm::value_ptr(mvpMatrix));
-                        // glUniformMatrix4fv(
-                        //     modelViewMatrixLocation, 1, GL_FALSE, glm::value_ptr(mvMatrix));
-                        // glUniformMatrix4fv(normalMatrixLocation, 1, GL_FALSE,
-                        //                    glm::value_ptr(normalMatrix));
 
                         shader.setMat4("uModelViewProjMatrix", mvpMatrix);
                         shader.setMat4("uModelViewMatrix", mvMatrix);
@@ -352,12 +287,10 @@ namespace engine
 
                     // Draw children
                     for (const auto childNodeIdx : node.children)
-                    {
                         drawNode(childNodeIdx, modelMatrix);
-                    }
                 };
 
-            // Draw the scene referenced by gltf file
+            // Draw the model/scene referenced by gltf file
             if (m_model.defaultScene >= 0)
             {
                 for (const auto nodeIdx : m_model.scenes[m_model.defaultScene].nodes)
@@ -374,7 +307,6 @@ namespace engine
 
     bool Model::loadGltfFile(tinygltf::Model &model)
     {
-        std::cout << "[Model] Current path is " << fs::current_path() << '\n';
         std::clog << "[Model] Loading file " << m_gltfFilePath << std::endl;
 
         tinygltf::TinyGLTF loader;
@@ -385,14 +317,10 @@ namespace engine
         bool ret = loader.LoadASCIIFromFile(&model, &err, &warn, m_gltfFilePath.string());
 
         if (!warn.empty())
-        {
             std::cerr << warn << std::endl;
-        }
 
         if (!err.empty())
-        {
             std::cerr << err << std::endl;
-        }
 
         if (!ret)
         {
@@ -576,6 +504,7 @@ namespace engine
                 }
             }
         }
+
         glBindVertexArray(0);
 
         std::cout << "[GLTF Model] Number of Vertex Array Objects: " << vertexArrayObjects.size() << std::endl;
