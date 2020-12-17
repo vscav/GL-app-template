@@ -15,10 +15,11 @@ namespace engine
             throw std::runtime_error("[GLTF Model] Couldn't load GLTF file");
         }
 
-        if(debug) std::cout << "[GLTF Model] GLTF file has been successfully read and loaded" << std::endl;
+        if (debug)
+            std::cout << "[GLTF Model] GLTF file has been successfully read and loaded" << std::endl;
 
-        m_lightFromCamera = false;
-        m_applyOcclusion = true;
+        // m_lightFromCamera = false;
+        // m_applyOcclusion = true;
 
         m_textureObjects = createTextureObjects(m_model);
 
@@ -208,17 +209,17 @@ namespace engine
 
             if (uLightDirectionLocation >= 0)
             {
-                if (m_lightFromCamera)
-                    shader.setVec3f("uLightDirection", 0, 0, 1);
-                else
-                {
-                    const auto lightDirectionInViewSpace = glm::normalize(
-                        glm::vec3(viewMatrix * glm::vec4(lightDirection, 0.)));
-                    shader.setVec3f("uLightDirection",
-                                    lightDirectionInViewSpace[0],
-                                    lightDirectionInViewSpace[1],
-                                    lightDirectionInViewSpace[2]);
-                }
+                // if (m_lightFromCamera)
+                //     shader.setVec3f("uLightDirection", 0, 0, 1);
+                // else
+                // {
+                const auto lightDirectionInViewSpace = glm::normalize(
+                    glm::vec3(viewMatrix * glm::vec4(lightDirection, 0.)));
+                shader.setVec3f("uLightDirection",
+                                lightDirectionInViewSpace[0],
+                                lightDirectionInViewSpace[1],
+                                lightDirectionInViewSpace[2]);
+                // }
             }
 
             if (uLightIntensity >= 0)
@@ -308,7 +309,8 @@ namespace engine
 
     bool Model::loadGltfFile(tinygltf::Model &model)
     {
-        if(debug) std::clog << "[Model] Loading file " << m_gltfFilePath << std::endl;
+        if (debug)
+            std::clog << "[Model] Loading file " << m_gltfFilePath << std::endl;
 
         tinygltf::TinyGLTF loader;
 
@@ -508,7 +510,8 @@ namespace engine
 
         glBindVertexArray(0);
 
-        if(debug) std::cout << "[GLTF Model] Number of Vertex Array Objects: " << vertexArrayObjects.size() << std::endl;
+        if (debug)
+            std::cout << "[GLTF Model] Number of Vertex Array Objects: " << vertexArrayObjects.size() << std::endl;
 
         return vertexArrayObjects;
     }

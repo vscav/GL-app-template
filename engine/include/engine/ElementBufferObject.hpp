@@ -16,7 +16,7 @@ namespace engine
     class ElementBufferObject
     {
     private:
-        GLuint m_index;
+        GLuint m_index; /*!< The index of the EBO. */
 
     public:
         ///\brief Constructor.
