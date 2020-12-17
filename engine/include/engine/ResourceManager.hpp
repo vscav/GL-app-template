@@ -14,7 +14,8 @@
 
 namespace engine
 {
-
+    /// \class ResourceManager
+    /// \brief Class used to manage the resources of the application.
     class ResourceManager
     {
     private:
@@ -24,6 +25,8 @@ namespace engine
         ~ResourceManager() = default;
 
     public:
+        /// \brief Returns the current resource manager instance.
+        /// \return The instance of the current resource manager.
         static ResourceManager &getInstance()
         {
             static ResourceManager instance;
@@ -36,9 +39,12 @@ namespace engine
         /// \brief Affectation operator.
         ResourceManager &operator=(ResourceManager const &) = delete;
 
-        // Loads an image (if not cached) and generates an OpenGL texture
+        /// \brief Loads an image and generates an OpenGL texture.
+        /// \param path : The path to the texture image.
         GLuint loadTexture(const std::string &path);
 
+        /// \brief Loads images and generates a cube map texture.
+        /// \param faces : The container which holds the path to each texture image of the cube map.
         GLuint loadCubeMapTexture(Container<std::string> &faces);
     };
 

@@ -30,6 +30,13 @@ namespace engine
         /// \param degrees : The value (in degrees) used to move the camera to the top or to the bottom.
         virtual void rotateUp(float degrees) = 0;
 
+        /// \brief Sets the camera sensitivity value.
+        /// \param sensitivity : The value representing the speed apply to the camera.
+        virtual void setSensitivity(const float sensitivity) = 0;
+        /// \brief Sets the camera sensitivity value.
+        /// \param sensitivity : The value representing the speed apply to the camera.
+        virtual float getSensitivity() const = 0;
+
         /// \brief Sets the camera speed value.
         /// \param speed : The value representing the speed apply to the camera.
         virtual inline void setSpeed(const float speed) = 0;

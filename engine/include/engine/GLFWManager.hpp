@@ -16,7 +16,7 @@ namespace engine
 
     /// \class GLFWManager
     /// \brief Class which is the implementation of the abstract base class GLWindowManager, and which uses the
-    /// GLFW cross-platform library to create a window, handle input and create the OpenGL
+    /// GLFW cross-platform library to create a window, process input (to communicate with the inputs manager) and create the OpenGL
     /// context.
     class GLFWManager final : public GLWindowManager
     {
@@ -32,8 +32,8 @@ namespace engine
         int m_height;        /*!< The window height value. */
         bool m_fullScreen;   /*!< A boolean to determine if the window is in full screen mode. */
 
-        GLfloat m_lastX = m_width / 2.0;  /*!< The last position of the mouse X position. */
-        GLfloat m_lastY = m_height / 2.0; /*!< The last position of the mouse Y position. */
+        float m_lastX = m_width / 2.0f;  /*!< The last position of the mouse X position. */
+        float m_lastY = m_height / 2.0f; /*!< The last position of the mouse Y position. */
 
         float m_deltaTime; /*!< The GLFW window total time ellapsed. */
         float m_time;      /*!< The time difference between the previous frame that was drawn and the current frame of the GLFW window. */
@@ -55,7 +55,7 @@ namespace engine
         /// \brief Gets information about GLFW and OpenGL contexts.
         /// \param maj : OpenGL major version accepted.
         /// \param min : OpenGL minor version accepted.
-        void getContext(int maj, int min);
+        void getContext(int major, int minor);
 
         /// \brief Get information about OpenGL version and renderer.
         void getLogInformation();

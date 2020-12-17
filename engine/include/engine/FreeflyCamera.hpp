@@ -24,7 +24,13 @@ namespace engine
         glm::vec3 m_LeftVector;  /*!< The left vector. */
         glm::vec3 m_UpVector;    /*!< The up vector. */
 
-        float m_speed = 0.15;
+        float m_lastX = 0.f;
+        float m_lastY = 0.f;
+
+        // Input Data
+        float m_sensitivity = 0.85f;
+
+        float m_speed = 0.15f;
 
         /// \brief Calculates the front, left and up vectors of the camera.
         void computeDirectionVectors();
@@ -48,6 +54,13 @@ namespace engine
         /// \brief Rotates the camera to the top or the bottom according to the degree value.
         /// \param degrees : The value (in degrees) used to move the camera to the top or to the bottom.
         void rotateUp(float degrees) override;
+
+        /// \brief Sets the camera sensitivity value.
+        /// \param sensitivity : The value representing the speed apply to the camera.
+        inline void setSensitivity(const float sensitivity) override { m_sensitivity = sensitivity; };
+        /// \brief Sets the camera sensitivity value.
+        /// \param sensitivity : The value representing the speed apply to the camera.
+        inline float getSensitivity() const override { return m_sensitivity; };
 
         /// \brief Sets the camera speed value.
         /// \param speed : The value representing the speed apply to the camera.

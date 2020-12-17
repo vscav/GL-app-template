@@ -17,7 +17,8 @@ namespace engine
 
     int GLFWManager::initialize()
     {
-        if(debug) std::cout << "[GLFWManager] GLFW initialisation" << std::endl;
+        if (debug)
+            std::cout << "[GLFWManager] GLFW initialisation" << std::endl;
 
         if (!glfwInit())
         {
@@ -34,7 +35,7 @@ namespace engine
         // Initialize the GLEW library and attach all the OpenGL functions and extensions
         GLenum err = glewInit();
 
-        // If we had an error, return -1.  Be sure to see if glewExperimental isn't true, this worked for me.
+        // If we had an error, throw an error
         if (GLEW_OK != err)
         {
             glfwTerminate();
@@ -42,13 +43,14 @@ namespace engine
         }
         else
         {
-            if(debug) std::cout << "[GLFWManager] GLFW window successfully created" << std::endl;
+            if (debug)
+                std::cout << "[GLFWManager] GLFW window successfully created" << std::endl;
         }
 
-        // init OpenGL debug
+        // Initialize OpenGL debug
         initGLDebugOutput();
 
-        // get version info
+        // Get version info
         getLogInformation();
 
         m_inputManager = std::make_unique<InputManager>();
@@ -64,10 +66,8 @@ namespace engine
         return 0;
     }
 
-    void GLFWManager::getContext(int maj, int min)
+    void GLFWManager::getContext(int major, int minor)
     {
-        int major = maj;
-        int minor = min;
         glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, major);
         glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, minor);
         glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
@@ -79,7 +79,7 @@ namespace engine
         const GLubyte *renderer = glGetString(GL_RENDERER);
         const GLubyte *version = glGetString(GL_VERSION);
         std::cout << COLOR_YELLOW << "[Info] " << COLOR_RESET << "Renderer: " << renderer << std::endl;
-        std::cout << COLOR_YELLOW << "[Info] " << COLOR_RESET << "Version supported: " << version << std::endl;
+        std::cout << COLOR_YELLOW << "[Info] " << COLOR_RESET << "Supported version: " << version << std::endl;
     }
 
     void GLFWManager::createWindow()
@@ -151,6 +151,7 @@ namespace engine
     {
         if (glfwGetKey(m_window, GLFW_KEY_ESCAPE) == GLFW_PRESS || glfwWindowShouldClose(m_window) != 0)
         {
+            glfwSetWindowShouldClose(m_window, true);
             GLApplication::getInstance().exit();
         }
 
@@ -163,27 +164,23 @@ namespace engine
         if (glfwGetKey(m_window, GLFW_KEY_RIGHT) || glfwGetKey(m_window, GLFW_KEY_D))
             m_inputManager->keyPressed(InputCodes::Right);
 
-        int state = glfwGetMouseButton(m_window, GLFW_MOUSE_BUTTON_LEFT);
-        if (state == GLFW_PRESS)
+        double xpos, ypos;
+        glfwGetCursorPos(m_window, &xpos, &ypos);
+
+        if (m_firstMouse)
         {
-            double xpos, ypos;
-            glfwGetCursorPos(m_window, &xpos, &ypos);
-
-            if (m_firstMouse)
-            {
-                m_lastX = xpos;
-                m_lastY = ypos;
-                m_firstMouse = false;
-            }
-
-            GLfloat xoffset = m_lastX - xpos;
-            GLfloat yoffset = m_lastY - ypos;
-
             m_lastX = xpos;
             m_lastY = ypos;
-
-            m_inputManager->mouseMoved(xoffset, yoffset);
+            m_firstMouse = false;
         }
+
+        GLfloat xoffset = m_lastX - xpos;
+        GLfloat yoffset = m_lastY - ypos;
+
+        m_lastX = xpos;
+        m_lastY = ypos;
+
+        m_inputManager->mouseMoved(xoffset, yoffset);
 
         glfwPollEvents();
     }
@@ -197,7 +194,6 @@ namespace engine
 
         glViewport(0, 0, m_width, m_height);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-        // glClearColor(0.0, 0.0, 0.0, 0.0);
         glClearColor(0.25f, 0.25f, 0.25f, 1.0f);
     }
 
@@ -219,7 +215,8 @@ namespace engine
     void GLFWManager::destroy()
     {
         glfwDestroyWindow(m_window);
-        if(debug) std::cout << "[GLFWManager] Destroy GLFW window" << std::endl;
+        if (debug)
+            std::cout << "[GLFWManager] Destroy GLFW window" << std::endl;
 
         glfwTerminate();
     }

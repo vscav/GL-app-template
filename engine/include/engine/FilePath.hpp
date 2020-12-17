@@ -1,10 +1,13 @@
 #pragma once
+#ifndef _FilePath_HPP_
+#define _FilePath_HPP_
 
 #include <string>
 
 namespace engine
 {
-
+    /// \class FilePath
+    /// \brief Utility class to create and work easily with file paths.
     class FilePath
     {
     private:
@@ -101,3 +104,5 @@ namespace std
         }
     };
 } // namespace std
+
+#endif /* _FilePath_HPP_ */
