@@ -18,19 +18,20 @@
 namespace engine
 {
 
+  /// \brief The different states in which the application can be found.
+  enum State
+  {
+    stateReady,
+    stateRun,
+    statePause,
+    stateExit
+  };
+
   /// \class GLApplication
   /// \brief Class which represents the core of the OpenGL application.
   class GLApplication
   {
   private:
-    /// \brief The different states in which the application can be found.
-    enum State
-    {
-      stateReady,
-      stateRun,
-      stateExit
-    };
-
     State m_state; /*!< The current state of the GL application (ready, run or exit). */
 
   protected:
@@ -64,6 +65,10 @@ namespace engine
 
     /// \brief Runs the GL application by changing the current state and starting the GL application main loop.
     void run();
+
+    /// \brief Returns the current state of the GL application (ready, running, paused, exited).
+    /// \return The current state of the GL application (ready, running, paused, exited).
+    inline State getState() const { return m_state; }
 
     /// \brief Returns the window manager (pointer) of the GL application.
     /// \return A pointer to the window manager of the GL application.

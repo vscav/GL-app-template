@@ -12,23 +12,15 @@ namespace engine
 		switch (code)
 		{
 		case Up:
-		case W:
-		case w:
 			GLApplication::getInstance().getCamera()->moveFront(GLApplication::getInstance().getCamera()->getSpeed());
 			break;
 		case Down:
-		case S:
-		case s:
 			GLApplication::getInstance().getCamera()->moveFront(-1 * GLApplication::getInstance().getCamera()->getSpeed());
 			break;
 		case Left:
-		case A:
-		case a:
 			GLApplication::getInstance().getCamera()->moveLeft(GLApplication::getInstance().getCamera()->getSpeed());
 			break;
 		case Right:
-		case D:
-		case d:
 			GLApplication::getInstance().getCamera()->moveLeft(-1 * GLApplication::getInstance().getCamera()->getSpeed());
 			break;
 		default:
@@ -42,7 +34,11 @@ namespace engine
 		if (GLApplication::getInstance().getCamera() == nullptr)
 			return;
 
-		// Have our manager send the mouse x and y deltas to our camera to process the rotations
+		// Apply camera sensitivity
+		mouseX *= GLApplication::getInstance().getCamera()->getSensitivity();
+		mouseY *= GLApplication::getInstance().getCamera()->getSensitivity();
+
+		// Have our manager send the mouse x and y deltas to our camera to process its rotations
 		GLApplication::getInstance().getCamera()->rotateLeft(mouseX);
 		GLApplication::getInstance().getCamera()->rotateUp(mouseY);
 	}

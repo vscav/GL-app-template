@@ -9,12 +9,13 @@
 
 namespace engine
 {
-
+    /// \class Texture
+    /// \brief Class used to represent a texture object.
     class Texture
     {
     private:
-        unsigned int m_nWidth = 0u;  /*!< The width of the image. */
-        unsigned int m_nHeight = 0u;  /*!< The height of the image. */
+        unsigned int m_nWidth = 0u;            /*!< The width of the image. */
+        unsigned int m_nHeight = 0u;           /*!< The height of the image. */
         std::unique_ptr<glm::vec4[]> m_Pixels; /*!< A unique pointer of the array containing the pixels of the image. */
 
     public:
@@ -43,6 +44,8 @@ namespace engine
     /// \return A unique pointer to the loaded image.
     std::unique_ptr<Texture> loadImage(const FilePath &filepath);
 
+    /// \class TextureManager
+    /// \brief Class for managing all the images used as texture.
     class TextureManager
     {
     private:
@@ -50,6 +53,8 @@ namespace engine
 
     public:
         /// \brief Loads the texture from a filepath object.
+        /// \param filepath : The filepath (FilePath object) to the image.
+        /// \return A pointer to the texture created.
         static const Texture *loadImage(const FilePath &filepath);
     };
 

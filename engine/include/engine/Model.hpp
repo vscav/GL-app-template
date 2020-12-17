@@ -12,7 +12,8 @@
 
 namespace engine
 {
-
+    /// \class Model
+    /// \brief Class for instanciating 3D model and using gltf file routine (with tiny gltf library).
     class Model
     {
     public:
