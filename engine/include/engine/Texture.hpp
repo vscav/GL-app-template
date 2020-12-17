@@ -1,25 +1,56 @@
 #pragma once
 
-#include <engine/Image.hpp>
-#include <engine/Container.hpp>
-
-#include <GL/glew.h>
+#include <engine/dependencies/glm.hpp>
+#include <engine/FilePath.hpp>
 
 #include <vector>
-#include <string>
+#include <memory>
+#include <unordered_map>
 
 namespace engine
 {
 
     class Texture
     {
+    private:
+        unsigned int m_nWidth = 0u;  /*!< The width of the image. */
+        unsigned int m_nHeight = 0u;  /*!< The height of the image. */
+        std::unique_ptr<glm::vec4[]> m_Pixels; /*!< A unique pointer of the array containing the pixels of the image. */
+
     public:
-        /// \brief Loads a texture.
-        /// \return The ID of the texture loaded.
-        static GLuint loadTexture(std::string &path);
-        /// \brief Loads a cube map texture.
-        /// \return The ID of the cube map texture loaded.
-        static GLuint loadCubeMapTexture(Container<std::string> faces);
+        /// \brief Constructor.
+        explicit Texture(unsigned int width, unsigned int height);
+
+        /// \brief Gets the width of the image.
+        /// \return The width of the image.
+        inline unsigned int getWidth() const { return m_nWidth; };
+
+        /// \brief Gets the height of the image.
+        /// \return The height of the image.
+        inline unsigned int getHeight() const { return m_nHeight; };
+
+        /// \brief Gets the pixels of the image.
+        /// \return A pointer to the pixels data of the image.
+        inline const glm::vec4 *getPixels() const { return m_Pixels.get(); };
+
+        /// \brief Gets the pixels of the image.
+        /// \return A pointer to the pixels data of the image.
+        inline glm::vec4 *getPixels() { return m_Pixels.get(); };
+    };
+
+    /// \brief Loads an image.
+    /// \param filepath : The filepath (FilePath object) to the image.
+    /// \return A unique pointer to the loaded image.
+    std::unique_ptr<Texture> loadImage(const FilePath &filepath);
+
+    class TextureManager
+    {
+    private:
+        static std::unordered_map<FilePath, std::unique_ptr<Texture>> m_textureMap; /*!< A map to store already loaded images. */
+
+    public:
+        /// \brief Loads the texture from a filepath object.
+        static const Texture *loadImage(const FilePath &filepath);
     };
 
 } // namespace engine

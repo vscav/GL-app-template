@@ -2,6 +2,7 @@
 #include <engine/utils/gltf.hpp>
 #include <engine/Shader.hpp>
 #include <engine/dependencies/glm.hpp>
+#include <engine/utils/common.hpp>
 
 #include <iostream>
 
@@ -14,7 +15,7 @@ namespace engine
             throw std::runtime_error("[GLTF Model] Couldn't load GLTF file");
         }
 
-        std::cout << "[GLTF Model] File has been successfully loaded" << std::endl;
+        if(debug) std::cout << "[GLTF Model] GLTF file has been successfully read and loaded" << std::endl;
 
         m_lightFromCamera = false;
         m_applyOcclusion = true;
@@ -307,7 +308,7 @@ namespace engine
 
     bool Model::loadGltfFile(tinygltf::Model &model)
     {
-        std::clog << "[Model] Loading file " << m_gltfFilePath << std::endl;
+        if(debug) std::clog << "[Model] Loading file " << m_gltfFilePath << std::endl;
 
         tinygltf::TinyGLTF loader;
 
@@ -507,7 +508,7 @@ namespace engine
 
         glBindVertexArray(0);
 
-        std::cout << "[GLTF Model] Number of Vertex Array Objects: " << vertexArrayObjects.size() << std::endl;
+        if(debug) std::cout << "[GLTF Model] Number of Vertex Array Objects: " << vertexArrayObjects.size() << std::endl;
 
         return vertexArrayObjects;
     }

@@ -25,6 +25,10 @@ namespace engine
         /// \param a : The value to add to the container.
         inline void add(T a) { m_data.push_back(a); };
 
+        /// \brief Overloads the brackets to Get/Set an element at position/index i.
+        /// \return The element at position/index i.
+        inline T &operator[](unsigned int i) { return m_data[i]; };
+
         /// \brief Returns the size/length of the container.
         /// \return The size/length of the container.
         inline int size() const { return m_data.size(); };

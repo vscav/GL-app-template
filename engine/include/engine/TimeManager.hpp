@@ -16,10 +16,8 @@ namespace engine
     private:
         /// \brief Default constructor.
         TimeManager() = default;
-        /// \brief Copy constructor.
-        TimeManager(TimeManager const &) = delete;
-        /// \brief Affectation operator.
-        TimeManager &operator=(TimeManager const &) = delete;
+        /// \brief Default destructor.
+        ~TimeManager() = default;
 
     public:
         /// \brief Gets the instance of the manager, or initializes and returns the instance.
@@ -29,6 +27,11 @@ namespace engine
 
             return instance;
         }
+
+        /// \brief Copy constructor.
+        TimeManager(TimeManager const &) = delete;
+        /// \brief Affectation operator.
+        TimeManager &operator=(TimeManager const &) = delete;
 
         /// \brief Calculates our current scene's frames per second and displays it in the console.
         /// \param writeToConsole : A boolean to indicate whether or not we display the value in the console.

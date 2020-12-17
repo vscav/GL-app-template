@@ -1,4 +1,5 @@
 #include <engine/ElementBufferObject.hpp>
+#include <engine/utils/common.hpp>
 
 #include <iostream>
 
@@ -12,7 +13,7 @@ namespace engine
 
     ElementBufferObject::~ElementBufferObject()
     {
-        std::cout << "[EBO] Delete EBO with index " << m_index << std::endl;
+        if(debug) std::cout << "[EBO] Delete EBO with index " << m_index << std::endl;
         glDeleteBuffers(1, &m_index);
     }
 

@@ -39,7 +39,7 @@ public:
   /// \param width : The application width value.
   /// \param height : The application height value.
   /// \param fullScreen : A boolean to determine if the application window is in full screen mode.
-  Application(std::string title, int width, int height, bool fullScreen);
+  explicit Application(std::string title, int width, int height, bool fullScreen);
   /// \brief Destructor.
   virtual ~Application() = default;
 };

@@ -12,7 +12,7 @@ namespace engine
 
     /// \class FreeflyCamera
     /// \brief Class for creating a freefly camera object, which is an implementation of the abstract base class Camera.
-    class FreeflyCamera : public Camera
+    class FreeflyCamera final : public Camera
     {
     private:
         glm::vec3 m_Position; /*!< The position of the camera. */
@@ -24,7 +24,7 @@ namespace engine
         glm::vec3 m_LeftVector;  /*!< The left vector. */
         glm::vec3 m_UpVector;    /*!< The up vector. */
 
-        float m_speed = 0.05;
+        float m_speed = 0.15;
 
         /// \brief Calculates the front, left and up vectors of the camera.
         void computeDirectionVectors();
@@ -54,7 +54,7 @@ namespace engine
         inline void setSpeed(const float speed) override { m_speed = speed; };
         /// \brief Gets the camera speed value.
         /// \return The current speed of the camera.
-        inline float const getSpeed() const override { return m_speed; };
+        inline float getSpeed() const override { return m_speed; };
 
         /// \brief Calculates and get the view matrix of the camera based on its member variables.
         /// \return The view matrix of the camera.

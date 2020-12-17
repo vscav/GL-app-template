@@ -1,11 +1,10 @@
-#include <engine/GLError.hpp>
 #include <engine/FreeflyCamera.hpp>
 #include <engine/GLFWManager.hpp>
 
 #include "../include/Application.hpp"
 #include "../include/utils/directory.hpp"
 
-#include <functional>
+// #include <functional>
 #include <string>
 
 Application::Application()
@@ -20,7 +19,7 @@ Application::Application()
           "application/res/textures/skybox/space/right.png",
           "application/res/textures/skybox/space/top.png"),
       m_cubeMapShader("application/res/shaders/skybox.vert", "application/res/shaders/skybox.frag"),
-      m_model("application/res/models/Sponza.gltf"),
+      m_model("application/res/models/spaceship/scene.gltf"),
       m_modelShader("application/res/shaders/forward.vert", "application/res/shaders/pbr_directional_light.frag")
 {
   // m_windowManager = std::move(std::make_unique<engine::GLFWManager>());
@@ -43,7 +42,7 @@ Application::Application(std::string title, int width, int height, bool fullScre
           "application/res/textures/skybox/space/right.png",
           "application/res/textures/skybox/space/top.png"),
       m_cubeMapShader("application/res/shaders/skybox.vert", "application/res/shaders/skybox.frag"),
-      m_model("application/res/models/Sponza.gltf"),
+      m_model("application/res/models/spaceship/scene.gltf"),
       m_modelShader("application/res/shaders/forward.vert", "application/res/shaders/pbr_directional_light.frag")
 {
   // m_windowManager = std::move(std::make_unique<engine::GLFWManager>(title, width, height, fullScreen));

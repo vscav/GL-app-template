@@ -3,7 +3,7 @@
 #define _Sphere_HPP_
 
 #include <engine/Camera.hpp>
-#include <engine/Common.hpp>
+#include <engine/Shape.hpp>
 #include <engine/VertexBufferObject.hpp>
 #include <engine/VertexArrayObject.hpp>
 #include <engine/Shader.hpp>

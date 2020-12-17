@@ -1,88 +1,60 @@
 #include <engine/Texture.hpp>
+#include <engine/utils/common.hpp>
+// #define STB_IMAGE_IMPLEMENTATION
+#include <engine/dependencies/stb_image.h>
+
+#include <iostream>
 
 namespace engine
 {
 
-    GLuint Texture::loadTexture(std::string &path)
+    Texture::Texture(unsigned int width, unsigned int height)
+        : m_nWidth(width), m_nHeight(height), m_Pixels(new glm::vec4[width * height])
     {
-        GLuint textureID;
-
-        glGenTextures(1, &textureID);
-        glBindTexture(GL_TEXTURE_2D, textureID);
-
-        unsigned int x = 0, y = 0;
-
-        std::unique_ptr<Image> texture = loadImage(path);
-
-        if (texture != nullptr)
-        {
-            x = texture->getWidth();
-            y = texture->getHeight();
-        }
-
-        glTexImage2D(GL_TEXTURE_2D,
-                     0,
-                     GL_RGB,
-                     x,
-                     y,
-                     0,
-                     GL_RGB,
-                     GL_UNSIGNED_BYTE,
-                     texture->getPixels());
-        glGenerateMipmap(GL_TEXTURE_2D);
-
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-
-        glBindTexture(GL_TEXTURE_2D, 0);
-
-        return textureID;
     }
 
-    GLuint Texture::loadCubeMapTexture(Container<std::string> faces)
+    std::unique_ptr<Texture> loadImage(const FilePath &filepath)
     {
-        unsigned int textureID;
-
-        glGenTextures(1, &textureID);
-        glBindTexture(GL_TEXTURE_CUBE_MAP, textureID);
-
-        unsigned int x = 0, y = 0, i = 0;
-
-        Iterator<std::string, Container<std::string>> *it = faces.CreateIterator();
-        for (it->first(); !it->isDone(); it->next())
+        int x, y, n;
+        unsigned char *data = stbi_load(filepath.c_str(), &x, &y, &n, 4);
+        if (!data)
         {
-            std::unique_ptr<Image> sideTexture = loadImage(faces.at(i));
-
-            if (sideTexture != nullptr)
-            {
-                x = sideTexture->getWidth();
-                y = sideTexture->getHeight();
-            }
-
-            glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X + i,
-                         0,
-                         GL_RGBA,
-                         x,
-                         y,
-                         0,
-                         GL_RGBA,
-                         GL_FLOAT,
-                         sideTexture->getPixels());
-
-            i++;
+            if(debug) std::cerr << "[Texture] ERROR: Loading image " << filepath << ": " << stbi_failure_reason() << std::endl;
+            return std::unique_ptr<Texture>();
         }
+        std::unique_ptr<Texture> pImage(new Texture(x, y));
+        unsigned int size = x * y;
+        auto scale = 1.f / 255;
+        auto ptr = pImage->getPixels();
+        for (auto i = 0u; i < size; ++i)
+        {
+            auto offset = 4 * i;
+            ptr->r = (float)data[offset] * scale;
+            ptr->g = (float)data[offset + 1] * scale;
+            ptr->b = (float)data[offset + 2] * scale;
+            ptr->a = (float)data[offset + 3] * scale;
+            ++ptr;
+        }
+        stbi_image_free(data);
+        return pImage;
+    }
 
-        glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-        glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-        glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-        glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
-        glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
+    std::unordered_map<FilePath, std::unique_ptr<Texture>> TextureManager::m_textureMap;
 
-        glBindTexture(GL_TEXTURE_CUBE_MAP, 0);
-
-        return textureID;
+    const Texture *TextureManager::loadImage(const FilePath &filepath)
+    {
+        auto it = m_textureMap.find(filepath);
+        if (it != std::end(m_textureMap))
+        {
+            return (*it).second.get();
+        }
+        auto pImage = engine::loadImage(filepath);
+        if (!pImage)
+        {
+            return nullptr;
+        }
+        auto &img = m_textureMap[filepath] = std::move(pImage);
+        return img.get();
     }
 
 } // namespace engine

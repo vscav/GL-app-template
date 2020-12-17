@@ -34,8 +34,8 @@ namespace engine
 
         struct VaoRange
         {
-            GLsizei begin; // Index of first element in the vertex array Object
-            GLsizei count; // Number of elements in range
+            GLsizei begin; /*!< Index of first element in the vertex array Object. */
+            GLsizei count; /*!< Number of elements in range. */
         };
     };
 
