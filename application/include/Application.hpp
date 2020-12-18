@@ -18,13 +18,13 @@
 class Application : public engine::GLApplication
 {
 private:
-  engine::Sphere m_sphere;        /*!< A sphere object. */
+  engine::Sphere m_sphere;       /*!< A sphere object. */
   engine::Shader m_sphereShader; /*!< The shaders which will be used for the sphere object. */
 
-  engine::CubeMap m_cubeMap;       /*!< A cube map object. */
+  engine::CubeMap m_cubeMap;      /*!< A cube map object. */
   engine::Shader m_cubeMapShader; /*!< The shaders which will be used for the cube map object. */
 
-  engine::Model m_model; /*!< A model object. */
+  engine::Model m_model;        /*!< A model object. */
   engine::Shader m_modelShader; /*!< The shaders which will be used for the model object. */
 
 protected:

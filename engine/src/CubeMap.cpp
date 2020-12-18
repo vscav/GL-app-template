@@ -51,7 +51,7 @@ namespace engine
             1.0f, -1.0f, 1.0f};
 
         Container<GLfloat> dest;
-        
+
         for (GLfloat i : vertices)
             dest.add(i);
 
@@ -99,6 +99,8 @@ namespace engine
         Renderer::getInstance().sendModelMatrixUniforms(glm::mat4(1.0f), shader, true);
 
         shader.bind();
+
+        shader.setVec3f("uFogColor", 0.0f, 0.0f, 0.0f);
 
         m_vao.bind();
 
