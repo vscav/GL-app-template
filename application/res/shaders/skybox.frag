@@ -6,9 +6,9 @@ in vec3 vTexCoords;
 
 uniform samplerCube skybox;
 
-out vec4 fFragColor;
+out vec4 fColor;
 
 void main()
 {
-    fFragColor = texture(skybox, vTexCoords);
+    fColor = texture(skybox, vTexCoords);
 }

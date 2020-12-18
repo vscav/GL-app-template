@@ -10,7 +10,7 @@
 Application::Application()
     : GLApplication(),
       m_sphere(1, 64, 32),
-      m_sphereShader("application/res/shaders/3D.vert", "application/res/shaders/directionallight.frag"),
+      m_sphereShader("application/res/shaders/forward.vert", "application/res/shaders/directionallight.frag"),
       m_cubeMap(
           "application/res/textures/skybox/space/front.png",
           "application/res/textures/skybox/space/left.png",
@@ -20,7 +20,7 @@ Application::Application()
           "application/res/textures/skybox/space/top.png"),
       m_cubeMapShader("application/res/shaders/skybox.vert", "application/res/shaders/skybox.frag"),
       m_model("application/res/models/spaceship/scene.gltf"),
-      m_modelShader("application/res/shaders/forward.vert", "application/res/shaders/pbr_directional_light.frag")
+      m_modelShader("application/res/shaders/forward.vert", "application/res/shaders/pbr_directionallight.frag")
 {
   // m_windowManager = std::move(std::make_unique<engine::GLFWManager>());
   // m_camera = std::move(std::make_unique<engine::FreeflyCamera>());
@@ -33,7 +33,7 @@ Application::Application(std::string title, int width, int height, bool fullScre
     : // GLApplication(),
       GLApplication(title, width, height, fullScreen),
       m_sphere(1, 64, 32),
-      m_sphereShader("application/res/shaders/3D.vert", "application/res/shaders/directionallight.frag"),
+      m_sphereShader("application/res/shaders/forward.vert", "application/res/shaders/directionallight.frag"),
       m_cubeMap(
           "application/res/textures/skybox/space/front.png",
           "application/res/textures/skybox/space/left.png",
@@ -43,7 +43,7 @@ Application::Application(std::string title, int width, int height, bool fullScre
           "application/res/textures/skybox/space/top.png"),
       m_cubeMapShader("application/res/shaders/skybox.vert", "application/res/shaders/skybox.frag"),
       m_model("application/res/models/spaceship/scene.gltf"),
-      m_modelShader("application/res/shaders/forward.vert", "application/res/shaders/pbr_directional_light.frag")
+      m_modelShader("application/res/shaders/forward.vert", "application/res/shaders/pbr_directionallight.frag")
 {
   // m_windowManager = std::move(std::make_unique<engine::GLFWManager>(title, width, height, fullScreen));
   // m_camera = std::move(std::make_unique<engine::FreeflyCamera>());

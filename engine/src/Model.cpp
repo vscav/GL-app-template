@@ -1,6 +1,7 @@
 #include <engine/Model.hpp>
 #include <engine/utils/gltf.hpp>
 #include <engine/Shader.hpp>
+#include <engine/Renderer.hpp>
 #include <engine/dependencies/glm.hpp>
 #include <engine/utils/common.hpp>
 
@@ -205,7 +206,6 @@ namespace engine
         // Lambda function to draw the scene
         const auto drawScene = [&]() {
             glm::mat4 viewMatrix = camera->getViewMatrix();
-            glm::mat4 projMatrix = camera->getProjectionMatrix();
 
             if (uLightDirectionLocation >= 0)
             {
@@ -246,17 +246,7 @@ namespace engine
                     // camera, or a light)
                     if (node.mesh >= 0)
                     {
-                        const auto mvMatrix =
-                            viewMatrix * modelMatrix; // Also called localToCamera matrix
-                        const auto mvpMatrix =
-                            projMatrix * mvMatrix; // Also called localToScreen matrix
-                        // Normal matrix is necessary to maintain normal vectors
-                        // orthogonal to tangent vectors
-                        const auto normalMatrix = glm::transpose(glm::inverse(mvMatrix));
-
-                        shader.setMat4("uModelViewProjMatrix", mvpMatrix);
-                        shader.setMat4("uModelViewMatrix", mvMatrix);
-                        shader.setMat4("uNormalMatrix", normalMatrix);
+                        Renderer::getInstance().sendModelMatrixUniforms(modelMatrix, shader);
 
                         const auto &mesh = m_model.meshes[node.mesh];
                         const auto &vaoRange = m_meshToVertexArrays[node.mesh];

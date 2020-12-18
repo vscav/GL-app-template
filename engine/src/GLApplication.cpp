@@ -1,5 +1,6 @@
 #include <engine/GLApplication.hpp>
 #include <engine/GLFWManager.hpp>
+#include <engine/Renderer.hpp>
 #include <engine/utils/common.hpp>
 
 namespace engine
@@ -20,6 +21,7 @@ namespace engine
         m_windowManager(new GLFWManager()),
         m_camera(new FreeflyCamera())
   {
+    Renderer::getInstance().setCamera(m_camera);
     currentGLApplication = this;
   }
 
@@ -28,6 +30,7 @@ namespace engine
         m_windowManager(new GLFWManager(title, width, height, fullScreen)),
         m_camera(new FreeflyCamera())
   {
+    Renderer::getInstance().setCamera(m_camera);
     currentGLApplication = this;
   }
 

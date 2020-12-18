@@ -36,7 +36,7 @@ namespace engine
 
   protected:
     std::unique_ptr<GLWindowManager> m_windowManager = std::make_unique<GLFWManager>(); /*!< A unique pointer to the window manager of the application (default is a GLFWManager). */
-    std::unique_ptr<Camera> m_camera = std::make_unique<FreeflyCamera>();               /*!< A unique pointer to the camera used by the application (default is a FreeflyCamera). */
+    std::shared_ptr<Camera> m_camera = std::make_shared<FreeflyCamera>();               /*!< A unique pointer to the camera used by the application (default is a FreeflyCamera). */
 
     /// \brief The GL application loop (run until the user asks to quit).
     virtual void loop();

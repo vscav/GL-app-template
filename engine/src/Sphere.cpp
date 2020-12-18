@@ -1,5 +1,6 @@
 #include <engine/Sphere.hpp>
 #include <engine/Camera.hpp>
+#include <engine/Renderer.hpp>
 
 namespace engine
 {
@@ -44,26 +45,8 @@ namespace engine
 
     void Sphere::render(const Camera *camera, Shader &shader, float time)
     {
-        glm::mat4 MVMatrix = camera->getViewMatrix();
-        glm::mat4 ProjectionMatrix = camera->getProjectionMatrix();
-
-        shader.bind();
-
-        shader.setMat4("uMVMatrix", MVMatrix);
-        shader.setMat4("uNormalMatrix", glm::transpose(glm::inverse(MVMatrix)));
-        shader.setMat4("uMVPMatrix", ProjectionMatrix * MVMatrix);
-
-        // shader.setVec3f("uCameraPosition", camera->getPosition());
-
-        // Directional light
-        glm::mat4 lightMVMatrix = glm::rotate(MVMatrix, time, glm::vec3(0, 1, 0));
-        glm::vec3 lightDir_vs(lightMVMatrix * glm::vec4(1, 1, 1, 0));
-
-        shader.setVec3f("uLightIntensity", 1.0, 1.0, 1.0);
-        shader.setVec3f("uLightDir_vs", lightDir_vs);
-        shader.setVec3f("uKd", 0, 0.5, 0.8);
-        shader.setVec3f("uKs", 0, 0, 0.25);
-        shader.setFloat("uShininess", 2.75);
+        Renderer::getInstance().sendModelMatrixUniforms(glm::mat4(1.0f), shader);
+        Renderer::getInstance().sendBlinnPhongUniforms(shader);
 
         m_vao.bind();
 
