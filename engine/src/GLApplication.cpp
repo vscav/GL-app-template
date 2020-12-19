@@ -16,19 +16,19 @@ namespace engine
       throw std::runtime_error("There is no current GLApplication");
   }
 
-  GLApplication::GLApplication()
+  GLApplication::GLApplication(Camera* camera, GLWindowManager* manager)
       : m_state(stateReady),
-        m_windowManager(new GLFWManager()),
-        m_camera(new FreeflyCamera())
+        m_windowManager(manager),
+        m_camera(camera)
   {
     Renderer::getInstance().setCamera(m_camera);
     currentGLApplication = this;
   }
 
-  GLApplication::GLApplication(std::string title, int width, int height, bool fullScreen)
+  GLApplication::GLApplication(Camera* camera, GLWindowManager* manager, std::string title, int width, int height, bool fullScreen)
       : m_state(stateReady),
-        m_windowManager(new GLFWManager(title, width, height, fullScreen)),
-        m_camera(new FreeflyCamera())
+        m_windowManager(manager),
+        m_camera(camera)
   {
     Renderer::getInstance().setCamera(m_camera);
     currentGLApplication = this;

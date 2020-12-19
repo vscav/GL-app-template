@@ -8,7 +8,7 @@
 #include <string>
 
 Application::Application()
-    : GLApplication(),
+    : engine::GLApplication(new engine::FreeflyCamera(), new engine::GLFWManager()),
       m_sphere(1, 64, 32),
       m_sphereShader("application/res/shaders/forward.vert", "application/res/shaders/directionallight.frag"),
       m_cubeMap(
@@ -30,8 +30,7 @@ Application::Application()
 }
 
 Application::Application(std::string title, int width, int height, bool fullScreen)
-    : // GLApplication(),
-      GLApplication(title, width, height, fullScreen),
+    : engine::GLApplication(new engine::FreeflyCamera(), new engine::GLFWManager(), title, width, height, fullScreen),
       m_sphere(1, 64, 32),
       m_sphereShader("application/res/shaders/forward.vert", "application/res/shaders/directionallight.frag"),
       m_cubeMap(

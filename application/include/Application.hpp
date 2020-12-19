@@ -16,7 +16,8 @@
 /// \class Application
 /// \brief Class which inherites from the global GLApplication class.
 class Application : public engine::GLApplication
-{
+{ 
+
 private:
   engine::Sphere m_sphere;       /*!< A sphere object. */
   engine::Shader m_sphereShader; /*!< The shaders which will be used for the sphere object. */

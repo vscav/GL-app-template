@@ -35,21 +35,21 @@ namespace engine
     State m_state; /*!< The current state of the GL application (ready, run or exit). */
 
   protected:
-    std::unique_ptr<GLWindowManager> m_windowManager = std::make_unique<GLFWManager>(); /*!< A unique pointer to the window manager of the application (default is a GLFWManager). */
-    std::shared_ptr<Camera> m_camera = std::make_shared<FreeflyCamera>();               /*!< A unique pointer to the camera used by the application (default is a FreeflyCamera). */
+    std::unique_ptr<GLWindowManager> m_windowManager; /*!< A unique pointer to the window manager of the application (default is a GLFWManager). */
+    std::shared_ptr<Camera> m_camera;               /*!< A unique pointer to the camera used by the application (default is a FreeflyCamera). */
 
     /// \brief The GL application loop (run until the user asks to quit).
     virtual void loop();
 
   public:
     /// \brief Constructor.
-    GLApplication();
+    GLApplication(Camera* camera, GLWindowManager* manager);
     /// \brief Parameterized constructor.
     /// \param title : The GL application title (string).
     /// \param width : The GL application width value.
     /// \param height : The GL application height value.
     /// \param fullScreen : A boolean to determine if the GL application window is in full screen mode.
-    explicit GLApplication(std::string title, int width, int height, bool fullScreen);
+    explicit GLApplication(Camera* camera, GLWindowManager* manager, std::string title, int width, int height, bool fullScreen);
     /// \brief Copy constructor.
     GLApplication(GLApplication const &) = delete;
     /// \brief Affectation/Copy assignment operator.
