@@ -26,9 +26,9 @@ namespace engine
         float m_lastX = 0.f;
         float m_lastY = 0.f;
 
-        float m_sensitivity = 0.85f;  /*!< The camera sensitivity. */
+        float m_sensitivity = 0.2f; /*!< The camera sensitivity. */
 
-        float m_speed = 0.15f;  /*!< The camera speed. */
+        float m_speed = 0.5f; /*!< The camera speed. */
 
         /// \brief Calculates the front, left and up vectors of the camera.
         void computeDirectionVectors();
@@ -45,7 +45,7 @@ namespace engine
         /// \brief Moves the camera to the right or to the left according to the t value.
         /// \param t : The value used to move the camera on the right or on the left.
         // void moveLeft(float t) override;
-        void moveLeft(float t);
+        void moveLeft(float t) override;
 
         /// \brief Rotates the camera to the right or to the left according to the degree value.
         /// \param degrees : The value (in degrees) used to move the camera on the right or on the left.

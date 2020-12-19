@@ -5,11 +5,10 @@
 #include "../include/Application.hpp"
 #include "../include/utils/directory.hpp"
 
-// #include <functional>
 #include <string>
 
 Application::Application()
-    : engine::GLApplication(new engine::FreeflyCamera(), new engine::GLFWManager()),
+    : engine::GLApplication(new engine::TrackballCamera(), new engine::GLFWManager()),
       m_sphere(1, 64, 32),
       m_sphereShader("application/res/shaders/forward.vert", "application/res/shaders/directionallight.frag"),
       m_cubeMap(
@@ -50,12 +49,12 @@ void Application::loop()
   // Get current context time
   float t = getWindowManager()->getTimeElapsed();
 
-  // // Render cube map
+  // Render cube map
   getWindowManager()->getWindowUtils()->enableDepthTesting(false);
   m_cubeMap.render(getCamera(), m_cubeMapShader, t);
   getWindowManager()->getWindowUtils()->enableDepthTesting(true);
 
-  // // Render Sphere
+  // Render Sphere
   // m_sphere.render(getCamera(), m_sphereShader, t);
 
   // Render Model

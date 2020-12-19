@@ -12,7 +12,7 @@ namespace engine
         : m_position(glm::vec3(.0f, .0f, 5.0f)), m_phi(M_PI), m_theta(.0f)
     {
         if (debug)
-            std::cout << "[Camera] New freefly camera created" << std::endl;
+            std::cout << "[Camera] Freefly camera created" << std::endl;
         computeDirectionVectors();
     }
 
@@ -23,27 +23,29 @@ namespace engine
         m_upVector = glm::cross(m_frontVector, m_leftVector);
     }
 
-    void FreeflyCamera::moveLeft(float t)
+    void FreeflyCamera::moveLeft(const float t)
     {
-        m_position += t * m_leftVector;
+        m_position += t * m_leftVector * m_speed;
         computeDirectionVectors();
     }
 
-    void FreeflyCamera::moveFront(float t)
+    void FreeflyCamera::moveFront(const float t)
     {
-        m_position += t * m_frontVector;
+        m_position += t * m_frontVector * m_speed;
         computeDirectionVectors();
     }
 
-    void FreeflyCamera::rotateLeft(float degrees)
+    void FreeflyCamera::rotateLeft(const float degrees)
     {
-        m_phi += glm::radians(degrees);
+        m_phi += glm::radians(degrees) * m_sensitivity;
+
         computeDirectionVectors();
     }
 
-    void FreeflyCamera::rotateUp(float degrees)
+    void FreeflyCamera::rotateUp(const float degrees)
     {
-        m_theta += glm::radians(degrees);
+        m_theta += glm::radians(degrees) * m_sensitivity;
+
         computeDirectionVectors();
     }
 

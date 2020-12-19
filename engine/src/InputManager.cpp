@@ -18,10 +18,10 @@ namespace engine
 			GLApplication::getInstance().getCamera()->moveFront(-1 * GLApplication::getInstance().getCamera()->getSpeed());
 			break;
 		case Left:
-			// GLApplication::getInstance().getCamera()->moveLeft(GLApplication::getInstance().getCamera()->getSpeed());
+			GLApplication::getInstance().getCamera()->moveLeft(GLApplication::getInstance().getCamera()->getSpeed());
 			break;
 		case Right:
-			// GLApplication::getInstance().getCamera()->moveLeft(-1 * GLApplication::getInstance().getCamera()->getSpeed());
+			GLApplication::getInstance().getCamera()->moveLeft(-1 * GLApplication::getInstance().getCamera()->getSpeed());
 			break;
 		default:
 			break;
@@ -33,10 +33,6 @@ namespace engine
 		// Return if we don't have a valid camera assigned
 		if (GLApplication::getInstance().getCamera() == nullptr)
 			return;
-
-		// Apply camera sensitivity
-		mouseX *= GLApplication::getInstance().getCamera()->getSensitivity();
-		mouseY *= GLApplication::getInstance().getCamera()->getSensitivity();
 
 		// Have our manager send the mouse x and y deltas to our camera to process its rotations
 		GLApplication::getInstance().getCamera()->rotateLeft(mouseX);

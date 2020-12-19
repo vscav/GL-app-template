@@ -9,10 +9,10 @@ namespace engine
 {
 
     // camera distance to the plane (size of the plane on screen)
-    constexpr float cameraDistanceToPlayer = 10.f;
+    constexpr float cameraDistanceToPlayer = 5.0f;
     // camera distance to the plane (size of the plane on screen)
-    constexpr float maxDistance = 0.f;
-    constexpr float minDistance = -15.f;
+    constexpr float maximumDistance = -3.0f;
+    constexpr float minimumDistance = -10.0f;
 
     /// \class TrackballCamera
     /// \brief Class for creating a trackball camera object, which is an implementation of the abstract base class Camera.
@@ -26,9 +26,9 @@ namespace engine
 
         float m_zoom; /*!< The camera zoom. */
 
-        float m_sensitivity = 0.85f; /*!< The camera sensitivity. */
+        float m_sensitivity = 0.3f; /*!< The camera sensitivity. */
 
-        float m_speed = 0.15f; /*!< The camera speed. */
+        float m_speed = 0.7f; /*!< The camera speed. */
 
     public:
         /// \brief Constructor.
@@ -39,6 +39,10 @@ namespace engine
         /// \brief Zoom in and out (exclusive Trackball Camera feature).
         /// \param delta : The value of the zoom.
         void moveFront(float delta) override;
+        /// \brief Moves the camera to the right or to the left according to the t value.
+        /// \param t : The value used to move the camera on the right or on the left.
+        // void moveLeft(float t) override;
+        void moveLeft(float t) override;
 
         /// \brief Rotates the camera on the horizontal axis.
         /// \param degrees : The value of the rotation in degree.
@@ -71,7 +75,7 @@ namespace engine
         /// \return The view projection matrix of the camera.
         glm::mat4 getVPMatrix() const override;
 
-        /// \brief Updates the camera zoom.
+        // /// \brief Updates the camera zoom.
         void update();
     };
 
