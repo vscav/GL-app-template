@@ -19,9 +19,9 @@ namespace engine
         /// \brief Moves the camera forward or backward according to a certain value.
         /// \param t : The value used to move the camera forward or back.
         virtual void moveFront(float t) = 0;
-        /// \brief Moves the camera to the right or to the left according to the t value.
-        /// \param t : The value used to move the camera on the right or on the left.
-        virtual void moveLeft(float t) = 0;
+        // /// \brief Moves the camera to the right or to the left according to the t value.
+        // /// \param t : The value used to move the camera on the right or on the left.
+        // virtual void moveLeft(float t) = 0;
 
         /// \brief Rotates the camera to the right or to the left according to the degree value.
         /// \param degrees : The value (in degrees) used to move the camera on the right or on the left.
@@ -54,9 +54,9 @@ namespace engine
         /// \return The view projection matrix of the camera.
         virtual glm::mat4 getVPMatrix() const = 0;
 
-        /// \brief Gets the current position of the camera.
-        /// \return The position of the camera.
-        virtual glm::vec3 const getPosition() const = 0;
+        // /// \brief Gets the current position of the camera.
+        // /// \return The position of the camera.
+        // virtual glm::vec3 const getPosition() const = 0;
     };
 
 } // namespace engine

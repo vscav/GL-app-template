@@ -4,7 +4,6 @@
 
 #include <engine/GLApplication.hpp>
 #include <engine/Shader.hpp>
-#include <engine/FreeflyCamera.hpp>
 #include <engine/Sphere.hpp>
 #include <engine/CubeMap.hpp>
 #include <engine/Model.hpp>

@@ -1,4 +1,5 @@
 #include <engine/FreeflyCamera.hpp>
+#include <engine/TrackballCamera.hpp>
 #include <engine/GLFWManager.hpp>
 
 #include "../include/Application.hpp"
@@ -22,11 +23,6 @@ Application::Application()
       m_model("application/res/models/spaceship/scene.gltf"),
       m_modelShader("application/res/shaders/forward.vert", "application/res/shaders/pbr_directionallight.frag")
 {
-  // m_windowManager = std::move(std::make_unique<engine::GLFWManager>());
-  // m_camera = std::move(std::make_unique<engine::FreeflyCamera>());
-
-  // m_windowManager = std::unique_ptr<engine::GLFWManager>(new engine::GLFWManager());
-  // m_camera = std::unique_ptr<engine::FreeflyCamera>(new engine::FreeflyCamera());
 }
 
 Application::Application(std::string title, int width, int height, bool fullScreen)
@@ -44,11 +40,6 @@ Application::Application(std::string title, int width, int height, bool fullScre
       m_model("application/res/models/spaceship/scene.gltf"),
       m_modelShader("application/res/shaders/forward.vert", "application/res/shaders/pbr_directionallight.frag")
 {
-  // m_windowManager = std::move(std::make_unique<engine::GLFWManager>(title, width, height, fullScreen));
-  // m_camera = std::move(std::make_unique<engine::FreeflyCamera>());
-
-  // m_windowManager = std::unique_ptr<engine::GLFWManager>(new engine::GLFWManager(title, width, height, fullScreen));
-  // m_camera = std::unique_ptr<engine::FreeflyCamera>(new engine::FreeflyCamera());
 }
 
 void Application::loop()

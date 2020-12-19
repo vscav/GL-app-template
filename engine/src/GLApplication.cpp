@@ -1,5 +1,4 @@
 #include <engine/GLApplication.hpp>
-#include <engine/GLFWManager.hpp>
 #include <engine/Renderer.hpp>
 #include <engine/utils/common.hpp>
 

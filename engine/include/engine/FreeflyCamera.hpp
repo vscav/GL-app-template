@@ -3,7 +3,6 @@
 #define _FreeflyCamera_HPP_
 
 #include <engine/Camera.hpp>
-#include <engine/dependencies/glm.hpp>
 
 #include <cmath>
 
@@ -15,22 +14,21 @@ namespace engine
     class FreeflyCamera final : public Camera
     {
     private:
-        glm::vec3 m_Position; /*!< The position of the camera. */
+        glm::vec3 m_position; /*!< The position of the camera. */
 
-        float m_fPhi;   /*!< Front vector Phi spherical coordinates. */
-        float m_fTheta; /*!< Front vector Theta spherical coordinates. */
+        float m_phi;   /*!< Front vector Phi spherical coordinates. */
+        float m_theta; /*!< Front vector Theta spherical coordinates. */
 
-        glm::vec3 m_FrontVector; /*!< The front vector. */
-        glm::vec3 m_LeftVector;  /*!< The left vector. */
-        glm::vec3 m_UpVector;    /*!< The up vector. */
+        glm::vec3 m_frontVector; /*!< The front vector. */
+        glm::vec3 m_leftVector;  /*!< The left vector. */
+        glm::vec3 m_upVector;    /*!< The up vector. */
 
         float m_lastX = 0.f;
         float m_lastY = 0.f;
 
-        // Input Data
-        float m_sensitivity = 0.85f;
+        float m_sensitivity = 0.85f;  /*!< The camera sensitivity. */
 
-        float m_speed = 0.15f;
+        float m_speed = 0.15f;  /*!< The camera speed. */
 
         /// \brief Calculates the front, left and up vectors of the camera.
         void computeDirectionVectors();
@@ -46,7 +44,8 @@ namespace engine
         void moveFront(float t) override;
         /// \brief Moves the camera to the right or to the left according to the t value.
         /// \param t : The value used to move the camera on the right or on the left.
-        void moveLeft(float t) override;
+        // void moveLeft(float t) override;
+        void moveLeft(float t);
 
         /// \brief Rotates the camera to the right or to the left according to the degree value.
         /// \param degrees : The value (in degrees) used to move the camera on the right or on the left.
@@ -57,10 +56,10 @@ namespace engine
 
         /// \brief Sets the camera sensitivity value.
         /// \param sensitivity : The value representing the speed apply to the camera.
-        inline void setSensitivity(const float sensitivity) override { m_sensitivity = sensitivity; };
+        inline void setSensitivity(const float sensitivity) { m_sensitivity = sensitivity; };
         /// \brief Sets the camera sensitivity value.
         /// \param sensitivity : The value representing the speed apply to the camera.
-        inline float getSensitivity() const override { return m_sensitivity; };
+        inline float getSensitivity() const { return m_sensitivity; };
 
         /// \brief Sets the camera speed value.
         /// \param speed : The value representing the speed apply to the camera.
@@ -81,7 +80,7 @@ namespace engine
 
         /// \brief Gets the current position of the camera.
         /// \return The position of the camera.
-        inline const glm::vec3 getPosition() const override { return m_Position; };
+        inline const glm::vec3 getPosition() const { return m_position; };
     };
 
 } // namespace engine
