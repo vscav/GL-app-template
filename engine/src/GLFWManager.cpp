@@ -38,7 +38,7 @@ namespace engine
         if (GLEW_OK != err)
         {
             glfwTerminate();
-            throw EngineException(std::string("Could initialize GLEW, error = ") + (const char *)glewGetErrorString(err), __FILE__, __LINE__);
+            throw EngineException(std::string("[GLFWManager] Could initialize GLEW, error = ") + (const char *)glewGetErrorString(err), __FILE__, __LINE__);
         }
         else if (debug)
             std::cout << "[GLFWManager] GLFW window successfully created" << std::endl;
@@ -106,7 +106,7 @@ namespace engine
         if (m_window == nullptr)
         {
             glfwTerminate();
-            throw EngineException("Couldn't create a window", __FILE__, __LINE__);
+            throw EngineException("[GLFWManager] Couldn't create a GLFW window", __FILE__, __LINE__);
         }
 
         // Create the OpenGL context from the window and settings specified

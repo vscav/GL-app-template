@@ -13,7 +13,7 @@ namespace engine
     if (currentGLApplication)
       return *currentGLApplication;
     else
-      throw EngineException("There is no current GLApplication", __FILE__, __LINE__);
+      throw EngineException("[GLApplication] There is no current GLApplication", __FILE__, __LINE__);
   }
 
   GLApplication::GLApplication(Camera *camera, GLWindowManager *manager)
