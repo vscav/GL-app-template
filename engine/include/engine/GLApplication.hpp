@@ -32,7 +32,7 @@ namespace engine {
 
     protected:
         std::unique_ptr<GLWindowManager> m_windowManager; /*!< A unique pointer to the window manager of the application. */
-        std::shared_ptr<Camera> m_camera;                 /*!< A unique pointer to the camera used by the application. */
+        std::shared_ptr<Camera> m_camera;                 /*!< A shared pointer to the camera used by the application and shared with the renderer. */
 
         /// \brief The GL application loop (run until the user asks to quit).
         virtual void loop();

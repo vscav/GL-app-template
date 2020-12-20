@@ -32,8 +32,8 @@ namespace engine
         int m_height;        /*!< The window height value. */
         bool m_fullScreen;   /*!< A boolean to determine if the window is in full screen mode. */
 
-        float m_lastX = m_width / 2.0f;  /*!< The last position of the mouse X position. */
-        float m_lastY = m_height / 2.0f; /*!< The last position of the mouse Y position. */
+        float m_lastX = float(m_width) / 2.0f;  /*!< The last position of the mouse X position. */
+        float m_lastY = float(m_height) / 2.0f; /*!< The last position of the mouse Y position. */
 
         float m_deltaTime; /*!< The GLFW window total time ellapsed. */
         float m_time;      /*!< The time difference between the previous frame that was drawn and the current frame of the GLFW window. */
@@ -46,7 +46,7 @@ namespace engine
         /// \param fullScreen : A boolean to determine if the window is in full screen mode.
         explicit GLFWManager(std::string title = "GL Application template", int width = 1280, int height = 720, bool fullScreen = false);
         /// \brief Destructor.
-        inline ~GLFWManager() { destroy(); };
+        inline ~GLFWManager() override { destroy(); };
 
         /// \brief Initializes the window and creates the OpenGL context.
         /// \return An integer acting as a boolean for success/fail information.

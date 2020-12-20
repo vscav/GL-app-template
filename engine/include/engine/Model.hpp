@@ -19,7 +19,7 @@ namespace engine
     public:
         /// \brief Parameterized constructor.
         /// \param gltfFilePath : The path to the GLTF file.
-        Model(const std::string &gltfFilePath);
+        explicit Model(const std::string &gltfFilePath);
         /// \brief Default destructor.
         ~Model() = default;
 

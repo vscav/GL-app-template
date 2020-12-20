@@ -56,10 +56,10 @@ namespace engine
 
         /// \brief Sets the camera sensitivity value.
         /// \param sensitivity : The value representing the speed apply to the camera.
-        inline void setSensitivity(const float sensitivity) { m_sensitivity = sensitivity; };
+        inline void setSensitivity(const float sensitivity) override { m_sensitivity = sensitivity; };
         /// \brief Sets the camera sensitivity value.
         /// \param sensitivity : The value representing the speed apply to the camera.
-        inline float getSensitivity() const { return m_sensitivity; };
+        inline float getSensitivity() const override { return m_sensitivity; };
 
         /// \brief Sets the camera speed value.
         /// \param speed : The value representing the speed apply to the camera.
