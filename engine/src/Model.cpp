@@ -1,8 +1,9 @@
 #include <engine/Model.hpp>
-#include <engine/utils/gltf.hpp>
 #include <engine/Shader.hpp>
 #include <engine/Renderer.hpp>
 #include <engine/dependencies/glm.hpp>
+#include <engine/EngineException.hpp>
+#include <engine/utils/gltf.hpp>
 #include <engine/utils/common.hpp>
 
 #include <iostream>
@@ -12,9 +13,7 @@ namespace engine
     Model::Model(const std::string &gltfFilePath) : m_gltfFilePath(gltfFilePath)
     {
         if (!loadGltfFile(m_model))
-        {
-            throw std::runtime_error("[GLTF Model] Couldn't load GLTF file");
-        }
+            throw EngineException("[GLTF Model] Couldn't load GLTF file", __FILE__, __LINE__);
 
         if (debug)
             std::cout << "[GLTF Model] GLTF file has been successfully read and loaded" << std::endl;
@@ -47,32 +46,21 @@ namespace engine
 
         shader.bind();
 
-        const auto uLightDirectionLocation =
-            shader.getUniform("uLightDirection");
-        const auto uLightIntensity =
-            shader.getUniform("uLightIntensity");
+        const auto uLightDirectionLocation = shader.getUniform("uLightDirection");
+        const auto uLightIntensity = shader.getUniform("uLightIntensity");
 
-        const auto uBaseColorTexture =
-            shader.getUniform("uBaseColorTexture");
-        const auto uBaseColorFactor =
-            shader.getUniform("uBaseColorFactor");
+        const auto uBaseColorTexture = shader.getUniform("uBaseColorTexture");
+        const auto uBaseColorFactor = shader.getUniform("uBaseColorFactor");
 
-        const auto uMetallicRoughnessTexture =
-            shader.getUniform("uMetallicRoughnessTexture");
-        const auto uMetallicFactor =
-            shader.getUniform("uMetallicFactor");
-        const auto uRoughnessFactor =
-            shader.getUniform("uRoughnessFactor");
+        const auto uMetallicRoughnessTexture = shader.getUniform("uMetallicRoughnessTexture");
+        const auto uMetallicFactor = shader.getUniform("uMetallicFactor");
+        const auto uRoughnessFactor = shader.getUniform("uRoughnessFactor");
 
-        const auto uEmissiveTexture =
-            shader.getUniform("uEmissiveTexture");
-        const auto uEmissiveFactor =
-            shader.getUniform("uEmissiveFactor");
+        const auto uEmissiveTexture = shader.getUniform("uEmissiveTexture");
+        const auto uEmissiveFactor = shader.getUniform("uEmissiveFactor");
 
-        const auto uOcclusionTexture =
-            shader.getUniform("uOcclusionTexture");
-        const auto uOcclusionStrength =
-            shader.getUniform("uOcclusionStrength");
+        const auto uOcclusionTexture = shader.getUniform("uOcclusionTexture");
+        const auto uOcclusionStrength = shader.getUniform("uOcclusionStrength");
         // const auto uApplyOcclusion =
         //     shader.getUniform("uApplyOcclusion");
 

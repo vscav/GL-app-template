@@ -1,5 +1,6 @@
 #include <engine/GLApplication.hpp>
 #include <engine/GLFWManager.hpp>
+#include <engine/EngineException.hpp>
 #include <engine/utils/gl_debug_output.hpp>
 #include <engine/utils/common.hpp>
 #include <engine/utils/cout_colors.hpp>
@@ -21,9 +22,7 @@ namespace engine
             std::cout << "[GLFWManager] GLFW initialisation" << std::endl;
 
         if (!glfwInit())
-        {
-            throw std::runtime_error("Couldn't init GLFW");
-        }
+            throw EngineException("Couldn't init GLFW library", __FILE__, __LINE__);
 
         getContext(3, 3);
 
@@ -35,17 +34,14 @@ namespace engine
         // Initialize the GLEW library and attach all the OpenGL functions and extensions
         GLenum err = glewInit();
 
-        // If we had an error, throw an error
+        // If we had an error, throw an exception
         if (GLEW_OK != err)
         {
             glfwTerminate();
-            throw std::runtime_error(std::string("Could initialize GLEW, error = ") + (const char *)glewGetErrorString(err));
+            throw EngineException(std::string("Could initialize GLEW, error = ") + (const char *)glewGetErrorString(err), __FILE__, __LINE__);
         }
-        else
-        {
-            if (debug)
-                std::cout << "[GLFWManager] GLFW window successfully created" << std::endl;
-        }
+        else if (debug)
+            std::cout << "[GLFWManager] GLFW window successfully created" << std::endl;
 
         // Initialize OpenGL debug
         initGLDebugOutput();
@@ -110,7 +106,7 @@ namespace engine
         if (m_window == nullptr)
         {
             glfwTerminate();
-            throw std::runtime_error("Couldn't create a window");
+            throw EngineException("Couldn't create a window", __FILE__, __LINE__);
         }
 
         // Create the OpenGL context from the window and settings specified

@@ -1,5 +1,6 @@
 #include <engine/GLApplication.hpp>
 #include <engine/Renderer.hpp>
+#include <engine/EngineException.hpp>
 #include <engine/utils/common.hpp>
 
 namespace engine
@@ -12,10 +13,10 @@ namespace engine
     if (currentGLApplication)
       return *currentGLApplication;
     else
-      throw std::runtime_error("There is no current GLApplication");
+      throw EngineException("There is no current GLApplication", __FILE__, __LINE__);
   }
 
-  GLApplication::GLApplication(Camera* camera, GLWindowManager* manager)
+  GLApplication::GLApplication(Camera *camera, GLWindowManager *manager)
       : m_state(stateReady),
         m_windowManager(manager),
         m_camera(camera)
@@ -24,7 +25,7 @@ namespace engine
     currentGLApplication = this;
   }
 
-  GLApplication::GLApplication(Camera* camera, GLWindowManager* manager, std::string title, int width, int height, bool fullScreen)
+  GLApplication::GLApplication(Camera *camera, GLWindowManager *manager, std::string title, int width, int height, bool fullScreen)
       : m_state(stateReady),
         m_windowManager(manager),
         m_camera(camera)
@@ -35,7 +36,8 @@ namespace engine
 
   void GLApplication::exit()
   {
-    if(debug) std::cout << "[GLApplication] Application exited successfully" << std::endl;
+    if (debug)
+      std::cout << "[GLApplication] Application exited successfully" << std::endl;
 
     m_state = stateExit;
   }
@@ -58,7 +60,8 @@ namespace engine
 
   void GLApplication::loop()
   {
-    if(debug) std::cout << "[Info] GLApplication main loop" << std::endl;
+    if (debug)
+      std::cout << "[Info] GLApplication main loop" << std::endl;
   }
 
 } // namespace engine
