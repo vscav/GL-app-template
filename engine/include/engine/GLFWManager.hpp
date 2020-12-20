@@ -53,8 +53,8 @@ namespace engine
         int initialize() override;
 
         /// \brief Gets information about GLFW and OpenGL contexts.
-        /// \param maj : OpenGL major version accepted.
-        /// \param min : OpenGL minor version accepted.
+        /// \param major : OpenGL major version accepted.
+        /// \param minor : OpenGL minor version accepted.
         void getContext(int major, int minor);
 
         /// \brief Get information about OpenGL version and renderer.

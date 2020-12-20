@@ -288,7 +288,7 @@ namespace engine
     bool Model::loadGltfFile(tinygltf::Model &model)
     {
         if (debug)
-            std::clog << "[Model] Loading file " << m_gltfFilePath << std::endl;
+            std::cout << "[GLTF Model] Loading file " << m_gltfFilePath << std::endl;
 
         tinygltf::TinyGLTF loader;
 
