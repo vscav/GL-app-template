@@ -224,17 +224,17 @@ namespace engine
 
             // The recursive function that should draw a node
             // Use of a std::function because a simple lambda cannot be recursive
-            const std::function<void(int, const glm::mat4 &)> drawNode =
-                [&](int nodeIdx, const glm::mat4 &parentMatrix) {
+            const std::function<void(int)> drawNode =
+                [&](int nodeIdx) {
                     const auto &node = m_model.nodes[nodeIdx];
-                    const glm::mat4 modelMatrix =
-                        getLocalToWorldMatrix(node, parentMatrix);
+                    // const glm::mat4 modelMatrix =
+                    //      getLocalToWorldMatrix(node, parentMatrix);
 
                     // If the node references a mesh (a node can also reference a
                     // camera, or a light)
                     if (node.mesh >= 0)
                     {
-                        Renderer::getInstance().sendModelMatrixUniforms(modelMatrix, shader);
+                        // Renderer::getInstance().sendModelMatrixUniforms(modelMatrix, shader);
 
                         const auto &mesh = m_model.meshes[node.mesh];
                         const auto &vaoRange = m_meshToVertexArrays[node.mesh];
@@ -267,7 +267,8 @@ namespace engine
 
                     // Draw children
                     for (const auto childNodeIdx : node.children)
-                        drawNode(childNodeIdx, modelMatrix);
+                        drawNode(childNodeIdx);
+                        // drawNode(childNodeIdx, modelMatrix);
                 };
 
             // Draw the model/scene referenced by gltf file
@@ -275,7 +276,7 @@ namespace engine
             {
                 for (const auto nodeIdx : m_model.scenes[m_model.defaultScene].nodes)
                 {
-                    drawNode(nodeIdx, glm::mat4(1));
+                    drawNode(nodeIdx);
                 }
             }
         };

@@ -1,10 +1,11 @@
 #include <engine/Entity.hpp>
+#include <engine/Renderer.hpp>
 
 namespace engine
 {
-    
+
     Entity::Entity(
-        const Model &model,
+        Model *model,
         const bool isStatic,
         const Transform &transform)
         : m_model(model), m_isStatic(isStatic),
@@ -13,11 +14,8 @@ namespace engine
     }
 
     Entity::Entity(const Entity &other)
-        : m_model(other.m_model),
-          m_isStatic(other.m_isStatic),
-          m_position(other.m_position),
-          m_scale(other.m_scale),
-          m_rotation(other.m_rotation)
+        : m_model(other.m_model), m_isStatic(other.m_isStatic),
+          m_position(other.m_position), m_scale(other.m_scale), m_rotation(other.m_rotation)
     {
     }
 
@@ -30,21 +28,40 @@ namespace engine
 
         glm::mat4 entityMatrix = glm::mat4(1);
 
-        entityMatrix = glm::rotate(entityMatrix, m_rotation[0], -glm::vec3(0.0f, 0.0f, -1.0f));
-        entityMatrix = glm::rotate(entityMatrix, m_rotation[1], -glm::vec3(-1.0f, 0.0f, 0.0f));
-        entityMatrix = glm::rotate(entityMatrix, m_rotation[2], -glm::vec3(0.0f, 1.0f, 0.0f));
+        // entityMatrix = glm::rotate(entityMatrix, m_rotation[0], -glm::vec3(0.0f, 0.0f, -1.0f));
+        // entityMatrix = glm::rotate(entityMatrix, m_rotation[1], -glm::vec3(-1.0f, 0.0f, 0.0f));
+        // entityMatrix = glm::rotate(entityMatrix, m_rotation[2], -glm::vec3(0.0f, 1.0f, 0.0f));
+
+        entityMatrix = glm::translate(entityMatrix, m_position);
 
         if (m_isStatic)
         {
             m_transformMatrix = entityMatrix;
             m_hasMatrix = true;
         }
+
         return entityMatrix;
     }
 
-    void Entity::render()
+    void Entity::update(float time)
     {
-        // Render the model (be careful with matrix: use matrix of entity, not model)
+    }
+
+    void Entity::moveFront(float dt)
+    {
+        m_position[2] += dt * 0.01;
+    }
+
+    void Entity::moveLeft(float dt)
+    {
+        std::cout << dt << std::endl;
+        m_position[0] += dt * 0.01;
+    }
+
+    void Entity::render(const Camera *camera, Shader &shader, float time)
+    {
+        Renderer::getInstance().sendModelMatrixUniforms(getMatrix(), shader);
+        m_model->render(camera, shader, time);
     }
 
 } // namespace engine

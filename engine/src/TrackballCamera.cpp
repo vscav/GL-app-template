@@ -43,6 +43,7 @@ namespace engine
     glm::mat4 TrackballCamera::getViewMatrix() const
     {
         glm::mat4 ViewMatrix = glm::mat4(1);
+
         ViewMatrix = glm::translate(ViewMatrix, glm::vec3(0, 0, m_distance));
         ViewMatrix = glm::rotate(ViewMatrix, glm::radians(m_angleX), glm::vec3(1, 0, 0));
         ViewMatrix = glm::rotate(ViewMatrix, glm::radians(m_angleY), glm::vec3(0, 1, 0));
