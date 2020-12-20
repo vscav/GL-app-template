@@ -30,7 +30,6 @@ namespace engine
         static ResourceManager &getInstance()
         {
             static ResourceManager instance;
-
             return instance;
         }
 

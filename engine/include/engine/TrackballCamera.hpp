@@ -1,57 +1,54 @@
 #pragma once
-#ifndef _FreeflyCamera_HPP_
-#define _FreeflyCamera_HPP_
+
+#ifndef _Trackball_HPP_
+#define _Trackball_HPP_
 
 #include <engine/Camera.hpp>
-
-#include <cmath>
 
 namespace engine
 {
 
-    /// \class FreeflyCamera
-    /// \brief Class for creating a freefly camera object, which is an implementation of the abstract base class Camera.
-    class FreeflyCamera final : public Camera
+    // camera distance to the plane (size of the plane on screen)
+    constexpr float cameraDistanceToPlayer = 5.0f;
+    // camera distance to the plane (size of the plane on screen)
+    constexpr float maximumDistance = -3.0f;
+    constexpr float minimumDistance = -10.0f;
+
+    /// \class TrackballCamera
+    /// \brief Class for creating a trackball camera object, which is an implementation of the abstract base class Camera.
+    class TrackballCamera : public Camera
     {
     private:
-        glm::vec3 m_position; /*!< The position of the camera. */
+        float m_distance; /*!< The camera distance. */
 
-        float m_phi;   /*!< Front vector Phi spherical coordinates. */
-        float m_theta; /*!< Front vector Theta spherical coordinates. */
+        float m_angleX = 0.0f; /*!< The horizontal angle. */
+        float m_angleY = 0.0f; /*!< The vertical angle. */
 
-        glm::vec3 m_frontVector; /*!< The front vector. */
-        glm::vec3 m_leftVector;  /*!< The left vector. */
-        glm::vec3 m_upVector;    /*!< The up vector. */
+        float m_zoom; /*!< The camera zoom. */
 
-        float m_lastX = 0.f;
-        float m_lastY = 0.f;
+        float m_sensitivity = 0.3f; /*!< The camera sensitivity. */
 
-        float m_sensitivity = 0.2f; /*!< The camera sensitivity. */
-
-        float m_speed = 0.5f; /*!< The camera speed. */
-
-        /// \brief Calculates the front, left and up vectors of the camera.
-        void computeDirectionVectors();
+        float m_speed = 0.7f; /*!< The camera speed. */
 
     public:
         /// \brief Constructor.
-        FreeflyCamera();
+        TrackballCamera();
         /// \brief Destructor.
-        ~FreeflyCamera() override = default;
+        ~TrackballCamera() override = default;
 
-        /// \brief Moves the camera forward or backward according to a certain value.
-        /// \param t : The value used to move the camera forward or back.
-        void moveFront(float t) override;
+        /// \brief Zoom in and out (exclusive Trackball Camera feature).
+        /// \param delta : The value of the zoom.
+        void moveFront(float delta) override;
         /// \brief Moves the camera to the right or to the left according to the t value.
         /// \param t : The value used to move the camera on the right or on the left.
         // void moveLeft(float t) override;
         void moveLeft(float t) override;
 
-        /// \brief Rotates the camera to the right or to the left according to the degree value.
-        /// \param degrees : The value (in degrees) used to move the camera on the right or on the left.
+        /// \brief Rotates the camera on the horizontal axis.
+        /// \param degrees : The value of the rotation in degree.
         void rotateLeft(float degrees) override;
-        /// \brief Rotates the camera to the top or the bottom according to the degree value.
-        /// \param degrees : The value (in degrees) used to move the camera to the top or to the bottom.
+        /// \brief Rotates the camera on the vertical axis.
+        /// \param degrees : The value of the rotation in degree.
         void rotateUp(float degrees) override;
 
         /// \brief Sets the camera sensitivity value.
@@ -78,11 +75,10 @@ namespace engine
         /// \return The view projection matrix of the camera.
         glm::mat4 getVPMatrix() const override;
 
-        /// \brief Gets the current position of the camera.
-        /// \return The position of the camera.
-        inline const glm::vec3 getPosition() const { return m_position; };
+        // /// \brief Updates the camera zoom.
+        void update();
     };
 
 } // namespace engine
 
-#endif /* _FreeflyCamera_HPP_ */
+#endif /* _Trackball_HPP_ */

@@ -34,10 +34,6 @@ namespace engine
 		if (GLApplication::getInstance().getCamera() == nullptr)
 			return;
 
-		// Apply camera sensitivity
-		mouseX *= GLApplication::getInstance().getCamera()->getSensitivity();
-		mouseY *= GLApplication::getInstance().getCamera()->getSensitivity();
-
 		// Have our manager send the mouse x and y deltas to our camera to process its rotations
 		GLApplication::getInstance().getCamera()->rotateLeft(mouseX);
 		GLApplication::getInstance().getCamera()->rotateUp(mouseY);

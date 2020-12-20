@@ -20,7 +20,6 @@ uniform float uOcclusionStrength;
 
 out vec3 fColor;
 
-// Constants
 const float GAMMA = 2.2;
 const float INV_GAMMA = 1. / GAMMA;
 const float M_PI = 3.141592653589793;
@@ -28,19 +27,11 @@ const float M_1_PI = 1.0 / M_PI;
 const vec3 black = vec3(0, 0, 0);
 const vec3 dielectricSpecular = vec3(0.04f, 0.04f, 0.04f);
 
-// We need some simple tone mapping functions
-// Basic gamma = 2.2 implementation
-// Stolen here: https://github.com/KhronosGroup/glTF-Sample-Viewer/blob/master/src/shaders/tonemapping.glsl
-
-// linear to sRGB approximation
-// see http://chilliant.blogspot.com/2012/08/srgb-approximations-for-hlsl.html
 vec3 LINEARtoSRGB(vec3 color)
 {
   return pow(color, vec3(INV_GAMMA));
 }
 
-// sRGB to linear approximation
-// see http://chilliant.blogspot.com/2012/08/srgb-approximations-for-hlsl.html
 vec4 SRGBtoLINEAR(vec4 srgbIn)
 {
   return vec4(pow(srgbIn.xyz, vec3(GAMMA)), srgbIn.w);

@@ -1,5 +1,6 @@
 #include <engine/CubeMap.hpp>
 #include <engine/ResourceManager.hpp>
+#include <engine/Renderer.hpp>
 
 namespace engine
 {
@@ -50,10 +51,9 @@ namespace engine
             1.0f, -1.0f, 1.0f};
 
         Container<GLfloat> dest;
+
         for (GLfloat i : vertices)
-        {
             dest.add(i);
-        }
 
         m_vertices = dest;
 
@@ -67,7 +67,6 @@ namespace engine
         m_faces.add(cubeFront);
         m_faces.add(cubeBack);
 
-        // m_cubeMapTexture = loadCubeMap(m_faces);
         m_cubeMapTexture = ResourceManager::getInstance().loadCubeMapTexture(m_faces);
     }
 
@@ -97,14 +96,11 @@ namespace engine
 
     void CubeMap::render(const Camera *camera, Shader &shader, float time)
     {
-        // Remove the translation section of the MVMatrix
-        glm::mat4 MVMatrix = glm::mat4(glm::mat3(camera->getViewMatrix()));
-        glm::mat4 ProjectionMatrix = camera->getProjectionMatrix();
+        Renderer::getInstance().sendModelMatrixUniforms(glm::mat4(1.0f), shader, true);
 
         shader.bind();
 
-        shader.setMat4("uMVMatrix", MVMatrix);
-        shader.setMat4("uMVPMatrix", ProjectionMatrix * MVMatrix);
+        shader.setVec3f("uFogColor", 0.0f, 0.0f, 0.0f);
 
         m_vao.bind();
 

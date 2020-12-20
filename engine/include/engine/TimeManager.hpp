@@ -24,7 +24,6 @@ namespace engine
         static TimeManager &getInstance()
         {
             static TimeManager instance;
-
             return instance;
         }
 
