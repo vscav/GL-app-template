@@ -105,7 +105,6 @@ namespace engine
         m_vao.bind();
 
         glBindTexture(GL_TEXTURE_CUBE_MAP, m_cubeMapTexture);
-
         glDrawArrays(GL_TRIANGLES, 0, 36);
 
         m_vao.unbind();

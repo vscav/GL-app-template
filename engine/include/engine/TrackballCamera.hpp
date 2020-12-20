@@ -9,7 +9,7 @@ namespace engine
 {
 
     // camera distance to the plane (size of the plane on screen)
-    constexpr float cameraDistanceToPlayer = 5.0f;
+    constexpr float cameraDistanceToFollowedObject = 5.0f;
     // camera distance to the plane (size of the plane on screen)
     constexpr float maximumDistance = -3.0f;
     constexpr float minimumDistance = -10.0f;

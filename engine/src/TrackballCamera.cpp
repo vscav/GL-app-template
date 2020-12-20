@@ -8,7 +8,7 @@ namespace engine
 {
 
     TrackballCamera::TrackballCamera()
-        : m_distance(-cameraDistanceToPlayer), m_angleX(0.0f), m_angleY(0.0f), m_zoom(-cameraDistanceToPlayer)
+        : m_distance(-cameraDistanceToFollowedObject), m_angleX(0.0f), m_angleY(0.0f), m_zoom(-cameraDistanceToFollowedObject)
     {
         if (debug)
             std::cout << "[Camera] Trackball camera created" << std::endl;
