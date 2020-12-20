@@ -23,12 +23,12 @@ namespace engine
         glm::vec3 m_leftVector;  /*!< The left vector. */
         glm::vec3 m_upVector;    /*!< The up vector. */
 
-        float m_lastX = 0.f;
-        float m_lastY = 0.f;
+        float m_lastX = 0.f; /*!< Last x user coordinate on screen. */
+        float m_lastY = 0.f; /*!< Last y user coordinate on screen. */
 
         float m_sensitivity = 0.2f; /*!< The camera sensitivity. */
 
-        float m_speed = 0.5f; /*!< The camera speed. */
+        float m_speed = 0.35f; /*!< The camera speed. */
 
         /// \brief Calculates the front, left and up vectors of the camera.
         void computeDirectionVectors();
