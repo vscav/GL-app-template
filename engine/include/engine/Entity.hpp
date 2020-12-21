@@ -57,8 +57,7 @@ namespace engine
         /// \param other : The entity to copy from.
         Entity(const Entity &other);
 
-        /// \brief Destructor.
-        ~Entity(){};
+        ~Entity() = default;
 
         /// \brief Returns the transform matrix of the entity.
         virtual const glm::mat4 getMatrix();
