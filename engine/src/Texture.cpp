@@ -1,5 +1,6 @@
 #include <engine/Texture.hpp>
 #include <engine/utils/common.hpp>
+#include <engine/utils/cout_colors.hpp>
 // #define STB_IMAGE_IMPLEMENTATION
 #include <engine/dependencies/stb_image.h>
 
@@ -9,7 +10,7 @@ namespace engine
 {
 
     Texture::Texture(unsigned int width, unsigned int height)
-        : m_nWidth(width), m_nHeight(height), m_Pixels(new glm::vec4[width * height])
+        : m_width(width), m_height(height), m_pixels(new glm::vec4[width * height])
     {
     }
 
@@ -19,7 +20,7 @@ namespace engine
         unsigned char *data = stbi_load(filepath.c_str(), &x, &y, &n, 4);
         if (!data)
         {
-            if(debug) std::cerr << "[Texture] ERROR: Loading image " << filepath << ": " << stbi_failure_reason() << std::endl;
+            if(debug) std::cerr << COLOR_RED << "[Texture] ERROR: Loading image " << filepath << ": " << stbi_failure_reason() << COLOR_RESET << std::endl;
             return std::unique_ptr<Texture>();
         }
         std::unique_ptr<Texture> pImage(new Texture(x, y));

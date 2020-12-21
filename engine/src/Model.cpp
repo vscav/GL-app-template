@@ -41,6 +41,7 @@ namespace engine
 
     void Model::render(Shader *shader)
     {
+        // std::cout << "Call render model" << std::endl;
         glm::vec3 lightDirection(1, 1, 1);
         glm::vec3 lightIntensity(1, 1, 1);
 

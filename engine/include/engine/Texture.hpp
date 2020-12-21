@@ -14,9 +14,9 @@ namespace engine
     class Texture
     {
     private:
-        unsigned int m_nWidth = 0u;            /*!< The width of the image. */
-        unsigned int m_nHeight = 0u;           /*!< The height of the image. */
-        std::unique_ptr<glm::vec4[]> m_Pixels; /*!< A unique pointer of the array containing the pixels of the image. */
+        unsigned int m_width = 0u;            /*!< The width of the image. */
+        unsigned int m_height = 0u;           /*!< The height of the image. */
+        std::unique_ptr<glm::vec4[]> m_pixels; /*!< A unique pointer of the array containing the pixels of the image. */
 
     public:
         /// \brief Constructor.
@@ -24,19 +24,19 @@ namespace engine
 
         /// \brief Gets the width of the image.
         /// \return The width of the image.
-        inline unsigned int getWidth() const { return m_nWidth; };
+        inline unsigned int getWidth() const { return m_width; };
 
         /// \brief Gets the height of the image.
         /// \return The height of the image.
-        inline unsigned int getHeight() const { return m_nHeight; };
+        inline unsigned int getHeight() const { return m_height; };
 
         /// \brief Gets the pixels of the image.
         /// \return A pointer to the pixels data of the image.
-        inline const glm::vec4 *getPixels() const { return m_Pixels.get(); };
+        inline const glm::vec4 *getPixels() const { return m_pixels.get(); };
 
         /// \brief Gets the pixels of the image.
         /// \return A pointer to the pixels data of the image.
-        inline glm::vec4 *getPixels() { return m_Pixels.get(); };
+        inline glm::vec4 *getPixels() { return m_pixels.get(); };
     };
 
     /// \brief Loads an image.

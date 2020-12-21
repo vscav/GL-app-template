@@ -1,3 +1,4 @@
+#include <engine/GLApplication.hpp>
 #include <engine/CubeMap.hpp>
 #include <engine/ResourceManager.hpp>
 #include <engine/Renderer.hpp>
@@ -97,6 +98,8 @@ namespace engine
 
     void CubeMap::render()
     {
+        GLApplication::getInstance().getWindowManager()->getWindowUtils()->enableDepthTesting(false);
+
         Renderer::getInstance().sendModelMatrixUniforms(glm::mat4(1.0f), m_shader.get(), true);
 
         m_shader->bind();
@@ -111,6 +114,8 @@ namespace engine
         m_vao.unbind();
 
         m_shader->unbind();
+
+        GLApplication::getInstance().getWindowManager()->getWindowUtils()->enableDepthTesting(true);
     }
 
 } // namespace engine

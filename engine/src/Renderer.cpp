@@ -5,9 +5,12 @@ namespace engine
 
     void Renderer::sendModelMatrixUniforms(const glm::mat4 &modelMatrix, Shader *shader, bool removeTranslationView)
     {
+        // Update the view matrix by using the application camera
         updateViewMatrix();
+        // Update the projection matrix by using the application camera
         updateProjectionMatrix();
 
+        // If there is a need to remove the translation view (example: skybox object):
         if (removeTranslationView)
             m_view = glm::mat4(glm::mat3(m_view));
 
