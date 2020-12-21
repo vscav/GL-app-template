@@ -15,6 +15,7 @@
 
 #include <iostream>
 #include <string>
+#include <memory>
 
 namespace engine
 {
@@ -29,7 +30,9 @@ namespace engine
 
         Container<std::string> m_faces; /*!< A vector containing all the path to each images used to create the cube map texture. */
 
-        GLuint m_cubeMapTexture; /*!< The texture to apply to the cube map */
+        GLuint m_cubeMapTexture; /*!< The texture to apply to the cube map. */
+
+        std::shared_ptr<Shader> m_shader; /*!< The shader to use for the cube map. */
 
         VertexArrayObject m_vao;  /*!< Vertex Array Object of the cube map. */
         VertexBufferObject m_vbo; /*!< Vertex Buffer Object of the cube map. */
@@ -42,16 +45,15 @@ namespace engine
 
     public:
         /// \brief Constructor.
+        // explicit CubeMap(const char *cubeFront, const char *cubeLeft, const char *cubeBack,
+        //         const char *cubeBottom, const char *cubeRight, const char *cubeTop, Shader *shader);
         explicit CubeMap(const char *cubeFront, const char *cubeLeft, const char *cubeBack,
-                const char *cubeBottom, const char *cubeRight, const char *cubeTop);
+                 const char *cubeBottom, const char *cubeRight, const char *cubeTop, Shader *shader);
         /// \brief Destructor.
         ~CubeMap() = default;
 
         /// \brief Renders the sphere to the screen/window.
-        /// \param camera : A pointer to the camera of the application.
-        /// \param shader : The shaders associated to the sphere.
-        /// \param time : The current time of the window manager.
-        void render(const Camera *camera, Shader &shader, float time);
+        void render();
 
         /// \brief Returns the data (vertices) of the cube map.
         /// \return The container holding the vertices of the cube map.

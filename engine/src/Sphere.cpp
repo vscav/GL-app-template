@@ -5,7 +5,7 @@
 namespace engine
 {
 
-    Sphere::Sphere(GLfloat radius, GLsizei discLat, GLsizei discLong) : m_nVertexCount(0)
+    Sphere::Sphere(GLfloat radius, GLsizei discLat, GLsizei discLong, Shader *shader) : m_nVertexCount(0), m_shader(shader)
     {
         build(radius, discLat, discLong);
 
@@ -43,10 +43,10 @@ namespace engine
         m_vao.unbind();
     }
 
-    void Sphere::render(const Camera *camera, Shader &shader, float time)
+    void Sphere::render()
     {
-        Renderer::getInstance().sendModelMatrixUniforms(glm::mat4(1.0f), shader);
-        Renderer::getInstance().sendBlinnPhongUniforms(shader);
+        Renderer::getInstance().sendModelMatrixUniforms(glm::mat4(1.0f), m_shader.get());
+        Renderer::getInstance().sendBlinnPhongUniforms(m_shader.get());
 
         m_vao.bind();
 
@@ -54,7 +54,7 @@ namespace engine
 
         m_vao.unbind();
 
-        shader.unbind();
+        m_shader->unbind();
     }
 
     void Sphere::build(GLfloat r, GLsizei discLat, GLsizei discLong)

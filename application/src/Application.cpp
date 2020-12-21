@@ -1,62 +1,58 @@
-#include <engine/FreeflyCamera.hpp>
 #include <engine/TrackballCamera.hpp>
 #include <engine/GLFWManager.hpp>
+#include <engine/Scene.hpp>
 
 #include "../include/Application.hpp"
-#include "../include/utils/directory.hpp"
 
 #include <string>
 
 Application::Application()
-    : engine::GLApplication(new engine::TrackballCamera(), new engine::GLFWManager()),
-      m_sphere(1, 64, 32),
-      m_sphereShader("application/res/shaders/forward.vert", "application/res/shaders/directionallight.frag"),
-      m_cubeMap(
-          "application/res/textures/skybox/space/front.png",
-          "application/res/textures/skybox/space/left.png",
-          "application/res/textures/skybox/space/back.png",
-          "application/res/textures/skybox/space/bottom.png",
-          "application/res/textures/skybox/space/right.png",
-          "application/res/textures/skybox/space/top.png"),
-      m_cubeMapShader("application/res/shaders/skybox.vert", "application/res/shaders/skybox.frag"),
-      m_model("application/res/models/spaceship/scene.gltf"),
-      m_modelShader("application/res/shaders/forward.vert", "application/res/shaders/pbr_directionallight.frag")
+    : engine::GLApplication(new engine::TrackballCamera(), new engine::GLFWManager(), new engine::Scene())
 {
+    initialize();
 }
 
 Application::Application(std::string title, int width, int height, bool fullScreen)
-    : engine::GLApplication(new engine::TrackballCamera(), new engine::GLFWManager(), title, width, height, fullScreen),
-      m_sphere(1, 64, 32),
-      m_sphereShader("application/res/shaders/forward.vert", "application/res/shaders/directionallight.frag"),
-      m_cubeMap(
-          "application/res/textures/skybox/space/front.png",
-          "application/res/textures/skybox/space/left.png",
-          "application/res/textures/skybox/space/back.png",
-          "application/res/textures/skybox/space/bottom.png",
-          "application/res/textures/skybox/space/right.png",
-          "application/res/textures/skybox/space/top.png"),
-      m_cubeMapShader("application/res/shaders/skybox.vert", "application/res/shaders/skybox.frag"),
-      m_model("application/res/models/spaceship/scene.gltf"),
-      m_modelShader("application/res/shaders/forward.vert", "application/res/shaders/pbr_directionallight.frag")
+    : engine::GLApplication(new engine::TrackballCamera(), new engine::GLFWManager(), new engine::Scene(), title, width, height, fullScreen)
 {
+    initialize();
+}
+
+void Application::initialize()
+{
+    // Create a new entity object
+    std::unique_ptr<engine::Entity> entity(
+        new engine::Entity(
+            new engine::Model("application/res/models/spaceship/scene.gltf"),
+            new engine::Shader("application/res/shaders/forward.vert", "application/res/shaders/pbr_directionallight.frag"),
+            false));
+
+    // Create a new skybox (CubeMap object)
+    std::unique_ptr<engine::CubeMap> skybox(
+        new engine::CubeMap(
+            "application/res/textures/skybox/space/front.png",
+            "application/res/textures/skybox/space/left.png",
+            "application/res/textures/skybox/space/back.png",
+            "application/res/textures/skybox/space/bottom.png",
+            "application/res/textures/skybox/space/right.png",
+            "application/res/textures/skybox/space/top.png",
+            new engine::Shader("application/res/shaders/skybox.vert", "application/res/shaders/skybox.frag")));
+
+    // Add the newly created entity to the application scene
+    m_scene->add(std::move(entity));
+
+    // Add the newly created skybox to the application scene
+    m_scene->add(std::move(skybox));
 }
 
 void Application::loop()
 {
-  // Print fps in console by passing true
-  engine::TimeManager::getInstance().calculateFrameRate(false);
+    // Print fps in console by passing true
+    engine::TimeManager::getInstance().calculateFrameRate(false);
 
-  // Get current context time
-  float t = getWindowManager()->getTimeElapsed();
+    float dt = m_windowManager->getTimeElapsed();
 
-  // Render cube map
-  getWindowManager()->getWindowUtils()->enableDepthTesting(false);
-  m_cubeMap.render(getCamera(), m_cubeMapShader, t);
-  getWindowManager()->getWindowUtils()->enableDepthTesting(true);
+    m_camera->update(dt);
 
-  // Render Sphere
-  // m_sphere.render(getCamera(), m_sphereShader, t);
-
-  // Render Model
-  m_model.render(getCamera(), m_modelShader, t);
+    m_scene->render();
 }
