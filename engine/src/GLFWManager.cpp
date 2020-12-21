@@ -147,7 +147,6 @@ namespace engine
     {
         if (glfwGetKey(m_window, GLFW_KEY_ESCAPE) == GLFW_PRESS || glfwWindowShouldClose(m_window) != 0)
         {
-            std::cout << "escape key" << std::endl;
             glfwSetWindowShouldClose(m_window, true);
             GLApplication::getInstance().exit();
         }

@@ -39,10 +39,10 @@ void Application::initialize()
             new engine::Shader("application/res/shaders/skybox.vert", "application/res/shaders/skybox.frag")));
 
     // Add the newly created entity to the application scene
-    m_scene.get()->add(std::move(entity));
+    m_scene->add(std::move(entity));
 
     // Add the newly created skybox to the application scene
-    m_scene.get()->add(std::move(skybox));
+    m_scene->add(std::move(skybox));
 }
 
 void Application::loop()
@@ -50,10 +50,9 @@ void Application::loop()
     // Print fps in console by passing true
     engine::TimeManager::getInstance().calculateFrameRate(false);
 
-    // Render cube map
-    // getWindowManager()->getWindowUtils()->enableDepthTesting(false);
-    // m_cubeMap.render();
-    // getWindowManager()->getWindowUtils()->enableDepthTesting(true);
+    float dt = m_windowManager->getTimeElapsed();
+
+    m_camera->update(dt);
 
     m_scene->render();
 }

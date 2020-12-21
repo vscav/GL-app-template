@@ -26,9 +26,18 @@ namespace engine
 
         float m_zoom; /*!< The camera zoom. */
 
-        float m_sensitivity = 0.3f; /*!< The camera sensitivity. */
+        float m_sensitivity = 0.01f; /*!< The camera sensitivity. */
 
         float m_speed = 0.7f; /*!< The camera speed. */
+
+        float m_lerpFactor = 0.995f; /*!< The camera rotation lerp factor. */
+
+        float m_angleXSpeed = 0.0f; /*!< The camera horizontal angle speed. */
+        float m_angleYSpeed = 0.0f; /*!< The camera vertical angle speed. */
+
+        float m_fov = 70.0f;       /*!< The camera field of view. */
+        float m_nearPlane = 0.1f;  /*!< The camera near plane. */
+        float m_farPlane = 500.0f; /*!< The camera far plane. */
 
     public:
         /// \brief Constructor.
@@ -76,7 +85,7 @@ namespace engine
         glm::mat4 getVPMatrix() const override;
 
         // /// \brief Updates the camera zoom.
-        void update();
+        void update(float dt);
     };
 
 } // namespace engine

@@ -61,8 +61,6 @@ namespace engine
 
     void Entity::render()
     {
-        // std::cout << "Call render of entity" << std::endl;
-
         Renderer::getInstance().sendModelMatrixUniforms(getMatrix(), m_shader.get());
 
         m_model->render(m_shader.get());

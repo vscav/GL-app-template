@@ -22,8 +22,6 @@ namespace engine
             m_zoom = maximumDistance;
         else if (m_zoom < minimumDistance)
             m_zoom = minimumDistance;
-
-        m_distance = glm::mix(m_distance, m_zoom, 1 / 8.0f);
     }
 
     void TrackballCamera::moveLeft(const float t)
@@ -32,12 +30,22 @@ namespace engine
 
     void TrackballCamera::rotateLeft(const float degrees)
     {
-        m_angleY += degrees * m_sensitivity;
+        // m_angleY += degrees * m_sensitivity;
+
+        m_angleYSpeed += m_sensitivity * degrees;
+
+        // To avoid free movement
+        // m_angleY = glm::clamp(m_angleY, -90.0f, 90.0f);
     }
 
     void TrackballCamera::rotateUp(const float degrees)
     {
-        m_angleX += degrees * m_sensitivity;
+        // m_angleX += degrees * m_sensitivity;
+
+        m_angleXSpeed += m_sensitivity * degrees;
+
+        // To avoid free movement
+        // m_angleX = glm::clamp(m_angleX, 0.0f, 90.0f);
     }
 
     glm::mat4 TrackballCamera::getViewMatrix() const
@@ -56,7 +64,7 @@ namespace engine
         auto width = (float)GLApplication::getInstance().getWindowManager()->getWidth();
         auto height = (float)GLApplication::getInstance().getWindowManager()->getHeight();
 
-        return glm::perspective(glm::radians(70.f), width / height, 0.1f, 300.0f);
+        return glm::perspective(glm::radians(m_fov), width / height, m_nearPlane, m_farPlane);
     }
 
     glm::mat4 TrackballCamera::getVPMatrix() const
@@ -64,9 +72,15 @@ namespace engine
         return getProjectionMatrix() * getViewMatrix();
     }
 
-    // void TrackballCamera::update()
-    // {
-    //     m_distance = glm::mix(m_distance, m_zoom, 1 / 8.0f);
-    // }
+    void TrackballCamera::update(float dt)
+    {
+        m_angleX += m_angleXSpeed * dt;
+        m_angleY += m_angleYSpeed * dt;
+
+        m_angleXSpeed *= std::pow(m_lerpFactor, dt);
+        m_angleYSpeed *= std::pow(m_lerpFactor, dt);
+
+        m_distance = glm::mix(m_distance, m_zoom, 1 / 8.0f);
+    }
 
 } // namespace engine
