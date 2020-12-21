@@ -19,6 +19,7 @@ namespace engine
         ~Renderer() = default;
 
         std::shared_ptr<Camera> m_camera;
+
         glm::mat4 m_projection;
         glm::mat4 m_view;
 
@@ -41,6 +42,10 @@ namespace engine
         inline void updateProjectionMatrix() { m_projection = m_camera->getProjectionMatrix(); };
 
         inline void setCamera(std::shared_ptr<Camera> camera) { m_camera = std::move(camera); };
+
+        inline glm::mat4 getViewMatrix() { return m_camera->getViewMatrix(); };
+
+        inline glm::mat4 getProjectionMatrix() { return m_camera->getProjectionMatrix(); };
     };
 
 } // namespace engine

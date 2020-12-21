@@ -48,7 +48,7 @@ namespace engine
         /// \param camera : A pointer to the camera of the application.
         /// \param shader : The shaders associated to the model.
         /// \param time : The current time of the window manager.
-        void render(const Camera *camera, Shader &shader, float time);
+        void render(Shader &shader, float time);
 
     private:
         tinygltf::Model m_model; /*!< The 3D model. */

@@ -39,7 +39,7 @@ namespace engine
         m_vertexArrayObjects = createVertexArrayObjects(m_model, m_bufferObjects, m_meshToVertexArrays);
     }
 
-    void Model::render(const Camera *camera, Shader &shader, float time)
+    void Model::render(Shader &shader, float time)
     {
         glm::vec3 lightDirection(1, 1, 1);
         glm::vec3 lightIntensity(1, 1, 1);
@@ -193,7 +193,7 @@ namespace engine
 
         // Lambda function to draw the scene
         const auto drawScene = [&]() {
-            glm::mat4 viewMatrix = camera->getViewMatrix();
+            glm::mat4 viewMatrix = Renderer::getInstance().getViewMatrix();
 
             if (uLightDirectionLocation >= 0)
             {

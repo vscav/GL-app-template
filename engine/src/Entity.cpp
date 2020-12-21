@@ -6,6 +6,7 @@ namespace engine
 
     Entity::Entity(
         Model *model,
+        // Shader *shader,
         const bool isStatic,
         const Transform &transform)
         : m_model(model), m_isStatic(isStatic),
@@ -13,11 +14,17 @@ namespace engine
     {
     }
 
-    Entity::Entity(const Entity &other)
+        Entity::Entity(const Entity &other)
         : m_model(other.m_model), m_isStatic(other.m_isStatic),
           m_position(other.m_position), m_scale(other.m_scale), m_rotation(other.m_rotation)
     {
     }
+
+    // Entity::Entity(const Entity &other)
+    //     : m_model(other.m_model), m_shader(other.m_shader), m_isStatic(other.m_isStatic),
+    //       m_position(other.m_position), m_scale(other.m_scale), m_rotation(other.m_rotation)
+    // {
+    // }
 
     const glm::mat4 Entity::getMatrix()
     {
@@ -43,25 +50,25 @@ namespace engine
         return entityMatrix;
     }
 
-    void Entity::update(float time)
-    {
-    }
+    // void Entity::update(float time)
+    // {
+    // }
 
-    void Entity::moveFront(float dt)
-    {
-        m_position[2] += dt * 0.01;
-    }
+    // void Entity::moveFront(float dt)
+    // {
+    //     m_position[2] += dt * 0.01;
+    // }
 
-    void Entity::moveLeft(float dt)
-    {
-        std::cout << dt << std::endl;
-        m_position[0] += dt * 0.01;
-    }
+    // void Entity::moveLeft(float dt)
+    // {
+    //     std::cout << dt << std::endl;
+    //     m_position[0] += dt * 0.01;
+    // }
 
-    void Entity::render(const Camera *camera, Shader &shader, float time)
+    void Entity::render(Shader &shader, float time)
     {
         Renderer::getInstance().sendModelMatrixUniforms(getMatrix(), shader);
-        m_model->render(camera, shader, time);
+        m_model->render(shader, time);
     }
 
 } // namespace engine

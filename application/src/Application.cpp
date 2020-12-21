@@ -35,6 +35,7 @@ Application::Application(std::string title, int width, int height, bool fullScre
       m_entity(new engine::Model("application/res/models/spaceship/scene.gltf"), false),
       m_entityShader("application/res/shaders/forward.vert", "application/res/shaders/pbr_directionallight.frag")
 {
+  // m_entities.push_back()
 }
 
 void Application::loop()
@@ -47,10 +48,10 @@ void Application::loop()
 
   // Render cube map
   getWindowManager()->getWindowUtils()->enableDepthTesting(false);
-  m_cubeMap.render(getCamera(), m_cubeMapShader, t);
+  m_cubeMap.render(m_cubeMapShader, t);
   getWindowManager()->getWindowUtils()->enableDepthTesting(true);
 
   // Render Entity
   // m_entity.moveLeft(t);
-  m_entity.render(getCamera(), m_entityShader, t);
+  m_entity.render(m_entityShader, t);
 }

@@ -5,6 +5,8 @@
 namespace engine
 {
 
+    // CubeMap::CubeMap(const char *cubeFront, const char *cubeLeft, const char *cubeBack, const char *cubeBottom, const char *cubeRight, const char *cubeTop, Shader *shader)
+    //     : m_shader(shader)
     CubeMap::CubeMap(const char *cubeFront, const char *cubeLeft, const char *cubeBack, const char *cubeBottom, const char *cubeRight, const char *cubeTop)
     {
         GLfloat vertices[] = {
@@ -94,7 +96,7 @@ namespace engine
         m_vao.unbind();
     }
 
-    void CubeMap::render(const Camera *camera, Shader &shader, float time)
+    void CubeMap::render(Shader &shader, float time)
     {
         Renderer::getInstance().sendModelMatrixUniforms(glm::mat4(1.0f), shader, true);
 

@@ -43,7 +43,7 @@ namespace engine
         m_vao.unbind();
     }
 
-    void Sphere::render(const Camera *camera, Shader &shader, float time)
+    void Sphere::render(Shader &shader, float time)
     {
         Renderer::getInstance().sendModelMatrixUniforms(glm::mat4(1.0f), shader);
         Renderer::getInstance().sendBlinnPhongUniforms(shader);
