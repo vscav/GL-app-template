@@ -5,9 +5,8 @@
 namespace engine
 {
 
-    // CubeMap::CubeMap(const char *cubeFront, const char *cubeLeft, const char *cubeBack, const char *cubeBottom, const char *cubeRight, const char *cubeTop, Shader *shader)
-    //     : m_shader(shader)
-    CubeMap::CubeMap(const char *cubeFront, const char *cubeLeft, const char *cubeBack, const char *cubeBottom, const char *cubeRight, const char *cubeTop)
+    CubeMap::CubeMap(const char *cubeFront, const char *cubeLeft, const char *cubeBack, const char *cubeBottom, const char *cubeRight, const char *cubeTop, Shader *shader)
+        : m_shader(shader)
     {
         GLfloat vertices[] = {
             -1.0f, 1.0f, -1.0f,
@@ -96,13 +95,13 @@ namespace engine
         m_vao.unbind();
     }
 
-    void CubeMap::render(Shader &shader, float time)
+    void CubeMap::render()
     {
-        Renderer::getInstance().sendModelMatrixUniforms(glm::mat4(1.0f), shader, true);
+        Renderer::getInstance().sendModelMatrixUniforms(glm::mat4(1.0f), m_shader.get(), true);
 
-        shader.bind();
+        m_shader->bind();
 
-        shader.setVec3f("uFogColor", 0.0f, 0.0f, 0.0f);
+        m_shader->setVec3f("uFogColor", 0.0f, 0.0f, 0.0f);
 
         m_vao.bind();
 
@@ -111,7 +110,7 @@ namespace engine
 
         m_vao.unbind();
 
-        shader.unbind();
+        m_shader->unbind();
     }
 
 } // namespace engine

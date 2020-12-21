@@ -30,7 +30,7 @@ namespace engine
     protected:
         std::shared_ptr<Model> m_model; /*!< 3D GLTF model of the entity. */
 
-        std::shared_ptr<Shader> m_shader; /*!< The shader to use for the cube map. */
+        std::shared_ptr<Shader> m_shader; /*!< The shader to use for the entity. */
 
         bool m_isStatic = false; /*!< Is the entity static (eg. the entity is unable to move) ? */
 
@@ -44,12 +44,12 @@ namespace engine
     public:
         /// \brief Parameterized constructor.
         /// \param model : The GLTF model of the entity.
-        // /// \param shader : The shader to use for the entity.
+        /// \param shader : The shader to use for the entity.
         /// \param isStatic : Whether the entity is able to move or not.
         /// \param transform : The initial transformation to apply to the entity.
         Entity(
             Model *model,
-            // Shader *shader,
+            Shader *shader,
             const bool isStatic = false,
             const Transform &transform = Transform());
 
@@ -66,28 +66,28 @@ namespace engine
         // void moveFront(float dt);
         // void moveLeft(float dt);
 
-        // /// \brief Update the entity.
+        // /// \brief Updates the entity.
         // void update(float time);
 
-        /// \brief Render the entity.
-        void render(Shader &shader, float time);
+        /// \brief Renders the entity.
+        void render();
 
-        /// \brief Get the position of the entity.
+        /// \brief Gets the position of the entity.
         inline const glm::vec3 &getPosition() const { return m_position; };
-        /// \brief Set the position of the entity.
+        /// \brief Sets the position of the entity.
         inline void setPosition(glm::vec3 position) { m_position = position; };
 
-        /// \brief Get the rotation of the entity.
+        /// \brief Gets the rotation of the entity.
         inline const glm::vec3 &getRotation() const { return m_rotation; };
-        /// \brief Get the rotation of the entity.
+        /// \brief Gets the rotation of the entity.
         inline void setRotation(glm::vec3 rotation) { m_rotation = rotation; };
 
-        /// \brief Get the scale of the entity.
+        /// \brief Gets the scale of the entity.
         inline const glm::vec3 &getScale() const { return m_scale; };
-        /// \brief Get the scale of the entity.
+        /// \brief Gets the scale of the entity.
         inline void setScale(glm::vec3 scale) { m_scale = scale; };
 
-        /// \brief Get the model of the entity.
+        /// \brief Gets the model of the entity.
         inline const Model *getModel() const { return m_model.get(); };
 
         /// \brief Returns a boolean to tell whether the entity is able to move or not.

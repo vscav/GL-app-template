@@ -6,25 +6,19 @@ namespace engine
 
     Entity::Entity(
         Model *model,
-        // Shader *shader,
+        Shader *shader,
         const bool isStatic,
         const Transform &transform)
-        : m_model(model), m_isStatic(isStatic),
+        : m_model(model), m_shader(shader), m_isStatic(isStatic),
           m_position(transform.m_position), m_scale(transform.m_scale), m_rotation(transform.m_rotation)
     {
     }
 
-        Entity::Entity(const Entity &other)
-        : m_model(other.m_model), m_isStatic(other.m_isStatic),
+    Entity::Entity(const Entity &other)
+        : m_model(other.m_model), m_shader(other.m_shader), m_isStatic(other.m_isStatic),
           m_position(other.m_position), m_scale(other.m_scale), m_rotation(other.m_rotation)
     {
     }
-
-    // Entity::Entity(const Entity &other)
-    //     : m_model(other.m_model), m_shader(other.m_shader), m_isStatic(other.m_isStatic),
-    //       m_position(other.m_position), m_scale(other.m_scale), m_rotation(other.m_rotation)
-    // {
-    // }
 
     const glm::mat4 Entity::getMatrix()
     {
@@ -65,10 +59,11 @@ namespace engine
     //     m_position[0] += dt * 0.01;
     // }
 
-    void Entity::render(Shader &shader, float time)
+    void Entity::render()
     {
-        Renderer::getInstance().sendModelMatrixUniforms(getMatrix(), shader);
-        m_model->render(shader, time);
+        Renderer::getInstance().sendModelMatrixUniforms(getMatrix(), m_shader.get());
+
+        m_model->render(m_shader.get());
     }
 
 } // namespace engine

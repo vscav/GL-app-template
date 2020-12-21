@@ -15,10 +15,12 @@ Application::Application()
           "application/res/textures/skybox/space/back.png",
           "application/res/textures/skybox/space/bottom.png",
           "application/res/textures/skybox/space/right.png",
-          "application/res/textures/skybox/space/top.png"),
-      m_cubeMapShader("application/res/shaders/skybox.vert", "application/res/shaders/skybox.frag"),
-      m_entity(new engine::Model("application/res/models/spaceship/scene.gltf"), false),
-      m_entityShader("application/res/shaders/forward.vert", "application/res/shaders/pbr_directionallight.frag")
+          "application/res/textures/skybox/space/top.png",
+          new engine::Shader("application/res/shaders/skybox.vert", "application/res/shaders/skybox.frag")),
+      m_entity(
+          new engine::Model("application/res/models/spaceship/scene.gltf"),
+          new engine::Shader("application/res/shaders/forward.vert", "application/res/shaders/pbr_directionallight.frag"),
+          false)
 {
 }
 
@@ -30,12 +32,13 @@ Application::Application(std::string title, int width, int height, bool fullScre
           "application/res/textures/skybox/space/back.png",
           "application/res/textures/skybox/space/bottom.png",
           "application/res/textures/skybox/space/right.png",
-          "application/res/textures/skybox/space/top.png"),
-      m_cubeMapShader("application/res/shaders/skybox.vert", "application/res/shaders/skybox.frag"),
-      m_entity(new engine::Model("application/res/models/spaceship/scene.gltf"), false),
-      m_entityShader("application/res/shaders/forward.vert", "application/res/shaders/pbr_directionallight.frag")
+          "application/res/textures/skybox/space/top.png",
+          new engine::Shader("application/res/shaders/skybox.vert", "application/res/shaders/skybox.frag")),
+      m_entity(
+          new engine::Model("application/res/models/spaceship/scene.gltf"),
+          new engine::Shader("application/res/shaders/forward.vert", "application/res/shaders/pbr_directionallight.frag"),
+          false)
 {
-  // m_entities.push_back()
 }
 
 void Application::loop()
@@ -48,10 +51,10 @@ void Application::loop()
 
   // Render cube map
   getWindowManager()->getWindowUtils()->enableDepthTesting(false);
-  m_cubeMap.render(m_cubeMapShader, t);
+  m_cubeMap.render();
   getWindowManager()->getWindowUtils()->enableDepthTesting(true);
 
   // Render Entity
   // m_entity.moveLeft(t);
-  m_entity.render(m_entityShader, t);
+  m_entity.render();
 }

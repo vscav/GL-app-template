@@ -33,9 +33,9 @@ namespace engine
         Renderer(const Renderer &) = delete;
         Renderer &operator=(const Renderer &) = delete;
 
-        void sendModelMatrixUniforms(const glm::mat4 &modelMatrix, Shader &shader, bool removeTranslationView = false);
+        void sendModelMatrixUniforms(const glm::mat4 &modelMatrix, Shader *shader, bool removeTranslationView = false);
 
-        void sendBlinnPhongUniforms(Shader &shader) const;
+        void sendBlinnPhongUniforms(Shader *shader) const;
 
         inline void updateViewMatrix() { m_view = m_camera->getViewMatrix(); };
 

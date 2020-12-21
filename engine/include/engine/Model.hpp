@@ -45,10 +45,8 @@ namespace engine
                                                      std::vector<VertexArrayObject::VaoRange> &meshToVertexArrays);
 
         /// \brief Renders the model to the screen/window.
-        /// \param camera : A pointer to the camera of the application.
-        /// \param shader : The shaders associated to the model.
-        /// \param time : The current time of the window manager.
-        void render(Shader &shader, float time);
+        /// \param shader : The shaders associated to the model and to its entity.
+        void render(Shader *shader);
 
     private:
         tinygltf::Model m_model; /*!< The 3D model. */

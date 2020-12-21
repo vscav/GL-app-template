@@ -39,30 +39,30 @@ namespace engine
         m_vertexArrayObjects = createVertexArrayObjects(m_model, m_bufferObjects, m_meshToVertexArrays);
     }
 
-    void Model::render(Shader &shader, float time)
+    void Model::render(Shader *shader)
     {
         glm::vec3 lightDirection(1, 1, 1);
         glm::vec3 lightIntensity(1, 1, 1);
 
-        shader.bind();
+        shader->bind();
 
-        const auto uLightDirectionLocation = shader.getUniform("uLightDirection");
-        const auto uLightIntensity = shader.getUniform("uLightIntensity");
+        const auto uLightDirectionLocation = shader->getUniform("uLightDirection");
+        const auto uLightIntensity = shader->getUniform("uLightIntensity");
 
-        const auto uBaseColorTexture = shader.getUniform("uBaseColorTexture");
-        const auto uBaseColorFactor = shader.getUniform("uBaseColorFactor");
+        const auto uBaseColorTexture = shader->getUniform("uBaseColorTexture");
+        const auto uBaseColorFactor = shader->getUniform("uBaseColorFactor");
 
-        const auto uMetallicRoughnessTexture = shader.getUniform("uMetallicRoughnessTexture");
-        const auto uMetallicFactor = shader.getUniform("uMetallicFactor");
-        const auto uRoughnessFactor = shader.getUniform("uRoughnessFactor");
+        const auto uMetallicRoughnessTexture = shader->getUniform("uMetallicRoughnessTexture");
+        const auto uMetallicFactor = shader->getUniform("uMetallicFactor");
+        const auto uRoughnessFactor = shader->getUniform("uRoughnessFactor");
 
-        const auto uEmissiveTexture = shader.getUniform("uEmissiveTexture");
-        const auto uEmissiveFactor = shader.getUniform("uEmissiveFactor");
+        const auto uEmissiveTexture = shader->getUniform("uEmissiveTexture");
+        const auto uEmissiveFactor = shader->getUniform("uEmissiveFactor");
 
-        const auto uOcclusionTexture = shader.getUniform("uOcclusionTexture");
-        const auto uOcclusionStrength = shader.getUniform("uOcclusionStrength");
+        const auto uOcclusionTexture = shader->getUniform("uOcclusionTexture");
+        const auto uOcclusionStrength = shader->getUniform("uOcclusionStrength");
         // const auto uApplyOcclusion =
-        //     shader.getUniform("uApplyOcclusion");
+        //     shader->getUniform("uApplyOcclusion");
 
         const auto bindMaterial = [&](const GLuint materialIndex) {
             if (materialIndex >= 0)
@@ -71,7 +71,7 @@ namespace engine
                 const auto &pbrMetallicRoughness = material.pbrMetallicRoughness;
                 if (uBaseColorFactor >= 0)
                 {
-                    shader.setVec4f("uBaseColorFactor",
+                    shader->setVec4f("uBaseColorFactor",
                                     (float)pbrMetallicRoughness.baseColorFactor[0],
                                     (float)pbrMetallicRoughness.baseColorFactor[1],
                                     (float)pbrMetallicRoughness.baseColorFactor[2],
@@ -92,12 +92,12 @@ namespace engine
 
                     glActiveTexture(GL_TEXTURE0);
                     glBindTexture(GL_TEXTURE_2D, textureObject);
-                    shader.setInt("uBaseColorTexture", 0);
+                    shader->setInt("uBaseColorTexture", 0);
                 }
                 if (uMetallicFactor >= 0)
-                    shader.setFloat("uMetallicFactor", (float)pbrMetallicRoughness.metallicFactor);
+                    shader->setFloat("uMetallicFactor", (float)pbrMetallicRoughness.metallicFactor);
                 if (uRoughnessFactor >= 0)
-                    shader.setFloat("uRoughnessFactor", (float)pbrMetallicRoughness.roughnessFactor);
+                    shader->setFloat("uRoughnessFactor", (float)pbrMetallicRoughness.roughnessFactor);
                 if (uMetallicRoughnessTexture >= 0)
                 {
                     auto textureObject = 0u;
@@ -110,11 +110,11 @@ namespace engine
 
                     glActiveTexture(GL_TEXTURE1);
                     glBindTexture(GL_TEXTURE_2D, textureObject);
-                    shader.setInt("uMetallicRoughnessTexture", 1);
+                    shader->setInt("uMetallicRoughnessTexture", 1);
                 }
                 if (uEmissiveFactor >= 0)
                 {
-                    shader.setVec3f("uEmissiveFactor",
+                    shader->setVec3f("uEmissiveFactor",
                                     (float)material.emissiveFactor[0],
                                     (float)material.emissiveFactor[1],
                                     (float)material.emissiveFactor[2]);
@@ -133,10 +133,10 @@ namespace engine
 
                     glActiveTexture(GL_TEXTURE2);
                     glBindTexture(GL_TEXTURE_2D, textureObject);
-                    shader.setInt("uEmissiveTexture", 2);
+                    shader->setInt("uEmissiveTexture", 2);
                 }
                 if (uOcclusionStrength >= 0)
-                    shader.setFloat("uOcclusionStrength", (float)material.occlusionTexture.strength);
+                    shader->setFloat("uOcclusionStrength", (float)material.occlusionTexture.strength);
                 if (uOcclusionTexture >= 0)
                 {
                     auto textureObject = m_whiteTexture;
@@ -149,44 +149,44 @@ namespace engine
 
                     glActiveTexture(GL_TEXTURE3);
                     glBindTexture(GL_TEXTURE_2D, textureObject);
-                    shader.setInt("uOcclusionTexture", 3);
+                    shader->setInt("uOcclusionTexture", 3);
                 }
             }
             else
             {
                 if (uBaseColorFactor >= 0)
-                    shader.setVec4f("uBaseColorFactor", 1, 1, 1, 1);
+                    shader->setVec4f("uBaseColorFactor", 1, 1, 1, 1);
                 if (uBaseColorTexture >= 0)
                 {
                     glActiveTexture(GL_TEXTURE0);
                     glBindTexture(GL_TEXTURE_2D, m_whiteTexture);
-                    shader.setInt("uBaseColorTexture", 0);
+                    shader->setInt("uBaseColorTexture", 0);
                 }
                 if (uMetallicFactor >= 0)
-                    shader.setFloat("uMetallicFactor", 1.f);
+                    shader->setFloat("uMetallicFactor", 1.f);
                 if (uRoughnessFactor >= 0)
-                    shader.setFloat("uRoughnessFactor", 1.f);
+                    shader->setFloat("uRoughnessFactor", 1.f);
                 if (uMetallicRoughnessTexture >= 0)
                 {
                     glActiveTexture(GL_TEXTURE1);
                     glBindTexture(GL_TEXTURE_2D, 0);
-                    shader.setInt("uMetallicRoughnessTexture", 1);
+                    shader->setInt("uMetallicRoughnessTexture", 1);
                 }
                 if (uEmissiveFactor >= 0)
-                    shader.setVec3f("uEmissiveFactor", 0.f, 0.f, 0.f);
+                    shader->setVec3f("uEmissiveFactor", 0.f, 0.f, 0.f);
                 if (uEmissiveTexture >= 0)
                 {
                     glActiveTexture(GL_TEXTURE2);
                     glBindTexture(GL_TEXTURE_2D, 0);
-                    shader.setInt("uEmissiveTexture", 2);
+                    shader->setInt("uEmissiveTexture", 2);
                 }
                 if (uOcclusionStrength >= 0)
-                    shader.setFloat("uOcclusionStrength", 0.f);
+                    shader->setFloat("uOcclusionStrength", 0.f);
                 if (uOcclusionTexture >= 0)
                 {
                     glActiveTexture(GL_TEXTURE3);
                     glBindTexture(GL_TEXTURE_2D, 0);
-                    shader.setInt("uOcclusionTexture", 3);
+                    shader->setInt("uOcclusionTexture", 3);
                 }
             }
         };
@@ -198,12 +198,12 @@ namespace engine
             if (uLightDirectionLocation >= 0)
             {
                 // if (m_lightFromCamera)
-                //     shader.setVec3f("uLightDirection", 0, 0, 1);
+                //     shader->setVec3f("uLightDirection", 0, 0, 1);
                 // else
                 // {
                 const auto lightDirectionInViewSpace = glm::normalize(
                     glm::vec3(viewMatrix * glm::vec4(lightDirection, 0.)));
-                shader.setVec3f("uLightDirection",
+                shader->setVec3f("uLightDirection",
                                 lightDirectionInViewSpace[0],
                                 lightDirectionInViewSpace[1],
                                 lightDirectionInViewSpace[2]);
@@ -211,7 +211,7 @@ namespace engine
             }
 
             if (uLightIntensity >= 0)
-                shader.setVec3f("uLightIntensity",
+                shader->setVec3f("uLightIntensity",
                                 lightIntensity[0],
                                 lightIntensity[1],
                                 lightIntensity[2]);
@@ -219,7 +219,7 @@ namespace engine
             // if (uApplyOcclusion >= 0)
             // {
             //     // glUniform1i(uApplyOcclusion, m_applyOcclusion);
-            //     shader.setInt("uApplyOcclusion", m_applyOcclusion);
+            //     shader->setInt("uApplyOcclusion", m_applyOcclusion);
             // }
 
             // The recursive function that should draw a node
@@ -283,7 +283,7 @@ namespace engine
 
         drawScene();
 
-        shader.unbind();
+        shader->unbind();
     }
 
     bool Model::loadGltfFile(tinygltf::Model &model)

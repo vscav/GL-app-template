@@ -19,11 +19,9 @@ class Application : public engine::GLApplication
 {
 
 private:
-  engine::CubeMap m_cubeMap;      /*!< A cube map object. */
-  engine::Shader m_cubeMapShader; /*!< The shaders which will be used for the cube map object. */
+  engine::CubeMap m_cubeMap; /*!< A cube map object. */
 
-  engine::Entity m_entity;
-  engine::Shader m_entityShader;
+  engine::Entity m_entity; /*!< An entity map object. */
 
 protected:
   /// \brief The application loop (run until the user asks to quit).
